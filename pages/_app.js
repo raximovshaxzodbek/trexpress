@@ -45,6 +45,14 @@ function MyApp({ Component, pageProps }) {
   Router.events.on("routeChangeStart", () => setLoader(true));
   Router.events.on("routeChangeComplete", () => setLoader(false));
   Router.events.on("routeChangeError", () => setLoader(false));
+/*   const [arr, setArr] = useState(() => {
+    (async () => {
+      axios
+        .get(`https://admin.rentinn.uz/api/v1/rest/brands/paginate`)
+        .then((res) => setArr(res.data.data))
+        .catch((err) => console.log(err));
+    })();
+  }); */
   const isWithOutLayout = WithOutLayout.find((item) =>
     router.pathname.includes(item)
   );

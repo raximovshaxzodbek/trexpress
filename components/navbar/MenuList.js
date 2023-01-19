@@ -14,17 +14,18 @@ import { MainContext } from "../../utils/contexts/MainContext";
 import { imgBaseUrl } from "../../constants";
 import axios from "axios";
 import SkeletonInput from "../skelton/Skeleton-Input";
+import { useSelector } from "react-redux";
 
 export const MenuList = () => {
   const { t: tl } = useTranslation();
   const [changeScroll, ssetChangeScroll] = useState("none");
   const [display, setDisplay] = useState("none");
   const [num, setNum] = useState(0);
-
+  const categoryList = useSelector((state) => state.category.categoryList);
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
-        .get(`https://admin.rentinn.uz/api/v1/rest/categories/paginate`)
+        .get(`/api/v1/rest/categories/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
@@ -62,15 +63,20 @@ export const MenuList = () => {
             modules={[Mousewheel, FreeMode, Navigation]}
             className="swiperCategoriesList"
           >
-            {arr?.length > 0
-              ? arr.map((item, index) => (
+            {categoryList?.length > 0
+              ? categoryList.map((category, index) => (
                   <SwiperSlide
-                    key={index}
+                    key={category.translation?.title}
                     onMouseLeave={() => setDisplay("none")}
                     onMouseOver={() => setDisplay("grid")}
                     onClick={() => setNum(index)}
                   >
-                    <p>{item.keywords}</p>
+                    <Link
+                      key={category?.uuid}
+                      href={`/all-product?category_id=${category.id}`}
+                    >
+                      <p ref={index === 0 ? ref : ""}>{category.translation?.title}</p>
+                    </Link>
                   </SwiperSlide>
                 ))
               : [1, 2, 3, 4].map((item, index) => (

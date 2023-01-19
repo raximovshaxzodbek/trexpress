@@ -15,6 +15,7 @@ import { MainContext } from "../../utils/contexts/MainContext";
 import axios from "axios";
 import { useInView } from "react-intersection-observer";
 import SkeltonImage from "../skelton/skelton-image";
+import SkeletonInput from "../skelton/Skeleton-Input";
 
 export const BrandList = () => {
   const { ref, inView } = useInView();
