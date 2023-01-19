@@ -19,14 +19,13 @@ import Blog from "../components/blog";
 import { BrandList } from "../components/navbar/BrandList";
 import { Col, Row } from "antd";
 
-
 function Home() {
   const [discountList, setDiscountList] = useState(null);
   const [mostSales, setMostSales] = useState(null);
   const dispatch = useDispatch();
   const data = useSelector((state) => state.banners.data.data);
-  const bannerList = data ?  [...data] : []
-  bannerList && bannerList?.length > 0 && bannerList?.shift()
+  const bannerList = data ? [...data] : [];
+  bannerList && bannerList?.length > 0 && bannerList?.shift();
   const getDiscountProduct = (perPage = 4, page = 1) => {
     ProductApi.getDiscount({ perPage, page })
       .then((response) => {
@@ -55,10 +54,9 @@ function Home() {
     getMostSales();
   }, []);
 
-
   return (
     <>
-    {/* <div style={{width: 800, height: 400, background: 'gray', display: 'grid', gridTemplateColumns: 2, gridTemplateRows: 1}}>
+      {/* <div style={{width: 800, height: 400, background: 'gray', display: 'grid', gridTemplateColumns: 2, gridTemplateRows: 1}}>
       <div style={{background: 'yellow', margin: 10}}></div>
       <div style={{background: 'yellow', margin: 10}}></div>
       <div style={{background: 'yellow', margin: 10}}></div>
@@ -68,13 +66,18 @@ function Home() {
       <BrandList />
       <HomeBanner bannerList={bannerList} />
       <Row id="row">
-        {new Array(3).fill("Store Name").map((el, index) =>
-              <StoreTemplate key={index} upperDesc="Lorem ipsum dolor sit amet" title={el} image="/assets/icons/example.jpg" />
-        )}
+        {new Array(3).fill("Store Name").map((el, index) => (
+          <StoreTemplate
+            key={index}
+            upperDesc="Lorem ipsum dolor sit amet"
+            title={el}
+            image="/assets/icons/example.jpg"
+          />
+        ))}
       </Row>
-     {/*  <CategoryByChild />
+      {/*  <CategoryByChild />
       <CategoryByParent /> */}
-    {/*   <MegaSale /> */}
+      {/*   <MegaSale /> */}
       <ProductSection icon={true} title="Super discounts of the week">
         {discountList ? (
           discountList.map((product, key) => (
@@ -113,39 +116,38 @@ function Home() {
       </ProductSection>
       <BeSeller />
       <Row id="row">
-        {new Array(18).fill("Store Name").map((el, index) =>
-              <StoreTemplate key={index} upperDesc="Lorem ipsum dolor sit amet" title={el} image="/assets/icons/example.jpg" />
-        )}
+        {new Array(18).fill("Store Name").map((el, index) => (
+          <StoreTemplate
+            key={index}
+            upperDesc="Lorem ipsum dolor sit amet"
+            title={el}
+            image="/assets/icons/example.jpg"
+          />
+        ))}
       </Row>
-     {/*  <ServiceBanner /> */}
+      {/*  <ServiceBanner /> */}
       {/* <Blog />
       <AppBanner /> */}
-      
     </>
   );
 }
 
 export default Home;
 
-
-export const StoreTemplate = ({title, upperDesc, image}) => {
+export const StoreTemplate = ({ title, upperDesc, image }) => {
   return (
-    <Col xl={7} id = "col">
-    <div className="mainBlock">
-      <div className="leftPart">
-      <p className="leftPartDesc">{upperDesc}</p>
-      <img className="leftPartLogo" src="https://w7.pngwing.com/pngs/539/16/png-transparent-zara-hd-logo.png"/>
-      </div>
+    <Col xl={7} id="col">
+      <div className="mainBlock">
         <div className="rightPart">
-        <img src='https://cdn-images.farfetch-contents.com/19/11/05/11/19110511_41810760_1000.jpg' className="rightPartImage" /> 
+          <img
+            src="https://cdn-images.farfetch-contents.com/19/11/05/11/19110511_41810760_1000.jpg"
+            className="rightPartImage"
+          />
         </div>
-    </div>
-    <div className="titleUnder" style={{
-      display :"flex",
-      padding:"10px 10px"
-    }}>
-      <h1 style={{height: '20%', fontSize:'20px'}}>Zara</h1>
-    </div>
-  </Col>
-  )
-}
+        <div className="titleUnder">
+          <h1>Zara</h1>
+        </div>
+      </div>
+    </Col>
+  );
+};
