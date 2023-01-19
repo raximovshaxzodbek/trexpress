@@ -10,7 +10,6 @@ import MegaSale from "../components/banner/mega-sale";
 import { ProductApi } from "../api/main/product";
 import ProductSection from "../components/products/section";
 import ProductCard from "../components/products/card";
-import ProductLoader from "../components/loader/product";
 import ServiceBanner from "../components/banner/service";
 import CategoryByChild from "../components/category/category-by-child";
 import CategoryByParent from "../components/category/category-by-parent";
@@ -18,6 +17,11 @@ import BeSeller from "../components/banner/be-seller";
 import Blog from "../components/blog";
 import { BrandList } from "../components/navbar/BrandList";
 import { Col, Row } from "antd";
+import StoreLoader from "../components/loader/store";
+import axios from "axios";
+import { LoaderStore } from "../components/LoaderStore/LoaderStore";
+import ProductLoader from "../components/loader/product";
+import SkeletonInput from "../components/skelton/Skeleton-Input";
 
 function Home() {
   const [discountList, setDiscountList] = useState(null);
@@ -54,26 +58,41 @@ function Home() {
     getMostSales();
   }, []);
 
+  const [arr, setArr] = useState(() => {
+    (async () => {
+      axios
+        .get(`https://admin.rentinn.uz/api/v1/rest/brands/paginate`)
+        .then((res) => setArr(res.data.data))
+        .catch((err) => console.log(err));
+    })();
+  });
+
+  console.log();
+
   return (
     <>
-      {/* <div style={{width: 800, height: 400, background: 'gray', display: 'grid', gridTemplateColumns: 2, gridTemplateRows: 1}}>
-      <div style={{background: 'yellow', margin: 10}}></div>
-      <div style={{background: 'yellow', margin: 10}}></div>
-      <div style={{background: 'yellow', margin: 10}}></div>
-      <div style={{background: 'yellow', margin: 10}}></div>
-    </div> */}
       <SEO />
       <BrandList />
       <HomeBanner bannerList={bannerList} />
       <Row id="row">
-        {new Array(3).fill("Store Name").map((el, index) => (
-          <StoreTemplate
-            key={index}
-            upperDesc="Lorem ipsum dolor sit amet"
-            title={el}
-            image="/assets/icons/example.jpg"
-          />
-        ))}
+        {arr?.length > 0
+          ? arr
+              .slice(0, 3)
+              .map((el, index) => (
+                <StoreTemplate key={index} title={el.title} image={el.img} />
+              ))
+          : [1, 2, 3].map((el) => (
+              <Col xl={7} id="col">
+                <div className="mainBlock">
+                  <div className="rightPart">
+                    <LoaderStore />
+                  </div>
+                  <div className="titleUnder">
+                    <SkeletonInput />
+                  </div>
+                </div>
+              </Col>
+            ))}
       </Row>
       {/*  <CategoryByChild />
       <CategoryByParent /> */}
@@ -116,14 +135,22 @@ function Home() {
       </ProductSection>
       <BeSeller />
       <Row id="row">
-        {new Array(18).fill("Store Name").map((el, index) => (
-          <StoreTemplate
-            key={index}
-            upperDesc="Lorem ipsum dolor sit amet"
-            title={el}
-            image="/assets/icons/example.jpg"
-          />
-        ))}
+        {arr?.length > 0
+          ? arr.map((el, index) => (
+              <StoreTemplate key={index} title={el.title} image={el.img} />
+            ))
+          : [1, 2, 3, 4, 5, 6].map((el) => (
+              <Col xl={7} id="col">
+                <div className="mainBlock">
+                  <div className="rightPart">
+                    <LoaderStore />
+                  </div>
+                  <div className="titleUnder">
+                    <SkeletonInput />
+                  </div>
+                </div>
+              </Col>
+            ))}
       </Row>
       {/*  <ServiceBanner /> */}
       {/* <Blog />
@@ -134,18 +161,20 @@ function Home() {
 
 export default Home;
 
-export const StoreTemplate = ({ title, upperDesc, image }) => {
+export const StoreTemplate = ({ title, image }) => {
   return (
     <Col xl={7} id="col">
       <div className="mainBlock">
         <div className="rightPart">
           <img
-            src="https://cdn-images.farfetch-contents.com/19/11/05/11/19110511_41810760_1000.jpg"
+            src={`https://admin.rentinn.uz/storage/images/` + image}
             className="rightPartImage"
+            width={250}
+            height={250}
           />
         </div>
         <div className="titleUnder">
-          <h1>Zara</h1>
+          <h1>{title}</h1>
         </div>
       </div>
     </Col>
