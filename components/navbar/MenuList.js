@@ -21,17 +21,18 @@ export const MenuList = () => {
   const [changeScroll, ssetChangeScroll] = useState("none");
   const [display, setDisplay] = useState("none");
   const [num, setNum] = useState(0);
+  const [quality, setQuality] = useState(4);
   const categoryList = useSelector((state) => state.category.categoryList);
+
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
-        .get(`/api/v1/rest/categories/paginate`)
+        .get(`https://admin.rentinn.uz/api/v1/rest/categories/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
   });
   console.log(arr);
-
   const someArr = new Array(10)
     .fill("Lorem ipsum")
     .map((el, index) => <p key={index}>{el}</p>);
@@ -56,15 +57,15 @@ export const MenuList = () => {
           <Swiper
             mousewheel={true}
             scrollbar={true}
-            slidesPerView={4}
+            slidesPerView={quality}
             spaceBetween={30}
             freeMode={true}
             navigation={true}
             modules={[Mousewheel, FreeMode, Navigation]}
             className="swiperCategoriesList"
           >
-            {categoryList?.length > 0
-              ? categoryList.map((category, index) => (
+            {arr?.length > 0
+              ? arr.map((category, index) => (
                   <SwiperSlide
                     key={category.translation?.title}
                     onMouseLeave={() => setDisplay("none")}
@@ -75,7 +76,9 @@ export const MenuList = () => {
                       key={category?.uuid}
                       href={`/all-product?category_id=${category.id}`}
                     >
-                      <p ref={index === 0 ? ref : ""}>{category.translation?.title}</p>
+                      <p ref={index === 0 ? ref : ""}>
+                        {category.translation?.title}
+                      </p>
                     </Link>
                   </SwiperSlide>
                 ))
