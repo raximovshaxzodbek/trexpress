@@ -67,8 +67,6 @@ function Home() {
     })();
   });
 
-  console.log();
-
   return (
     <>
       <SEO />
@@ -82,7 +80,7 @@ function Home() {
                 <StoreTemplate key={index} title={el.title} image={el.img} />
               ))
           : [1, 2, 3].map((el) => (
-              <Col xl={7} id="col">
+              <Col  span={8} offset={100} id="col">
                 <div className="mainBlock">
                   <div className="rightPart">
                     <LoaderStore />
@@ -140,7 +138,7 @@ function Home() {
               <StoreTemplate key={index} title={el.title} image={el.img} />
             ))
           : [1, 2, 3, 4, 5, 6].map((el) => (
-              <Col xl={7} id="col">
+              <Col span={8} id="col">
                 <div className="mainBlock">
                   <div className="rightPart">
                     <LoaderStore />
@@ -162,21 +160,42 @@ function Home() {
 export default Home;
 
 export const StoreTemplate = ({ title, image }) => {
+  const wid = useWindowSize();
+
   return (
-    <Col xl={7} id="col">
+    <Col span={wid.width >= 900 ? 8 : 24} sm={wid.width < 900 ? 12 : wid.width < 600 && 24} id="col">
       <div className="mainBlock">
         <div className="rightPart">
           <img
             src={`https://admin.rentinn.uz/storage/images/` + image}
             className="rightPartImage"
-            width={250}
-            height={250}
+            width={wid.width < 900 ? 100 : 250}
+            height={wid.width < 900 ? 100 : 250}
           />
         </div>
         <div className="titleUnder">
-          <h1>{title}</h1>
+          <h3>{title}</h3>
         </div>
       </div>
     </Col>
   );
 };
+
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}

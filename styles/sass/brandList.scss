@@ -47,44 +47,48 @@
 
 #row {
   display: flex;
-  width: 100%;
-  justify-content: space-between;
+   justify-content: space-between;
   row-gap: 10px;
-  column-gap: 10px;
+  /* column-gap: 10px; */
   margin-bottom: 10px;
 
-  .ant-col-xl-7 {
-    width: 33.3% !important;
-    max-width: 33.3%;
-    background-color: #fff;
-    border-radius: 10px;
+  /* @media (max-width: 1200px) {
+    justify-content: space-start;
+  } */
+
+  .ant-col {
     display: flex;
-    height: 100%;
-    /* margin-bottom: 10px; */
-    /* margin: 0 auto; */
-    /*   justify-content: space-between; */
+    justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    /*   @media (min-width: 1201px) {
+      width: 33.3%;
+    } */
+
+    /*   @media (max-width: 1200px) {
+      background-color: red;
+    } */
+
     .mainBlock {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100%;
-    /*   height: 250px; */
- 
-
+      width: 98%;
+      background-color: #fff;
+      border-radius: 10px;
+      /*   height: 250px; */
 
       .rightPart {
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
-        padding: 10px 0;
+         padding: 10px 0;
         .rightPartImage {
           border-radius: 50%;
           object-fit: cover;
-
         }
       }
 
