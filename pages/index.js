@@ -235,7 +235,7 @@ export const StoreTemplates = ({ title, image }) => {
             src={`https://admin.rentinn.uz/storage/images/` + image}
             className="rightPartImage"
             width={wid.width < 900 ? 100 : 250}
-            height={wid.width < 900 ? 100 : 250}
+            height={wid.width < 900 ? 100 : 200}
           />
         </div>
         <div className="titleUnder">

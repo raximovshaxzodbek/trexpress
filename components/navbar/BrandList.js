@@ -44,19 +44,20 @@ export const BrandList = () => {
           ? arr.map((el, index) => (
               <SwiperSlide key={el.uuid}>
                 <div className="skeletonBrandList">
-                  {!loading && <SkeltonImage />}
-                  <img
-                    width={80}
-                    height={80}
-                    src={`https://admin.rentinn.uz/storage/images/` + el.img}
-                    style={{ display: loading ? "block" : "none" }}
-                    onLoad={() => setLoading(true)}
-                    alt="404"
-                  />
-
-                  <p className="after" ref={index === 0 ? ref : null}>
-                    {el.title}
-                  </p>
+                  <a href={`/stores/all-brand/${el.id}`}>
+                    {!loading && <SkeltonImage />}
+                    <img
+                      width={80}
+                      height={80}
+                      src={`https://admin.rentinn.uz/storage/images/` + el.img}
+                      style={{ display: loading ? "block" : "none" }}
+                      onLoad={() => setLoading(true)}
+                      alt="404"
+                    />{" "}
+                    <p className="after" ref={index === 0 ? ref : null}>
+                      {el.title}
+                    </p>
+                  </a>
                 </div>
               </SwiperSlide>
             ))

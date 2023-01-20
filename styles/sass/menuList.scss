@@ -8,7 +8,9 @@
 
   @media (max-width: 1250px) {
     flex-direction: column;
-    min-height: 100px;
+    justify-content: flex-start;
+    height: auto;
+    gap: 10px;
     .categoriesList {
       width: 100% !important;
     }
@@ -127,7 +129,7 @@
       display: flex;
       align-items: center;
       @media (max-width: 1250px) {
-        width: 45%;
+        width: 50%;
       }
       .label {
         display: flex;
@@ -135,9 +137,6 @@
         height: 100%;
         p {
           white-space: nowrap;
-          @media (max-width: 1250px) {
-            color: red;
-          }
         }
         svg {
           width: 35px;
