@@ -1,43 +1,40 @@
 import Link from "next/link";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FlashlightFillIcon from "remixicon-react/FlashlightFillIcon";
-import { ArrowRigthIcon, CheeseLineIcon } from "../../constants/images";
+import { CheeseLineIcon } from "../../constants/images";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { useInView } from "react-intersection-observer";
-import { useRouter } from "next/router";
-import { MainContext } from "../../utils/contexts/MainContext";
-import { imgBaseUrl } from "../../constants";
 import axios from "axios";
 import SkeletonInput from "../skelton/Skeleton-Input";
-import { useSelector } from "react-redux";
 
 export const MenuList = () => {
   const { t: tl } = useTranslation();
   const [changeScroll, ssetChangeScroll] = useState("none");
   const [display, setDisplay] = useState("none");
   const [num, setNum] = useState(0);
-  const categoryList = useSelector((state) => state.category.categoryList);
+  const [quality, setQuality] = useState(4);
+
+
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
-        .get(`/api/v1/rest/categories/paginate`)
+        .get(`https://admin.rentinn.uz/api/v1/rest/categories/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
   });
-  console.log(arr);
 
   const someArr = new Array(10)
     .fill("Lorem ipsum")
     .map((el, index) => <p key={index}>{el}</p>);
 
-  const allArr = new Array(6).fill(someArr).map((el) => (
-    <div className="eachColHover">
+  const allArr = new Array(6).fill(someArr).map((el, index) => (
+    <div className="eachColHover" key={index}>
       <h1>Lorem</h1>
       {el}
     </div>
@@ -56,26 +53,25 @@ export const MenuList = () => {
           <Swiper
             mousewheel={true}
             scrollbar={true}
-            slidesPerView={4}
+            slidesPerView={quality}
             spaceBetween={30}
             freeMode={true}
             navigation={true}
             modules={[Mousewheel, FreeMode, Navigation]}
             className="swiperCategoriesList"
           >
-            {categoryList?.length > 0
-              ? categoryList.map((category, index) => (
+            {arr?.length > 0
+              ? arr.map((category, index) => (
                   <SwiperSlide
-                    key={category.translation?.title}
+                    key={category.uuid}
                     onMouseLeave={() => setDisplay("none")}
                     onMouseOver={() => setDisplay("grid")}
                     onClick={() => setNum(index)}
                   >
-                    <Link
-                      key={category?.uuid}
-                      href={`/all-product?category_id=${category.id}`}
-                    >
-                      <p ref={index === 0 ? ref : ""}>{category.translation?.title}</p>
+                    <Link href={`/all-product?category_id=${category.id}`}>
+                      <p ref={index === 0 ? ref : ""}>
+                        {category.translation?.title}
+                      </p>
                     </Link>
                   </SwiperSlide>
                 ))
