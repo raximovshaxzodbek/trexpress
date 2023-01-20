@@ -81,8 +81,8 @@ function Home() {
               .map((el, index) => (
                 <StoreTemplate key={index} title={el.title} image={el.img} />
               ))
-          : [1, 2, 3].map((el) => (
-              <Col xl={7} id="col">
+          : [1, 2, 3].map((el, index) => (
+              <Col xl={7} id="col" key={index}>
                 <div className="mainBlock">
                   <div className="rightPart">
                     <LoaderStore />
@@ -139,8 +139,8 @@ function Home() {
           ? arr.map((el, index) => (
               <StoreTemplate key={index} title={el.title} image={el.img} />
             ))
-          : [1, 2, 3, 4, 5, 6].map((el) => (
-              <Col xl={7} id="col">
+          : [1, 2, 3, 4, 5, 6].map((el, index) => (
+              <Col xl={7} id="col" key={index}>
                 <div className="mainBlock">
                   <div className="rightPart">
                     <LoaderStore />

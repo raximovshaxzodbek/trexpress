@@ -61,7 +61,7 @@ export const BrandList = () => {
               </SwiperSlide>
             ))
           : [1, 2, 3, 4].map((el, index) => (
-              <SwiperSlide key={el.uuid}>
+              <SwiperSlide key={index}>
                 <div className="skeletonBrandList">
                   <SkeltonImage />
                 </div>

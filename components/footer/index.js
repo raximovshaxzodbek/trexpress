@@ -17,6 +17,7 @@ const Footer = () => {
   const windowSize = useWindowSize();
   const settings = useSelector((state) => state.settings.data);
   const [idList, setIdList] = useState([]);
+
   const handleClick = (key) => {
     const includes = idList.includes(key);
     if (includes) {
@@ -30,8 +31,8 @@ const Footer = () => {
 
   new Array(6).fill("Lorem ipsum").forEach((el, index) =>
     accordion.push(
-      <AccordionDetails>
-        <a key={index} href={settings[""]} target="_blank">
+      <AccordionDetails  key={index}  >
+        <a href={settings[""]} target="_blank">
           {el}
         </a>
       </AccordionDetails>
@@ -59,124 +60,124 @@ const Footer = () => {
       <div className="footer">
         <UpFooter />
         <div className="allUnderFooter">
-        <div className="upperFooter">
-          {windowSize.width > 768 ? (
-            <div className="footerCols">
-              <div>
-                <h1 className="title">Safin24</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 200,
-                  }}
-                >
-                  {firstCol}
-                </ul>
-              </div>
-              <div>
-                <h1 className="title">About us</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 200,
-                  }}
-                >
-                  {secondCol}
-                </ul>
-              </div>
-              <div>
-                <h1 className="title">Social Media</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
+          <div className="upperFooter">
+            {windowSize.width > 768 ? (
+              <div className="footerCols">
+                <div>
+                  <h1 className="title">Safin24</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: 200,
+                    }}
+                  >
+                    {firstCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">About us</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: 200,
+                    }}
+                  >
+                    {secondCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">Social Media</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
 
-                    height: 200,
-                  }}
-                >
-                  {thirdCol}
-                </ul>
+                      height: 200,
+                    }}
+                  >
+                    {thirdCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">Lorem Ipsum</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+
+                      height: 200,
+                    }}
+                  >
+                    {fourCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">Help</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+
+                      height: 200,
+                    }}
+                  >
+                    {fifthCol}
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h1 className="title">Lorem Ipsum</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-
-                    height: 200,
-                  }}
-                >
-                  {fourCol}
-                </ul>
-              </div>
-              <div>
-                <h1 className="title">Help</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-
-                    height: 200,
-                  }}
-                >
-                  {fifthCol}
-                </ul>
-              </div>
-            </div>
-          ) : (
-            <Accordion id={""}>
-              <AccordionSummary>Lorem</AccordionSummary>
-              {accordion}
-            </Accordion>
-          )}
-        </div>
-        <div className="footerDown">
-          <div className="secOne">
-            <div className="store">
-              <Image
-                src={appleLogo}
-                alt="Picture of the author"
-                width={30}
-                height={30}
-              />
-
-              <a
-                href="https://www.apple.com/ru/app-store/"
-                target="_blank"
-                className="hrefPlayMarketAppStore"
-              >
-                Загрузите в <br />
-                <strong>App Store</strong>
-              </a>
-            </div>
-            <div className="store">
-              <Image
-                src={playMarketLogo}
-                alt="Picture of the author"
-                width={40}
-                height={30}
-              />
-
-              <a
-                href="https://play.google.com/store/games?hl=ru&gl=US&pli=1"
-                target="_blank"
-                className="hrefPlayMarketAppStore"
-              >
-                Загрузите в <br />
-                <strong>Play Market</strong>
-              </a>
-            </div>
+            ) : (
+              <Accordion id={""}>
+                <AccordionSummary>Lorem</AccordionSummary>
+                {accordion}
+              </Accordion>
+            )}
           </div>
-          <div className="secTwo">
-            <div>© 2023 Eezy Inc. All rights reserved</div>
-            <div>| Terms of Use | Privacy and Policy</div>
+          <div className="footerDown">
+            <div className="secOne">
+              <div className="store">
+                <Image
+                  src={appleLogo}
+                  alt="Picture of the author"
+                  width={30}
+                  height={30}
+                />
+
+                <a
+                  href="https://www.apple.com/ru/app-store/"
+                  target="_blank"
+                  className="hrefPlayMarketAppStore"
+                >
+                  Загрузите в <br />
+                  <strong>App Store</strong>
+                </a>
+              </div>
+              <div className="store">
+                <Image
+                  src={playMarketLogo}
+                  alt="Picture of the author"
+                  width={40}
+                  height={30}
+                />
+
+                <a
+                  href="https://play.google.com/store/games?hl=ru&gl=US&pli=1"
+                  target="_blank"
+                  className="hrefPlayMarketAppStore"
+                >
+                  Загрузите в <br />
+                  <strong>Play Market</strong>
+                </a>
+              </div>
+            </div>
+            <div className="secTwo">
+              <div>© 2023 Eezy Inc. All rights reserved</div>
+              <div>| Terms of Use | Privacy and Policy</div>
+            </div>
           </div>
         </div>
       </div>
-        </div>
     </>
   );
 };
