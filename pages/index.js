@@ -6,6 +6,7 @@ import { getBanners } from "../redux/slices/banner";
 import { images } from "../constants/images";
 import Empty from "../components/empty-data";
 import SEO from "../components/seo";
+import LoginCircleLineIcon from "remixicon-react/LoginCircleLineIcon";
 import MegaSale from "../components/banner/mega-sale";
 import { ProductApi } from "../api/main/product";
 import ProductSection from "../components/products/section";
@@ -18,11 +19,10 @@ import Blog from "../components/blog";
 import { BrandList } from "../components/navbar/BrandList";
 import { Col, Row } from "antd";
 import StoreLoader from "../components/loader/store";
-import axios from "axios";
 import { LoaderStore } from "../components/LoaderStore/LoaderStore";
 import ProductLoader from "../components/loader/product";
 import SkeletonInput from "../components/skelton/Skeleton-Input";
-
+import axios from "axios";
 function Home() {
   const [discountList, setDiscountList] = useState(null);
   const [mostSales, setMostSales] = useState(null);
@@ -67,20 +67,36 @@ function Home() {
     })();
   });
 
+  const [shops, setShops] = useState(() => {
+    (async () => {
+      axios
+        .get(`https://admin.rentinn.uz/api/v1/rest/shops/paginate`)
+        .then((res) => setShops(res.data.data))
+        .catch((err) => console.log(err));
+    })();
+  });
+
+  console.log(shops);
+
   return (
     <>
       <SEO />
       <BrandList />
       <HomeBanner bannerList={bannerList} />
       <Row id="row">
-        {arr?.length > 0
-          ? arr
+        {shops?.length > 0
+          ? shops
               .slice(0, 3)
               .map((el, index) => (
-                <StoreTemplate key={index} title={el.title} image={el.img} />
+                <StoreTemplate
+                  shopTitle={el.translation.title}
+                  key={index}
+                  uuid={el.uuid}
+                  backImg={el.background_img}
+                />
               ))
           : [1, 2, 3].map((el) => (
-              <Col  span={8} offset={100} id="col">
+              <Col span={8} offset={100} id="col">
                 <div className="mainBlock">
                   <div className="rightPart">
                     <LoaderStore />
@@ -135,7 +151,7 @@ function Home() {
       <Row id="row">
         {arr?.length > 0
           ? arr.map((el, index) => (
-              <StoreTemplate key={index} title={el.title} image={el.img} />
+              <StoreTemplates key={index} title={el.title} image={el.img} />
             ))
           : [1, 2, 3, 4, 5, 6].map((el) => (
               <Col span={8} id="col">
@@ -159,11 +175,60 @@ function Home() {
 
 export default Home;
 
-export const StoreTemplate = ({ title, image }) => {
+export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
   const wid = useWindowSize();
 
   return (
-    <Col span={wid.width >= 900 ? 8 : 24} sm={wid.width < 900 ? 12 : wid.width < 600 && 24} id="col">
+    <Col
+      span={wid.width >= 900 ? 8 : 24}
+      sm={wid.width < 900 ? 12 : wid.width < 600 && 24}
+      id="col"
+    >
+      <div className="mainBlock">
+        <div className="shopBanner">
+          <img
+            src={`https://admin.rentinn.uz/storage/images/` + backImg}
+            className="shopImage"
+            width={wid.width < 900 ? 100 : 250}
+            height={wid.width < 900 ? 100 : 250}
+          />
+        </div>
+        <div className="shopInner">
+          <h3>{shopTitle}</h3>
+
+          <a
+            href={`/stores/${uuid}`}
+            style={{
+              color: "black",
+              textDecoration: "none",
+            }}
+          >
+            {" "}
+            <LoginCircleLineIcon size={20} />{" "}
+          </a>
+
+          {/* <img
+            src={`https://admin.rentinn.uz/storage/images/` + logo}
+            alt=""
+            width={30}
+            height={30}
+            style={{ borderRadius: "50%" }}
+          /> */}
+        </div>
+      </div>
+    </Col>
+  );
+};
+
+export const StoreTemplates = ({ title, image }) => {
+  const wid = useWindowSize();
+
+  return (
+    <Col
+      span={wid.width >= 900 ? 8 : 24}
+      sm={wid.width < 900 ? 12 : wid.width < 600 && 24}
+      id="col"
+    >
       <div className="mainBlock">
         <div className="rightPart">
           <img

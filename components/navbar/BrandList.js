@@ -33,7 +33,7 @@ export const BrandList = () => {
     <>
       <Swiper
         mousewheel={true}
-        slidesPerView={4}
+        slidesPerView={12}
         spaceBetween={1}
         freeMode={false}
         navigation={true}
@@ -60,7 +60,7 @@ export const BrandList = () => {
                 </div>
               </SwiperSlide>
             ))
-          : [1, 2, 3, 4].map((el, index) => (
+          : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((el, index) => (
               <SwiperSlide key={index}>
                 <div className="skeletonBrandList">
                   <SkeltonImage />
