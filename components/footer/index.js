@@ -31,7 +31,7 @@ const Footer = () => {
   new Array(6).fill("Lorem ipsum").forEach((el, index) =>
     accordion.push(
       <AccordionDetails key={index}>
-        <a key={index} href={settings[""]} target="_blank">
+        <a href={settings[""]} target="_blank">
           {el}
         </a>
       </AccordionDetails>
