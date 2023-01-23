@@ -13,7 +13,6 @@ const nextConfig = {
       "pk_test_51LaGXyLrMlc0ddAAYc8wxwq8eFj9HbgpvValjxRtg2OZzTJDwFz0ZmATL1TOqAWUFBM3CeHbI5Cny71MzkrAXRxa00XTCJArPr",
     STRIPE_SECRET_KEY:
       "sk_test_51LaGXyLrMlc0ddAAFGTcyYkpVuaASL6XyY0djSEbnbhjFmaD51n1SL7hakh7UkjubMnykJ1wrH15QfbEWN7byuIG00kMcA2yxg",
-      API_KEY: "AIzaSyBpDLwaz7_rTaomsP65ev3i3tWAovQjL8g"
   },
   distDir: "_next"
 };

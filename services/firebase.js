@@ -21,7 +21,6 @@ if (cookie?.settings) {
   config = JSON.parse(cookie?.settings);
 }
 //config?.api_key ? config?.api_key : process.env.MAP_KEY
-const key = "AIzaSyBpDLwaz7_rTaomsP65ev3i3tWAovQjL8g"
 const firebaseConfig = {
   apiKey: config?.api_key ? config?.api_key : process.env.MAP_KEY,
   authDomain: config?.auth_domain

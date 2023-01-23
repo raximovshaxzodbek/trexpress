@@ -213,7 +213,7 @@ export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
       span={wid >= 900 ? 8 : 24}
       sm={wid < 900 ? 12 : wid < 600 && 24}
       id="col"
-    > 
+    >
       <div className="mainBlock">
         <div className="shopBanner">
           <img
@@ -225,7 +225,6 @@ export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
         </div>
         <div className="shopInner">
           <h3>{shopTitle}</h3>
-
           <a
             href={`/stores/${uuid}`}
             style={{
