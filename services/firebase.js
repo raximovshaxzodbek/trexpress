@@ -20,25 +20,25 @@ let config = null;
 if (cookie?.settings) {
   config = JSON.parse(cookie?.settings);
 }
-
+//config?.api_key ? config?.api_key : process.env.MAP_KEY
 const firebaseConfig = {
   apiKey: config?.api_key ? config?.api_key : process.env.MAP_KEY,
   authDomain: config?.auth_domain
     ? config?.auth_domain
-    : "goshops-7c405.firebaseapp.com",
-  projectId: "goshops-7c405",
+    : "seven-24e24.firebaseapp.com",
+  projectId: "seven-24e24",
   storageBucket: config?.project_id
     ? config?.project_id
-    : "goshops-7c405.appspot.com",
+    : "seven-24e24.appspot.com",
   messagingSenderId: config?.messaging_sender_id
     ? config?.messaging_sender_id
-    : "732738074097",
+    : "441406141376",
   appId: config?.app_id
     ? config?.app_id
-    : "1:732738074097:web:de58947609d53efc6fc050",
+    : "1:441406141376:web:bd1ed882452464f2040e25",
   measurementId: config?.measurement_id
     ? config?.measurement_id
-    : "G-SK0FJ6BCPH",
+    : "G-B784929WE4",
 };
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

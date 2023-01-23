@@ -19,7 +19,6 @@ export const MenuList = () => {
   const [num, setNum] = useState(0);
   const [quality, setQuality] = useState(4);
 
-
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
@@ -28,6 +27,8 @@ export const MenuList = () => {
         .catch((err) => console.log(err));
     })();
   });
+
+  // console.log(arr[8]);
 
   const someArr = new Array(10)
     .fill("Lorem ipsum")
@@ -46,6 +47,9 @@ export const MenuList = () => {
     inView ? (prev.style = "opacity:0") : (prev.style = "opacity:1");
   }, [inView]);
 
+  const wids = useWindowSize();
+  const wid = wids.width;
+
   return (
     <div className="menuListWrapper">
       <div className="menuListContainer">
@@ -53,7 +57,7 @@ export const MenuList = () => {
           <Swiper
             mousewheel={true}
             scrollbar={true}
-            slidesPerView={quality}
+            slidesPerView={wid > 1400 ? 8 : wid > 900 ? 5 : wid > 576 && 3}
             spaceBetween={30}
             freeMode={true}
             navigation={true}
@@ -75,7 +79,7 @@ export const MenuList = () => {
                     </Link>
                   </SwiperSlide>
                 ))
-              : [1, 2, 3, 4].map((item, index) => (
+              : [1, 2, 3, 4, 6, 7, 8, 9].map((item, index) => (
                   <SwiperSlide
                     key={index}
                     onMouseLeave={() => setDisplay("none")}
@@ -101,7 +105,7 @@ export const MenuList = () => {
             <div className="btn sideBtn link">
               <div className="label">
                 <CheeseLineIcon />
-                {tl("Advantageous")}
+                <p>{tl("Advantageous")}</p>
               </div>
               {/* <div className="suffix">
                 <ArrowRigthIcon />
@@ -121,8 +125,41 @@ export const MenuList = () => {
         className="menuHover"
         style={{ display: `${display}` }}
       >
-        {allArr}
+        {arr?.length > 0 &&
+          arr.map(({ translation: { title }, children }, index) => (
+            <div>
+              <Link href={`/all-product?category_id=${title.id}`} key={index}>
+                <p>{title}</p>
+              </Link>
+
+              <div>
+                {children?.map((el, index) => (
+                  <p key={index}>{el.keywords}</p>
+                ))}
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
 };
+
+//dry
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}

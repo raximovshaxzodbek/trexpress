@@ -29,11 +29,15 @@ export const BrandList = () => {
     })();
   });
 
+
+  const wids = useWindowSize()
+  const wid = wids.width
+
   return (
     <>
       <Swiper
         mousewheel={true}
-        slidesPerView={4}
+        slidesPerView={wid > 1400 ? 12 : wid > 900 ? 6 : 3}
         spaceBetween={1}
         freeMode={false}
         navigation={true}
@@ -44,23 +48,24 @@ export const BrandList = () => {
           ? arr.map((el, index) => (
               <SwiperSlide key={el.uuid}>
                 <div className="skeletonBrandList">
-                  {!loading && <SkeltonImage />}
-                  <img
-                    width={80}
-                    height={80}
-                    src={`https://admin.rentinn.uz/storage/images/` + el.img}
-                    style={{ display: loading ? "block" : "none" }}
-                    onLoad={() => setLoading(true)}
-                    alt="404"
-                  />
-
-                  <p className="after" ref={index === 0 ? ref : null}>
-                    {el.title}
-                  </p>
+                  <a href={`/stores/all-brand/${el.id}`}>
+                    {!loading && <SkeltonImage />}
+                    <img
+                      width={80}
+                      height={80}
+                      src={`https://admin.rentinn.uz/storage/images/` + el.img}
+                      style={{ display: loading ? "block" : "none" }}
+                      onLoad={() => setLoading(true)}
+                      alt="404"
+                    />{" "}
+                    <p className="after" ref={index === 0 ? ref : null}>
+                      {el.title}
+                    </p>
+                  </a>
                 </div>
               </SwiperSlide>
             ))
-          : [1, 2, 3, 4].map((el, index) => (
+          : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((el, index) => (
               <SwiperSlide key={index}>
                 <div className="skeletonBrandList">
                   <SkeltonImage />
@@ -71,3 +76,22 @@ export const BrandList = () => {
     </>
   );
 };
+//dry
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
