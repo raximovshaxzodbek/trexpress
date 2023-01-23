@@ -29,7 +29,7 @@ function Home() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.banners.data.data);
   const bannerList = data ? [...data] : [];
-  bannerList && bannerList?.length > 0 && bannerList?.shift();
+  /*  bannerList && bannerList?.length > 0 && bannerList?.shift(); */
   const getDiscountProduct = (perPage = 4, page = 1) => {
     ProductApi.getDiscount({ perPage, page })
       .then((response) => {
@@ -85,16 +85,18 @@ function Home() {
       <HomeBanner bannerList={bannerList} />
       <Row id="row">
         {shops?.length > 0
-          ? shops
-              .slice(0, 3)
-              .map((el, index) => (
-                <StoreTemplate
-                  shopTitle={el.translation.title}
-                  key={index}
-                  uuid={el.uuid}
-                  backImg={el.background_img}
-                />
-              ))
+          ? shops.map((el, index) => {
+              if (el.mark === "recommended") {
+                return (
+                  <StoreTemplate
+                    shopTitle={el.translation.title}
+                    key={index}
+                    uuid={el.uuid}
+                    backImg={el.background_img}
+                  />
+                );
+              }
+            })
           : [1, 2, 3].map((el) => (
               <Col span={8} offset={100} id="col">
                 <div className="mainBlock">
@@ -149,6 +151,33 @@ function Home() {
       </ProductSection>
       <BeSeller />
       <Row id="row">
+        {shops?.length > 0
+          ? shops.map((el, index) => {
+              if (!el.mark) {
+                return (
+                  <StoreTemplate
+                    shopTitle={el.translation.title}
+                    key={index}
+                    uuid={el.uuid}
+                    backImg={el.background_img}
+                  />
+                );
+              }
+            })
+          : [1, 2, 3, 4, 5, 6].map((el) => (
+              <Col span={8} offset={100} id="col">
+                <div className="mainBlock">
+                  <div className="rightPart">
+                    <LoaderStore />
+                  </div>
+                  <div className="titleUnder">
+                    <SkeletonInput />
+                  </div>
+                </div>
+              </Col>
+            ))}
+      </Row>
+      {/*  <Row id="row">
         {arr?.length > 0
           ? arr.map((el, index) => (
               <StoreTemplates key={index} title={el.title} image={el.img} />
@@ -165,7 +194,7 @@ function Home() {
                 </div>
               </Col>
             ))}
-      </Row>
+      </Row> */}
       {/*  <ServiceBanner /> */}
       {/* <Blog />
       <AppBanner /> */}
@@ -176,21 +205,22 @@ function Home() {
 export default Home;
 
 export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
-  const wid = useWindowSize();
+  const wids = useWindowSize();
+  const wid = wids.width;
 
   return (
     <Col
-      span={wid.width >= 900 ? 8 : 24}
-      sm={wid.width < 900 ? 12 : wid.width < 600 && 24}
+      span={wid >= 900 ? 8 : 24}
+      sm={wid < 900 ? 12 : wid < 600 && 24}
       id="col"
-    >
+    > 
       <div className="mainBlock">
         <div className="shopBanner">
           <img
             src={`https://admin.rentinn.uz/storage/images/` + backImg}
             className="shopImage"
-            width={wid.width < 900 ? 100 : 250}
-            height={wid.width < 900 ? 100 : 250}
+            width={wid < 900 ? 100 : 250}
+            height={wid < 900 ? 100 : 250}
           />
         </div>
         <div className="shopInner">
@@ -246,6 +276,7 @@ export const StoreTemplates = ({ title, image }) => {
   );
 };
 
+//dry
 function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
     width: undefined,

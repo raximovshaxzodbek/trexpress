@@ -29,11 +29,15 @@ export const BrandList = () => {
     })();
   });
 
+
+  const wids = useWindowSize()
+  const wid = wids.width
+
   return (
     <>
       <Swiper
         mousewheel={true}
-        slidesPerView={12}
+        slidesPerView={wid > 1400 ? 12 : wid > 900 ? 6 : 3}
         spaceBetween={1}
         freeMode={false}
         navigation={true}
@@ -72,3 +76,22 @@ export const BrandList = () => {
     </>
   );
 };
+//dry
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}

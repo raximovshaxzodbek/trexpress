@@ -47,6 +47,9 @@ export const MenuList = () => {
     inView ? (prev.style = "opacity:0") : (prev.style = "opacity:1");
   }, [inView]);
 
+  const wids = useWindowSize();
+  const wid = wids.width;
+
   return (
     <div className="menuListWrapper">
       <div className="menuListContainer">
@@ -54,7 +57,7 @@ export const MenuList = () => {
           <Swiper
             mousewheel={true}
             scrollbar={true}
-            slidesPerView={8}
+            slidesPerView={wid > 1400 ? 8 : wid > 900 ? 5 : wid < 675 && 3}
             spaceBetween={30}
             freeMode={true}
             navigation={true}
@@ -140,3 +143,23 @@ export const MenuList = () => {
     </div>
   );
 };
+
+//dry
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
