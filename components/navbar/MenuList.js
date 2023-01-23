@@ -57,7 +57,7 @@ export const MenuList = () => {
           <Swiper
             mousewheel={true}
             scrollbar={true}
-            slidesPerView={wid > 1400 ? 8 : wid > 900 ? 5 : wid > 576 && 3}
+            slidesPerView={wid > 1400 ? 8 : wid > 900 ? 5 : wid < 675 && 3}
             spaceBetween={30}
             freeMode={true}
             navigation={true}
