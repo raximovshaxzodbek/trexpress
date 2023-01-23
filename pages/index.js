@@ -29,7 +29,6 @@ function Home() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.banners.data.data);
   const bannerList = data ? [...data] : [];
-  /*  bannerList && bannerList?.length > 0 && bannerList?.shift(); */
   const getDiscountProduct = (perPage = 4, page = 1) => {
     ProductApi.getDiscount({ perPage, page })
       .then((response) => {

@@ -14,7 +14,7 @@ const nextConfig = {
     STRIPE_SECRET_KEY:
       "sk_test_51LaGXyLrMlc0ddAAFGTcyYkpVuaASL6XyY0djSEbnbhjFmaD51n1SL7hakh7UkjubMnykJ1wrH15QfbEWN7byuIG00kMcA2yxg",
   },
-  distDir: "_next"
+  distDir: "_next",
 };
 
 module.exports = nextConfig;
