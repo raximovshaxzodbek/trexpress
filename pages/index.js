@@ -102,9 +102,6 @@ function Home() {
                   <div className="rightPart">
                     <LoaderStore />
                   </div>
-                  <div className="titleUnder">
-                    <SkeletonInput />
-                  </div>
                 </div>
               </Col>
             ))}
@@ -169,34 +166,11 @@ function Home() {
                   <div className="rightPart">
                     <LoaderStore />
                   </div>
-                  <div className="titleUnder">
-                    <SkeletonInput />
-                  </div>
                 </div>
               </Col>
             ))}
       </Row>
-      {/*  <Row id="row">
-        {arr?.length > 0
-          ? arr.map((el, index) => (
-              <StoreTemplates key={index} title={el.title} image={el.img} />
-            ))
-          : [1, 2, 3, 4, 5, 6].map((el) => (
-              <Col span={8} id="col">
-                <div className="mainBlock">
-                  <div className="rightPart">
-                    <LoaderStore />
-                  </div>
-                  <div className="titleUnder">
-                    <SkeletonInput />
-                  </div>
-                </div>
-              </Col>
-            ))}
-      </Row> */}
-      {/*  <ServiceBanner /> */}
-      {/* <Blog />
-      <AppBanner /> */}
+     
     </>
   );
 }
