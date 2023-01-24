@@ -22,11 +22,7 @@ const HomeBanner = ({ bannerList }) => {
             </SwiperSlide>
           ))
         ) : (
-<<<<<<< HEAD
-          <div className="home-banner" />
-=======
           <div className="home-banner"></div>
->>>>>>> main
         )}
       </Swiper>
     </>

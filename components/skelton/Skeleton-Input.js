@@ -1,12 +1,14 @@
-
-import { Skeleton } from "antd"
-function SkeletonInput({setOpen}) {
+import { Skeleton } from "antd";
+function SkeletonInput() {
   return (
-    <div className="skeleton-input" onMouseOver={()=> setOpen(true)} onMouseLeave = {()=> setOpen(false)}>
-        
-          <Skeleton.Input active />
+    <div
+      className="skeleton-input"
+      /* onMouseOver={() => setModalopen(true)}
+      onMouseLeave={() => setModalopen(false)} */
+    >
+      <Skeleton.Input active />
     </div>
-  )
+  );
 }
 
-export default SkeletonInput
+export default SkeletonInput;
