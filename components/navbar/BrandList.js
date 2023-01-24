@@ -23,7 +23,7 @@ export const BrandList = () => {
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
-        .get(`https://admin.rentinn.uz/api/v1/rest/brands/paginate`)
+        .get(`https://api.safin24.uz/api/v1/rest/brands/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
@@ -53,7 +53,7 @@ export const BrandList = () => {
                     <img
                       width={80}
                       height={80}
-                      src={`https://admin.rentinn.uz/storage/images/` + el.img}
+                      src={`https://api.safin24.uz/storage/images/` + el.img}
                       style={{ display: loading ? "block" : "none" }}
                       onLoad={() => setLoading(true)}
                       alt="404"

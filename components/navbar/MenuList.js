@@ -22,7 +22,7 @@ export const MenuList = () => {
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
-        .get(`https://admin.rentinn.uz/api/v1/rest/categories/paginate`)
+        .get(`https://api.safin24.uz/api/v1/rest/categories/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
