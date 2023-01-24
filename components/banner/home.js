@@ -22,8 +22,7 @@ const HomeBanner = ({ bannerList }) => {
             </SwiperSlide>
           ))
         ) : (
-          <div className="home-banner">
-          </div>
+          <div className="home-banner" />
         )}
       </Swiper>
     </>
