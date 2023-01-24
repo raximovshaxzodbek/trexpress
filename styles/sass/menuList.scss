@@ -5,6 +5,7 @@
   width: 100%;
   height: 50px;
   font-size: 14px;
+  border-radius: 10px;
 
   @media (max-width: 1250px) {
     flex-direction: column;
@@ -156,44 +157,7 @@
   height: 10px;
   background: #c7c7c7;
 }
-.menuHover {
-  display: grid;
-  border-radius: 10px !important;
-  justify-self: center;
-  background-color: red;
-  left: 0;
-  right: 0;
-  margin: auto;
-  padding: 16px;
-  width: 100%;
-  max-width: 1400px;
-  height: 300px;
-  background: #fff;
-  grid-template-columns: repeat(6, 1fr);
-  z-index: 2;
-  position: absolute;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  .eachColHover {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-}
-.mainDrawer {
-  border: none !important;
-  position: fixed;
-  z-index: 50 !important;
-  pointer-events: none;
-  top: 150px;
-  width: 1300px !important;
-  max-height: 400px;
-  outline: none;
-  border-radius: 10px !important;
-  display: flex;
-  justify-content: center;
-  left: 100px;
-  right: 0;
-}
+
 .ant-drawer {
   border: none !important;
   position: fixed;
@@ -209,29 +173,53 @@
   justify-content: center;
   left: 80px;
   right: 80px;
-  /* a {
-    text-decoration: none;
-    color: black;
-  } */
 
   .ant-drawer-content-wrapper {
     height: 100% !important;
     border: none !important;
     max-width: 90% !important;
     border-radius: 10px !important;
-  }
-  .ant-drawer-wrapper-body {
-    border-radius: 10px !important;
-    .ant-drawer-body {
-      border: none !important;
+
+    .ant-drawer-content {
       border-radius: 10px !important;
-      width: 100%;
-      height: 100%;
-      padding: 60px 10px !important;
-      overflow: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
+
+      .ant-drawer-wrapper-body {
+        border-radius: 10px !important;
+        .ant-drawer-body {
+          border: none !important;
+          border-radius: 10px !important;
+          width: 100%;
+          height: 100%;
+          padding: 60px 10px !important;
+          overflow: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          .menuHover {
+            display: grid;
+            border-radius: 10px !important;
+            justify-self: center;
+            background-color: red;
+            left: 0;
+            right: 0;
+            margin: auto;
+            padding: 16px;
+            width: 100%;
+            max-width: 1400px;
+            height: 300px;
+            background: #fff;
+            grid-template-columns: repeat(6, 1fr);
+            z-index: 2;
+            position: absolute;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            .eachColHover {
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+            }
+          }
+        }
+      }
     }
   }
 }
