@@ -22,11 +22,7 @@ const HomeBanner = ({ bannerList }) => {
             </SwiperSlide>
           ))
         ) : (
-          <div className="home-banner">
-            {/* <img
-              src={`https://ld-prestashop.template-help.com/prestashop_21250/modules/jxmegalayout/extracontent/v0R8aJNxhr8HEg65.jpg`}
-            /> */}
-          </div>
+          <div className="home-banner"></div>
         )}
       </Swiper>
     </>
