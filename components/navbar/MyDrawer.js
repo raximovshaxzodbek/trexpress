@@ -16,8 +16,6 @@ const MyDrawer = ({ arr }) => {
   const [placement, setPlacement] = useState("bottom");
   const [modalopen, setModalopen] = useState(false);
   const [onDrawer, setOnDrawer] = useState(false);
-  console.log(onDrawer);
-  console.log(modalopen);
   const onClose = () => {
     setModalopen(false);
   };
@@ -52,7 +50,7 @@ const MyDrawer = ({ arr }) => {
     <>
       <div
         className="menuListWrapper"
-        onMouseLeave={() => closeDrawer()}
+        onMouseLeave={() => setModalopen(false)}
         onMouseOver={() => setModalopen(true)}
       >
         <div className="menuListContainer">
@@ -108,6 +106,7 @@ const MyDrawer = ({ arr }) => {
         </div>
         <div className="skeletonBetween" />
         <Drawer
+          destroyOnClose={true}
           maskClosable={false}
           placement={placement}
           closable={false}
@@ -127,7 +126,6 @@ const MyDrawer = ({ arr }) => {
         > */}
           <div
             className="menuHover"
-            onClick={() => alert("fee")}
             onMouseLeave={() => setModalopen(false)}
             onMouseOver={() => {
               setModalopen(true);
