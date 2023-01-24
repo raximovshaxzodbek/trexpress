@@ -57,7 +57,7 @@ const Footer = () => {
   return (
     <>
       <div className="footer">
-        <UpFooter />
+        <UpFooter />  
         <div className="allUnderFooter">
         <div className="upperFooter">
           {windowSize.width > 768 ? (

@@ -24,7 +24,7 @@ function StoreInfo() {
           <TimeFillIcon size={20} />
         </div>
         <div className="text">
-          <div className="title">{`${shop.open_time} — ${shop.close_time}`}</div>
+          <div className="title">{`${shop?.open_time} — ${shop?.close_time}`}</div>
           <div className="description">{tl("Working hours")}</div>
         </div>
       </div>
