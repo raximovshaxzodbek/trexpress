@@ -20,6 +20,7 @@ export const MenuList = () => {
   const [display, setDisplay] = useState("none");
   const [num, setNum] = useState(0);
   const [quality, setQuality] = useState(4);
+  const [open, setOpen] = useState(false);
 
   const [arr, setArr] = useState(() => {
     (async () => {
@@ -30,20 +31,9 @@ export const MenuList = () => {
     })();
   });
 
-  // console.log(arr[8]);
-
-  const someArr = new Array(10)
-    .fill("Lorem ipsum")
-    .map((el, index) => <p key={index}>{el}</p>);
-
-  const allArr = new Array(6).fill(someArr).map((el, index) => (
-    <div className="eachColHover" key={index}>
-      <h1>Lorem</h1>
-      {el}
+  return (
+    <div className="myDrawer-wrapper">
+      <MyDrawer arr={arr} />
     </div>
-  ));
-
-  const { ref, inView } = useInView();
-
-  return <MyDrawer arr={arr} />;
+  );
 };

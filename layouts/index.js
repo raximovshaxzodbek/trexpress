@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EnterAddress from "../components/address/enter-delivery-address";
 import CustomDrawer from "../components/drawer";
 import Footer from "../components/footer";
@@ -13,6 +13,7 @@ import { BrandList } from "../components/navbar/BrandList";
 const Layout = ({ children }) => {
   const { isOpen, setIsOpen, open, setOpen, content, setContent } =
     useContext(MainContext);
+
   const handleContent = (key) => {
     setContent(key);
     setOpen(true);
@@ -24,7 +25,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <div className="container">
-        <Navbar handleContent={handleContent} />
+        <Navbar
+          handleContent={handleContent}
+        />
         {children}
         <Footer />
         <CustomDrawer title="Top up wallet" open={open} setOpen={setOpen}>

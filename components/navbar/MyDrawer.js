@@ -4,21 +4,22 @@ import { useTranslation } from "react-i18next";
 import FlashlightFillIcon from "remixicon-react/FlashlightFillIcon";
 import { CheeseLineIcon } from "../../constants/images";
 import "swiper/css";
-
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-
 import { SwiperSlide, Swiper } from "swiper/react";
 import SkeletonInput from "../skelton/Skeleton-Input";
-const MyDrawer = ({ arr }) => {
-  const [open, setOpen] = useState(false);
-  const [placement, setPlacement] = useState("top");
 
+const MyDrawer = ({ arr }) => {
+  const [placement, setPlacement] = useState("bottom");
+  const [modalopen, setModalopen] = useState(false);
+  const [onDrawer, setOnDrawer] = useState(false);
+  console.log(onDrawer);
+  console.log(modalopen);
   const onClose = () => {
-    setOpen(false);
+    setModalopen(false);
   };
 
   const wids = useWindowSize();
@@ -30,21 +31,30 @@ const MyDrawer = ({ arr }) => {
   }, [inView]);
 
   const { ref, inView } = useInView();
+
+  const closeDrawer = () => {
+    const timer = setTimeout(() => {
+      if (onDrawer) {
+        return clearTimeout(timer);
+      } else {
+        setModalopen(false);
+      }
+    }, 2000);
+  };
+
+  const openDrawer = () => {
+    setTimeout(() => {
+      setModalopen(true);
+    }, 3000);
+  };
+
   return (
     <>
-      {/* <Space>
-        <Radio.Group value={placement} onChange={onChange}>
-          <Radio value="top">top</Radio>
-          <Radio value="right">right</Radio>
-          <Radio value="bottom">bottom</Radio>
-          <Radio value="left">left</Radio>
-        </Radio.Group>
-        <Button type="primary" onClick={showDrawer}>
-          Open
-        </Button>
-      </Space> */}
-
-      <div className="menuListWrapper">
+      <div
+        className="menuListWrapper"
+        onMouseLeave={() => closeDrawer()}
+        onMouseOver={() => setModalopen(true)}
+      >
         <div className="menuListContainer">
           <div className="categoriesList">
             <Swiper
@@ -61,24 +71,19 @@ const MyDrawer = ({ arr }) => {
                 ? arr.map((category, index) => (
                     <SwiperSlide key={category.uuid}>
                       <Link href={`/all-product?category_id=${category.id}`}>
-                        <p
-                          ref={index === 0 ? ref : ""}
-                          onMouseOver={() => setOpen(true)}
-                          onMouseLeave={() => setOpen(false)}
-                        >
+                        <p ref={index === 0 ? ref : ""}>
                           {category.translation?.title}
                         </p>
                       </Link>
                     </SwiperSlide>
                   ))
-                : [1, 2, 3, 4, 6, 7, 8, 9].map((item, index) => (
+                : [1, 2, 3, 4, 6, 7, 8, 9].map((_, index) => (
                     <SwiperSlide key={index}>
-                      <SkeletonInput setOpen={setOpen} />
+                      <SkeletonInput />
                     </SwiperSlide>
                   ))}
             </Swiper>
           </div>
-
           <div className="sideBtns">
             <Link href="/stores/often-buy">
               <div className="btn sideBtn link">
@@ -101,22 +106,33 @@ const MyDrawer = ({ arr }) => {
             </Link>
           </div>
         </div>
-        <div
-          className="skeletonBetween"
-          onMouseOver={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
-        ></div>
+        <div className="skeletonBetween" />
         <Drawer
+          maskClosable={false}
           placement={placement}
           closable={false}
+          extra={false}
+          mask={false}
           onClose={onClose}
-          open={open}
+          open={modalopen}
           key={placement}
         >
+          {/*  <Drawer
+          className="menuHover"
+          onMouseLeave={() => setModalopen(false)}
+          onMouseOver={() => {
+            setModalopen(true);
+            setOnDrawer(true);
+          }}
+        > */}
           <div
-            onMouseOver={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
             className="menuHover"
+            onClick={() => alert("fee")}
+            onMouseLeave={() => setModalopen(false)}
+            onMouseOver={() => {
+              setModalopen(true);
+              setOnDrawer(true);
+            }}
           >
             {arr?.length > 0
               ? arr.map(({ translation: { title }, children }, index) => (
@@ -136,12 +152,8 @@ const MyDrawer = ({ arr }) => {
                   </div>
                 ))
               : new Array(24).fill(1).map((item, index) => (
-                  <div
-                    onMouseOver={() => setOpen(true)}
-                    onMouseLeave={() => setOpen(false)}
-                    key={index}
-                  >
-                    <SkeletonInput setOpen={setOpen} />
+                  <div key={index}>
+                    <SkeletonInput />
                   </div>
                 ))}
           </div>

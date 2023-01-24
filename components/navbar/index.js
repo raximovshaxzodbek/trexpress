@@ -24,7 +24,7 @@ import { MenuList } from "./MenuList";
 const Navbar = ({ handleContent }) => {
   const { t: tl } = useTranslation();
   const router = useRouter();
-  const [mobileWidth, setMobileWidth] = useState(false)
+  const [mobileWidth, setMobileWidth] = useState(false);
   const cookies = parseCookies();
   const [open, setOpen] = useState(null);
   const user = useSelector((state) => state.user.data);
@@ -49,17 +49,21 @@ const Navbar = ({ handleContent }) => {
   };
 
   useEffect(() => {
-    document.body.clientWidth < 1200 ? setMobileWidth(true) : setMobileWidth(false)
-  }, [ document.body.clientWidth])
+    document.body.clientWidth < 1200
+      ? setMobileWidth(true)
+      : setMobileWidth(false);
+  }, [document.body.clientWidth]);
 
   return (
     <>
       <div className="navbar">
         <div className="left">
-         {mobileWidth &&  <div className="burger-btn" onClick={() => setOpen(true)}>
-            <span></span>
-            <span></span>
-          </div>}
+          {mobileWidth && (
+            <div className="burger-btn" onClick={() => setOpen(true)}>
+              <span></span>
+              <span></span>
+            </div>
+          )}
           <Link href="/">
             <a className="logo">
               {/*  {settings?.title ? settings?.title : "Site title"} */}
@@ -92,7 +96,7 @@ const Navbar = ({ handleContent }) => {
               <Wallet3LineIcon size={20} />
               <span className="amount">{tl("Basket")}</span>
             </a>
-          )} */}  
+          )} */}
           <div className="cart-amount" onClick={() => click("order-list")}>
             <ShoppingCartLineIcon size={20} />
             <span>{tl("Basket")}</span>
@@ -102,7 +106,7 @@ const Navbar = ({ handleContent }) => {
               <Bookmark3LineIcon size={20} />
             </a>
           </Link> */}
-           {/* <div className="square notification-wrapper">
+          {/* <div className="square notification-wrapper">
             <Notification4LineIcon size={20} />
             <div className="notification">
               <div className="header">
