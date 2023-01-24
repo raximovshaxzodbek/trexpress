@@ -44,6 +44,8 @@
       background-color: #fff;
       color: #000;
       border-radius: 10px;
+      position: relative;
+      z-index: 200;
       /* .swiper {
         width: 100%;
         height: 100%;
@@ -176,3 +178,54 @@
     height: 100%;
   }
 }
+
+.ant-drawer {
+  border: none !important;
+  position: fixed;
+  inset: 0;
+  z-index: 200 !important;
+  pointer-events: none;
+  top: 100px;
+  width: 100%;
+  height: max-content;
+  background-color: red !important;
+  margin: 0 auto;
+  outline: none;
+  border-radius: 10px !important;
+
+  /* a {
+    text-decoration: none;
+    color: black;
+  } */
+}
+
+.ant-drawer-mask {
+  position: absolute;
+  background-color: red !important;
+  border-radius: 10px !important;
+  inset: 0;
+  z-index: 100 !important;
+  display: none !important;
+  pointer-events: auto;
+  border: none !important;
+}
+
+.ant-drawer-content-wrapper {
+  height: 100% !important;
+  border: none !important;
+  border-radius: 10px !important;
+}
+
+.ant-drawer-body {
+  border: none !important;
+  border-radius: 10px !important;
+  width: 100%;
+  height: 100%;
+  padding: 60px 10px !important;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
