@@ -35,7 +35,7 @@ function Home() {
         setDiscountList(response.data);
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error);x
       });
   };
   const getMostSales = (perPage = 4, page = 1) => {
