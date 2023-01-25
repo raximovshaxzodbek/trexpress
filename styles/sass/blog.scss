@@ -13,7 +13,7 @@
     line-height: 40px;
     letter-spacing: -0.02em;
     color: var(--black);
-    // 
+    //
   }
 
   .blog-items {
@@ -21,6 +21,22 @@
     align-items: flex-start;
     gap: 19px;
     flex-wrap: wrap;
+    .storiesList {
+      display: flex;
+      width: 100%;
+      .swiperStoriesList {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        .eachVideo{
+           max-width: 200px;
+          .swiper-slide {
+         
+          height: 100%;
+        }
+        }
+        
+      }
+    }
   }
 
   .blog-card {
@@ -193,8 +209,6 @@
         margin-bottom: 20px;
       }
     }
-
-
 
     .detail-navigation {
       display: flex;
