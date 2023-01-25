@@ -24,7 +24,7 @@ const Blog = () => {
   return (
     <div className="blog-wrapper">
       <div className="blog">
-        <div className="title">{tl("Blog")}</div>
+        <div className="title">{tl("Stories")}</div>
         <div className="blog-items">
           {blogList ? (
             blogList?.map((blog, key) => {
@@ -40,10 +40,7 @@ const Blog = () => {
           )}
         </div>
         {blogList?.length === 0 && (
-          <Empty
-            image={images.ViewedProduct}
-            text1="There are no items in the blogs"
-          />
+          <Empty image={images.ViewedProduct} text1="There are no stroies" />
         )}
       </div>
     </div>

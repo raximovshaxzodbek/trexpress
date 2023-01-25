@@ -75,7 +75,7 @@ const SignInForm = () => {
           name="login"
           onChange={onChange}
           label="Login"
-          placeholder="Email or phone number"
+          placeholder="Phone number"
         />
         <InputPassword
           name="password"

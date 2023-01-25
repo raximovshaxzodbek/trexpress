@@ -15,7 +15,7 @@ const HomeBanner = ({ bannerList }) => {
               <div key={index} className="home-banner">
                 <img
                   src={
-                    `https://admin.rentinn.uz/public/storage/images/` + el.img
+                    `https://api.safin24.uz/public/storage/images/` + el.img
                   }
                 />
               </div>

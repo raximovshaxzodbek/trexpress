@@ -26,7 +26,7 @@ const SignIn = () => {
         <div className="auth-form">
           <div className="title">{tl("Sign In")}</div>
           <SignInForm />
-          <SocialAuth />
+          {/* <SocialAuth /> */}
         </div>
         <div className="auth-banner">
           <img src={images.AuthBanner} alt="Auth banner" />

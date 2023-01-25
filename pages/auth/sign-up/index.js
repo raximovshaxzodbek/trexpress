@@ -128,7 +128,7 @@ const SignUp = () => {
               onSubmit={onSubmit}
             />
           )}
-          <SocialAuth />
+          {/* <SocialAuth /> */}
         </div>
         <div className="auth-banner">
           <img src={images.AuthBanner} alt="Auth banner" />
