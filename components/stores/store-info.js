@@ -5,9 +5,8 @@ import TimeFillIcon from "remixicon-react/TimeFillIcon";
 import ServiceFillIcon from "remixicon-react/ServiceFillIcon";
 import RoadMapFillIcon from "remixicon-react/RoadMapFillIcon";
 import { useTranslation } from "react-i18next";
-function StoreInfo() {
+function StoreInfo({data}) {
   const { t: tl } = useTranslation();
-  const shop = useSelector((state) => state.savedStore.currentStore);
   return (
     <div className="store-info">
       <div className="info-item">
@@ -15,8 +14,8 @@ function StoreInfo() {
           <MapPin2FillIcon size={20} />
         </div>
         <div className="text">
-          <div className="title">{shop?.translation?.title}</div>
-          <div className="description">{shop?.translation?.address}</div>
+          <div className="title">{data?.translation?.title}</div>
+          <div className="description">{data?.translation?.address}</div>
         </div>
       </div>
       <div className="info-item">
@@ -24,7 +23,7 @@ function StoreInfo() {
           <TimeFillIcon size={20} />
         </div>
         <div className="text">
-          <div className="title">{`${shop?.open_time} — ${shop?.close_time}`}</div>
+          <div className="title">{`${data?.open_time} — ${data?.close_time}`}</div>
           <div className="description">{tl("Working hours")}</div>
         </div>
       </div>
@@ -42,7 +41,7 @@ function StoreInfo() {
           <RoadMapFillIcon size={20} />
         </div>
         <div className="text">
-          <div className="title">{`${shop?.delivery_range} km`}</div>
+          <div className="title">{`${data?.delivery_range} km`}</div>
           <div className="description">{tl("Delivery range")}</div>
         </div>
       </div>

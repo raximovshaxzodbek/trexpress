@@ -24,6 +24,7 @@ import { BannerApi } from "../../../api/main/banner";
 import LookBanner from "../../../components/banner/look";
 
 const Store = ({ storeDetail }) => {
+  console.log(storeDetail);
   const [open, setOpen] = useState(null);
   const [content, setContent] = useState(null);
   const [brandList, setBrandList] = useState(null);
@@ -227,7 +228,7 @@ const Store = ({ storeDetail }) => {
           {content === "delivery-time" && (
             <DeliveryTime storeDetail={storeDetail} />
           )}
-          {content === "store-info" && <StoreInfo />}
+          {content === "store-info" && <StoreInfo data={storeDetail} />}
         </CustomDrawer>
       </div>
     </>
