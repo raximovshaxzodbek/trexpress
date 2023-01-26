@@ -44,12 +44,15 @@ const Blog = () => {
                   (el) => (
                     <SwiperSlide>
                       <div className="eachVideo">
-                      <Video style={{ height: 400, borderRadius: 10 }} key={el}>
-                        <source
-                          src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                         /*  type="video/webm" */
-                        />
-                      </Video>
+                        <Video
+                          style={{ height: 400, borderRadius: 10 }}
+                          key={el}
+                        >
+                          <source
+                            src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+                            /*  type="video/webm" */
+                          />
+                        </Video>
                       </div>
                     </SwiperSlide>
                   )
@@ -65,9 +68,9 @@ const Blog = () => {
             </>
           )}
         </div>
-        {blogList?.length === 0 && (
+        {/* {blogList?.length === 0 && (
           <Empty image={images.ViewedProduct} text1="There are no stroies" />
-        )}
+        )} */}
       </div>
     </div>
   );

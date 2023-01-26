@@ -28,6 +28,7 @@ export const BrandList = () => {
         .catch((err) => console.log(err));
     })();
   });
+  
 
 
   const wids = useWindowSize()

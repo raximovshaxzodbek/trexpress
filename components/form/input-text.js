@@ -11,7 +11,7 @@ const InputText = ({
   value,
   suffix,
   required,
-  type = "text",
+  type = "number",
   disabled = false,
 }) => {
   const { t: tl } = useTranslation();

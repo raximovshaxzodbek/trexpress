@@ -28,7 +28,7 @@ export const MenuList = () => {
     })();
   });
 
-  // console.log(arr[8]);
+  console.log(arr);
 
   const someArr = new Array(10)
     .fill("Lorem ipsum")
