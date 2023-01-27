@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper";
 
 const HomeBanner = ({ bannerList }) => {
+  console.log(bannerList);
   return (
     <>
       <Swiper freeMode={false} modules={[FreeMode]} pagination={true}>
@@ -15,7 +16,7 @@ const HomeBanner = ({ bannerList }) => {
               <div key={index} className="home-banner">
                 <img
                   src={
-                    `https://api.safin24.uz/public/storage/images/` + el.img
+                    `https://api.safin24.uz/storage/images/` + el.img
                   }
                 />
               </div>
