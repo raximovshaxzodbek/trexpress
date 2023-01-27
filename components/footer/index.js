@@ -26,9 +26,7 @@ const Footer = () => {
     }
   };
 
-  const accordion = [];
-
-  new Array(6).fill("Lorem ipsum").forEach((el, index) =>
+  /*   new Array(6).fill("Lorem ipsum").forEach((el, index) =>
     accordion.push(
       <AccordionDetails key={index}>
         <a href={settings[""]} target="_blank">
@@ -36,7 +34,7 @@ const Footer = () => {
         </a>
       </AccordionDetails>
     )
-  );
+  ); */
 
   const makeColumns = (num) => {
     return new Array(num).fill("Lorem").map((el, index) => (
@@ -56,127 +54,199 @@ const Footer = () => {
 
   return (
     <>
+      <>
+        <Accordion idList={idList} id={"social"}>
+          <AccordionSummary
+            handleClick={handleClick}
+            idList={idList}
+            id={"social"}
+          >
+            {tl("Social")}
+          </AccordionSummary>
+          <AccordionDetails>
+            <p>{tl("Instagram")}</p>
+          </AccordionDetails>
+          <AccordionDetails>
+            <p>{tl("Facebook")}</p>
+          </AccordionDetails>
+          <AccordionDetails>
+            <p>{tl("Twitter")}</p>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion idList={idList} id={"help"}>
+          <AccordionSummary
+            handleClick={handleClick}
+            idList={idList}
+            id={"help"}
+          >
+            {tl("Help")}
+          </AccordionSummary>
+          <AccordionDetails>
+            <a href="/faq">{tl("FAQ")}</a>
+          </AccordionDetails>
+          <AccordionDetails>
+            <a href="/term-of-use">{tl("Term of use")}</a>
+          </AccordionDetails>
+          <AccordionDetails>
+            <a href="/privacy-policy">{tl("Privacy Policy")}</a>
+          </AccordionDetails>
+        </Accordion>
+      </>
       <div className="footer">
-       {/*  <UpFooter /> */}  
+        {/*  <UpFooter /> */}
         <div className="allUnderFooter">
-        <div className="upperFooter">
-          {windowSize.width > 768 ? (
-            <div className="footerCols">
-              <div>
-                <h1 className="title">Safin24</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 200,
-                  }}
-                >
-                  {firstCol}
-                </ul>
-              </div>
-              <div>
-                <h1 className="title">About us</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    height: 200,
-                  }}
-                >
-                  {secondCol}
-                </ul>
-              </div>
-              <div>
-                <h1 className="title">Social Media</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
+          <div className="upperFooter">
+            {windowSize.width > 768 ? (
+              <div className="footerCols">
+                <div>
+                  <h1 className="title">Safin24</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: 200,
+                    }}
+                  >
+                    {firstCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">About us</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: 200,
+                    }}
+                  >
+                    {secondCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">Social Media</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
 
-                    height: 200,
-                  }}
-                >
-                  {thirdCol}
-                </ul>
+                      height: 200,
+                    }}
+                  >
+                    {thirdCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">Lorem Ipsum</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+
+                      height: 200,
+                    }}
+                  >
+                    {fourCol}
+                  </ul>
+                </div>
+                <div>
+                  <h1 className="title">Help</h1>
+                  <ul
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+
+                      height: 200,
+                    }}
+                  >
+                    {fifthCol}
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h1 className="title">Lorem Ipsum</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-
-                    height: 200,
-                  }}
-                >
-                  {fourCol}
-                </ul>
-              </div>
-              <div>
-                <h1 className="title">Help</h1>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-
-                    height: 200,
-                  }}
-                >
-                  {fifthCol}
-                </ul>
-              </div>
-            </div>
-          ) : (
-            <Accordion id={""}>
-              <AccordionSummary>Lorem</AccordionSummary>
-              {accordion}
-            </Accordion>
-          )}
-        </div>
-        <div className="footerDown">
-          <div className="secOne">
-            <div className="store">
-              <Image
-                src={appleLogo}
-                alt="Picture of the author"
-                width={30}
-                height={30}
-              />
-
-              <a
-                href="https://www.apple.com/ru/app-store/"
-                target="_blank"
-                className="hrefPlayMarketAppStore"
-              >
-                Загрузите в <br />
-                <strong>App Store</strong>
-              </a>
-            </div>
-            <div className="store">
-              <Image
-                src={playMarketLogo}
-                alt="Picture of the author"
-                width={40}
-                height={30}
-              />
-
-              <a
-                href="https://play.google.com/store/games?hl=ru&gl=US&pli=1"
-                target="_blank"
-                className="hrefPlayMarketAppStore"
-              >
-                Загрузите в <br />
-                <strong>Play Market</strong>
-              </a>
-            </div>
+            ) : (
+              <>
+                <Accordion idList={idList} id={"social"}>
+                  <AccordionSummary
+                    handleClick={handleClick}
+                    idList={idList}
+                    id={"social"}
+                  >
+                    {tl("Social")}
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <p>{tl("Instagram")}</p>
+                  </AccordionDetails>
+                  <AccordionDetails>
+                    <p>{tl("Facebook")}</p>
+                  </AccordionDetails>
+                  <AccordionDetails>
+                    <p>{tl("Twitter")}</p>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion idList={idList} id={"help"}>
+                  <AccordionSummary
+                    handleClick={handleClick}
+                    idList={idList}
+                    id={"help"}
+                  >
+                    {tl("Help")}
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <a href="/faq">{tl("FAQ")}</a>
+                  </AccordionDetails>
+                  <AccordionDetails>
+                    <a href="/term-of-use">{tl("Term of use")}</a>
+                  </AccordionDetails>
+                  <AccordionDetails>
+                    <a href="/privacy-policy">{tl("Privacy Policy")}</a>
+                  </AccordionDetails>
+                </Accordion>
+              </>
+            )}
           </div>
-          <div className="secTwo">
-            <div>© 2023 Eezy Inc. All rights reserved</div>
-            <div>| Terms of Use | Privacy and Policy</div>
+          <div className="footerDown">
+            <div className="secOne">
+              <div className="store">
+                <Image
+                  src={appleLogo}
+                  alt="Picture of the author"
+                  width={30}
+                  height={30}
+                />
+
+                <a
+                  href="https://www.apple.com/ru/app-store/"
+                  target="_blank"
+                  className="hrefPlayMarketAppStore"
+                >
+                  Загрузите в <br />
+                  <strong>App Store</strong>
+                </a>
+              </div>
+              <div className="store">
+                <Image
+                  src={playMarketLogo}
+                  alt="Picture of the author"
+                  width={40}
+                  height={30}
+                />
+
+                <a
+                  href="https://play.google.com/store/games?hl=ru&gl=US&pli=1"
+                  target="_blank"
+                  className="hrefPlayMarketAppStore"
+                >
+                  Загрузите в <br />
+                  <strong>Play Market</strong>
+                </a>
+              </div>
+            </div>
+            <div className="secTwo">
+              <div>© 2023 Eezy Inc. All rights reserved</div>
+              <div>| Terms of Use | Privacy and Policy</div>
+            </div>
           </div>
         </div>
       </div>
-        </div>
     </>
   );
 };
