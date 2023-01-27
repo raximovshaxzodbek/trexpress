@@ -28,8 +28,6 @@ export const MenuList = () => {
     })();
   });
 
-  console.log(arr);
-
   const someArr = new Array(10)
     .fill("Lorem ipsum")
     .map((el, index) => <p key={index}>{el}</p>);
