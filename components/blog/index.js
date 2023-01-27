@@ -13,7 +13,7 @@ import { FreeMode, Navigation, Mousewheel } from "swiper";
 
 const Blog = () => {
   const { t: tl } = useTranslation();
-  const [blogList, setBlogList] = useState(null);
+/*   const [blogList, setBlogList] = useState(null);
   const getBlogs = () => {
     BlogApi.get({ type: "blog", perPage: 3 })
       .then((res) => {
@@ -25,7 +25,7 @@ const Blog = () => {
   };
   useEffect(() => {
     getBlogs();
-  }, []);
+  }, []); */
   return (
     <div className="blog-wrapper">
       <div className="blog">
@@ -45,11 +45,18 @@ const Blog = () => {
                     <SwiperSlide>
                       <div className="eachVideo">
                         <Video
+                          controls={[
+                            "PlayPause",
+                            "Seek",
+                            "Time",
+                            "Volume",
+                            "Fullscreen",
+                          ]}
                           style={{ height: 400, borderRadius: 10 }}
                           key={el}
                         >
                           <source
-                            src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+                            src="/tiktok.mp4"
                             /*  type="video/webm" */
                           />
                         </Video>

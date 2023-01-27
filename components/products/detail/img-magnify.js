@@ -6,6 +6,7 @@ import "swiper/css/thumbs";
 import { FreeMode, Thumbs } from "swiper";
 import useWindowSize from "../../../utils/hooks/useWindowSize";
 import { imgBaseUrl } from "../../../constants";
+import { Image } from "antd";
 const ImgMagnify = ({ galleries = [], targetImg = {}, direction }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [gallery, setGallery] = useState(galleries);
@@ -64,7 +65,7 @@ const ImgMagnify = ({ galleries = [], targetImg = {}, direction }) => {
       >
         {gallery?.map((img, key) => (
           <SwiperSlide key={key}>
-            <img src={imgBaseUrl + img.path} />
+            <Image src={imgBaseUrl + img.path} />
           </SwiperSlide>
         ))}
       </Swiper>
