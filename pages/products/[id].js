@@ -94,10 +94,10 @@ const ProductDetail = ({ productData }) => {
                 data?.reviews_count ? data.reviews_count : 0
               } ${tl("reviews")})`}
             </div>
-            <div className="add-comment" onClick={click}>
+           {/*  <div className="add-comment" onClick={click}>
               <Message2FillIcon size={16} />
               {tl("Add comment")}
-            </div>
+            </div> */}
             {isLiked ? (
               <div
                 className="liked"
