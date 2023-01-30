@@ -282,7 +282,7 @@ const ProductData = ({
         })}
         <div className="stock">
           <div>seller</div>
-          <div>
+          <div className="inStock">
             <img src="/assets/images/inStock.png" alt="in stock" />
             <span>{`${
               showExtras?.stock?.quantity >= 0
