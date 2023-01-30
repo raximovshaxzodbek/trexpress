@@ -292,14 +292,14 @@ const ProductData = ({
             }`}</span>
           </div>
 
-         <div>
+        {/*  <div>
          <StockIcon />
           <span>{`${
             showExtras?.stock?.quantity >= 0
               ? showExtras?.stock?.quantity + tl(" in stock")
               : tl("out of stock")
           }`}</span>
-         </div>
+         </div> */}
         </div>
       </div>
 
