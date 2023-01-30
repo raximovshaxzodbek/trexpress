@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 import InputText from "../form/input-text";
 import Loader4LineIcon from "remixicon-react/Loader4LineIcon";
 import { Input, Select } from "antd";
+import pic from "../../public/assets/russia.png";
+import { DownSquareOutlined } from "@ant-design/icons";
+
 const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
   const [privacy, setPrivacy] = useState(true);
   const { t: tl } = useTranslation();
@@ -30,41 +33,28 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
             options={[{ value: "text 1" }, { value: "text 2" }]}
           />
         </Input.Group> */}
-        <Input.Group size="large" style={{ height: 70 }}>
-          <Select size="large"
-            style={{ height: 70, width: "30%" }}
-            defaultValue={1}
+        <Input.Group compact>
+          <Select
+            showArrow={true}
+            size="large"
+            style={{ width: "30%" }}
+            defaultActiveFirstOption={true}
+            autoFocus={true}
+            // suffixIcon={<img src="/assets/russia.png" width={80} height={50} />}
           >
-            <Option
-              value="1"
-              style={{  
-                backgroungImage: 'url("/assets/images/app-store.png")',
-                height: 70,
-              }}
-            >
-              <img src="/assets/images/app-store.png" />
+            <Option value="rus">
+              <img src="/assets/russia.png" width={80} height={60} />
             </Option>
-            <Option
-              value="2"
-              style={{
-                backgroungImage: 'url("/assets/images/app-store.png")',
-                height: 70,
-              }}
-            >
-              <img src="/assets/images/app-store.png" />
+            <Option value="uz">
+              <img src="/assets/russia.png" width={80} height={60} />
             </Option>
-            <Option
-              value="3"
-              style={{
-                backgroungImage: 'url("/assets/images/app-store.png")',
-                height: 70,
-              }}
-            >
-              <img src="/assets/images/app-store.png" />
+            <Option value="en">
+              <img src="/assets/russia.png" width={80} height={60} />
             </Option>
           </Select>
-          <Input  style={{ width: "70%", height: 70 }} type="tel" />
+          <Input style={{ width: "70%", height: 70 }} type="tel" />
         </Input.Group>
+        <div style={{ height: 18 }} />
         <div className="privacy">
           <input type="checkbox" onChange={() => setPrivacy(!privacy)} />
           {/* {tl("i agree to send SMS code.")} */}

@@ -69,7 +69,7 @@
 
   .auth-form {
     position: relative;
-    width: 450px;
+    width: 33%;
     height: calc(100vh - 125px);
     background: var(--secondary-bg);
     border-radius: 10px;
@@ -112,6 +112,48 @@
       margin-top: 24px;
       /*       display: flex;
       flex-direction: column; */
+
+      .ant-select-selector {
+        height: 70px !important;
+        // background-color: red !important;
+        // display: flex !important;
+        // justify-content: center !important;
+        // align-items: start !important;
+        color: #000;
+        .ant-select-selection-search {
+          display: flex !important;
+          justify-content: center !important;
+          align-items: start !important;
+          color: #000;
+          .ant-select-selection-search-input {
+            height: 70px !important;
+            // background-color: red !important;
+            .ant-select-selection-placeholder {
+              display: none !important;
+              padding: 0 !important;
+              justify-content: center !important;
+              align-items: center;
+              color: #000;
+              &::after {
+                width: 20px !important;
+                font-size: 3rem !important;
+                color: #000 !important;
+              }
+              .ant-select-arrow {
+                width: 20px !important;
+                font-size: 3rem !important;
+                color: #000 !important;
+                background-color: red !important;
+                span {
+                  width: 200px !important;
+                  font-size: 3rem !important;
+                  color: #000 !important;
+                }
+              }
+            }
+          }
+        }
+      }
 
       .privacy {
         display: flex;
@@ -226,7 +268,7 @@
   .auth-banner {
     /*   width: calc(100% - 467px);
         height: calc(100vh - 125px); */
-    width: 100%;
+    width: 66%;
     height: calc(100vh - 125px);
     background-color: #fff;
     border-radius: 10px;
