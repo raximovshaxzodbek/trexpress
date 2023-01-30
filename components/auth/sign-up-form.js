@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import InputText from "../form/input-text";
 import Loader4LineIcon from "remixicon-react/Loader4LineIcon";
+import { Input, Select } from "antd";
 const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
   const [privacy, setPrivacy] = useState(true);
   const { t: tl } = useTranslation();
@@ -13,26 +14,45 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
   return (
     <div className="sign-up-form">
       <form onSubmit={onFinish}>
-        <InputText
+        {/*  <InputText
           onChange={(e) => setPhone(e.target.value)}
-          label="Phone number"
-          placeholder="1 202 340 1032"
-        />
+          // label="Phone number"
+          placeholder=""
+        /> */}
+        {/* <Input.Group compact>
+          <Select defaultValue="Sign Up" style={{ width: "30%" }}>
+            <Option value="Sign Up">Sign Up</Option>
+            <Option value="Sign In">Sign In</Option>
+          </Select>
+          <AutoComplete
+            style={{ width: "70%" }}
+            placeholder="Email"
+            options={[{ value: "text 1" }, { value: "text 2" }]}
+          />
+        </Input.Group> */}
+        <Input.Group compact={true} style={{height: 70}}>
+          <Select style={{height: 70, width: "30%"}} defaultValue={1}>
+            <Option value="1" style={{backgroungImage:'url("/assets/images/app-store.png")'}}><img src="/assets/images/app-store.png" /></Option>
+            <Option value="2" style={{backgroungImage:'url("/assets/images/app-store.png")'}}><img src="/assets/images/app-store.png" /></Option>
+            <Option value="3" style={{backgroungImage:'url("/assets/images/app-store.png")'}}><img src="/assets/images/app-store.png" /></Option>
+          </Select>
+          <Input style={{ width: "70%", height: 70 }} type="tel" />
+        </Input.Group>
         <div className="privacy">
           <input type="checkbox" onChange={() => setPrivacy(!privacy)} />
-          {tl("i agree")}
+          {/* {tl("i agree to send SMS code.")} */}
           <Link href="/privacy-policy">
-            <span>{tl("Privacy and Policy")}</span>
+            <span>{tl("i agree to send SMS code. Privacy and Policy")}</span>
           </Link>
         </div>
         <button
           data-loader={loader}
           disabled={!(!privacy && phone)}
           type="submit"
-          className="btn-success"
+          // className="btn-auth"
         >
-          <Loader4LineIcon />
-          {tl("Send sms code")}
+          {/* <Loader4LineIcon /> */}
+          {tl("Send SMS code")}
         </button>
       </form>
     </div>
