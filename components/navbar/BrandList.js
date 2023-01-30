@@ -52,8 +52,8 @@ export const BrandList = () => {
                   <a href={`/stores/all-brand/${el.id}`}>
                     {!loading && <SkeltonImage />}
                     <img
-                      width={80}
-                      height={80}
+                      width={wid > 1400 ? 80 : wid > 900 ? 60 : wid > 768 ? 40 : 30}
+                      height={wid > 1400 ? 80 : wid > 900 ? 60 : wid > 768 ? 40 : 30}
                       src={`https://api.safin24.uz/storage/images/` + el.img}
                       style={{ display: loading ? "block" : "none" }}
                       onLoad={() => setLoading(true)}

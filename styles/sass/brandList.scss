@@ -26,6 +26,12 @@
 
       p {
         font-size: 14px;
+        @media (max-width: 900px) {
+          font-size: 8px;
+        }
+        @media (max-width: 576px) {
+          flex: 6px;
+        }
       }
     }
     img {

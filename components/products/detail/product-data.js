@@ -281,12 +281,15 @@ const ProductData = ({
           );
         })}
         <div className="stock">
-          <StockIcon />
-          <span>{`${
-            showExtras?.stock?.quantity >= 0
-              ? showExtras?.stock?.quantity + tl(" in stock")
-              : tl("out of stock")
-          }`}</span>
+          <div>seller</div>
+          <div>
+            <img src="/assets/images/inStock.png" alt="in stock" />
+            <span>{`${
+              showExtras?.stock?.quantity >= 0
+                ? showExtras?.stock?.quantity + tl(" in stock")
+                : tl("out of stock")
+            }`}</span>
+          </div>
         </div>
       </div>
 

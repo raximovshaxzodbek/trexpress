@@ -599,12 +599,16 @@
 
         .stock {
           display: flex;
+          justify-content: space-between;
           align-items: center;
           margin-top: 35px;
           gap: 12px;
           color: var(--black);
-
-          span {
+          .inStock{
+            display: flex;
+            justify-content: center;
+            gap:5px;
+             span {
             font-weight: 500;
             font-size: 15px;
             letter-spacing: -0.01em;
@@ -621,6 +625,9 @@
               z-index: -1;
             }
           }
+          }
+
+         
         }
 
         .price {
