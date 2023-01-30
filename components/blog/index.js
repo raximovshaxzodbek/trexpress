@@ -43,7 +43,7 @@ const Blog = () => {
               >
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
                   (el) => (
-                    <SwiperSlide >
+                    <SwiperSlide>
                       <div className="eachVideo">
                         {/* <div
                           style={{
@@ -54,7 +54,7 @@ const Blog = () => {
                             border: "3px solid green ",
                           }}
                         /> */}
-                                                <Video
+                        <Video
                           controls={[
                             "PlayPause",
                             "Seek",
@@ -72,10 +72,15 @@ const Blog = () => {
                         >
                           <source
                             // src="/tiktok.mp4"
-                             type="video/webm"
+                            type="video/webm"
                           />
                         </Video>
-                        <p style={{ margin: " 0 10px"}}>Lorem ipsum name</p>
+                        <div className="underVideo">
+                          <p>
+                            Lorem ipsum dolor sit amet consectetur. Volutpat
+                            arcu tortor integer urna quis dictum rutrum.
+                          </p>
+                        </div>
                       </div>
                     </SwiperSlide>
                   )
