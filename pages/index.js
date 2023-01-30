@@ -205,7 +205,6 @@ export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
               textDecoration: "none",
             }}
           >
-            {" "}
             <LoginCircleLineIcon size={20} />{" "}
           </a>
 

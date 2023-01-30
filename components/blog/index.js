@@ -13,7 +13,7 @@ import { FreeMode, Navigation, Mousewheel } from "swiper";
 
 const Blog = () => {
   const { t: tl } = useTranslation();
-/*   const [blogList, setBlogList] = useState(null);
+  /*   const [blogList, setBlogList] = useState(null);
   const getBlogs = () => {
     BlogApi.get({ type: "blog", perPage: 3 })
       .then((res) => {
@@ -29,7 +29,7 @@ const Blog = () => {
   return (
     <div className="blog-wrapper">
       <div className="blog">
-        <div className="title">{tl("Stories")}</div>
+        {/* <div className="title">{tl("Stories")}</div> */}
         <div className="blog-items">
           {true ? (
             <div className="storiesList">
@@ -38,13 +38,23 @@ const Blog = () => {
                 freeMode={false}
                 modules={[Mousewheel, FreeMode, Navigation]}
                 pagination={true}
-                slidesPerView={6}
+                slidesPerView={5}
+                spaceBetween={50}
               >
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
                   (el) => (
-                    <SwiperSlide>
+                    <SwiperSlide >
                       <div className="eachVideo">
-                        <Video
+                        {/* <div
+                          style={{
+                            width: 287,
+                            height: 270,
+                            background: "red",
+                            margin: 10,
+                            border: "3px solid green ",
+                          }}
+                        /> */}
+                                                <Video
                           controls={[
                             "PlayPause",
                             "Seek",
@@ -52,14 +62,20 @@ const Blog = () => {
                             "Volume",
                             "Fullscreen",
                           ]}
-                          style={{ height: 400, borderRadius: 10 }}
+                          style={{
+                            height: 270,
+                            width: 287,
+                            borderRadius: 10,
+                            margin: " 0 10px",
+                          }}
                           key={el}
                         >
                           <source
-                            src="/tiktok.mp4"
-                            /*  type="video/webm" */
+                            // src="/tiktok.mp4"
+                             type="video/webm"
                           />
                         </Video>
+                        <p style={{ margin: " 0 10px"}}>Lorem ipsum name</p>
                       </div>
                     </SwiperSlide>
                   )

@@ -11,6 +11,7 @@ import { UpFooter } from "./UpFooter";
 import playMarketLogo from "../../public/assets/icons/playMarket.png";
 import appleLogo from "../../public/assets/icons/appleStoreLogo.png";
 import Image from "next/image";
+import { Collapse } from "antd";
 
 const Footer = () => {
   const { t: tl } = useTranslation();
@@ -46,6 +47,8 @@ const Footer = () => {
     ));
   };
 
+  const { Panel } = Collapse;
+
   const firstCol = makeColumns(6);
   const secondCol = makeColumns(4);
   const thirdCol = makeColumns(5);
@@ -54,44 +57,6 @@ const Footer = () => {
 
   return (
     <>
-      <>
-        <Accordion idList={idList} id={"social"}>
-          <AccordionSummary
-            handleClick={handleClick}
-            idList={idList}
-            id={"social"}
-          >
-            {tl("Social")}
-          </AccordionSummary>
-          <AccordionDetails>
-            <p>{tl("Instagram")}</p>
-          </AccordionDetails>
-          <AccordionDetails>
-            <p>{tl("Facebook")}</p>
-          </AccordionDetails>
-          <AccordionDetails>
-            <p>{tl("Twitter")}</p>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion idList={idList} id={"help"}>
-          <AccordionSummary
-            handleClick={handleClick}
-            idList={idList}
-            id={"help"}
-          >
-            {tl("Help")}
-          </AccordionSummary>
-          <AccordionDetails>
-            <a href="/faq">{tl("FAQ")}</a>
-          </AccordionDetails>
-          <AccordionDetails>
-            <a href="/term-of-use">{tl("Term of use")}</a>
-          </AccordionDetails>
-          <AccordionDetails>
-            <a href="/privacy-policy">{tl("Privacy Policy")}</a>
-          </AccordionDetails>
-        </Accordion>
-      </>
       <div className="footer">
         {/*  <UpFooter /> */}
         <div className="allUnderFooter">
@@ -163,7 +128,7 @@ const Footer = () => {
                 </div>
               </div>
             ) : (
-              <>
+              /*     <>
                 <Accordion idList={idList} id={"social"}>
                   <AccordionSummary
                     handleClick={handleClick}
@@ -200,9 +165,23 @@ const Footer = () => {
                     <a href="/privacy-policy">{tl("Privacy Policy")}</a>
                   </AccordionDetails>
                 </Accordion>
+              </> */
+              <>
+                <Collapse>
+                  {new Array(4).fill("Lorem").map((el, index) => (
+                    <Panel header={el} key={index}>
+                      {new Array(6).fill("Lorem").map((el, index) => (
+                        <p header={el} key={index}>
+                          {el}
+                        </p>
+                      ))}
+                    </Panel>
+                  ))}
+                </Collapse>
               </>
             )}
           </div>
+          {/* <div style={{borderBottom: '5px solid white', width: 1200, height: 20, background: "red"}} /> */}
           <div className="footerDown">
             <div className="secOne">
               <div className="store">
