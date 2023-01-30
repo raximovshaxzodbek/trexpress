@@ -3,39 +3,48 @@
   height: 100%;
   background: var(--secondary-bg);
   border-radius: 10px;
-  padding: 32px 27px;
-  margin-bottom: 17px;
+  padding: 10px 5px;
+  margin-bottom: 10px;
 
-  .title {
-    margin-bottom: 33px;
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 40px;
-    letter-spacing: -0.02em;
-    color: var(--black);
-    //
-  }
+  // .title {
+  //   margin-bottom: 33px;
+  //   font-weight: 500;
+  //   font-size: 30px;
+  //   line-height: 40px;
+  //   letter-spacing: -0.02em;
+  //   color: var(--black);
+  // }
 
   .blog-items {
     display: flex;
-    align-items: flex-start;
-    gap: 19px;
-    flex-wrap: wrap;
+    align-items: center;
+    // gap: 19px;
+    // flex-wrap: wrap;
     .storiesList {
       display: flex;
       width: 100%;
-      .swiperStoriesList {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        .eachVideo{
-           max-width: 200px;
-          .swiper-slide {
-         
-          height: 100%;
-        }
-        }
-        
+      p {
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 15px;
+        letter-spacing: 0em;
+        padding: 10px 0;
       }
+      /*   .swiperStoriesList {
+         display: grid !important;
+          grid-template-columns: repeat(10, 1fr) !important;
+        .swiperWrapper {
+          display: grid !important;
+          grid-template-columns: repeat(10, 1fr) !important;
+          .eachVideo {
+            //  max-width: 200px;
+            .swiper-slide {
+              height: 100%;
+            }
+          }
+        }
+      } */
     }
   }
 
