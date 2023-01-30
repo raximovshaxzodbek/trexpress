@@ -10,26 +10,27 @@ import "react-html5video/dist/styles.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
+import axios from "axios";
 
 const Blog = () => {
   const { t: tl } = useTranslation();
-  /*   const [blogList, setBlogList] = useState(null);
-  const getBlogs = () => {
-    BlogApi.get({ type: "blog", perPage: 3 })
-      .then((res) => {
-        setBlogList(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const [arr, setArr] = useState([]);
   useEffect(() => {
-    getBlogs();
-  }, []); */
+    axios
+      .get(`https://api.safin24.uz/api/v1/dashboard/user/importVideo`, {
+        headers: {
+          Authorization: `Bearer 35|ZdkFJw0h36Jg46P4MkZVNDejmSeTCikKdlyA5KK9 `,
+        },
+      })
+      .then((res) => setArr(res.data.data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  console.log(arr);
+
   return (
     <div className="blog-wrapper">
       <div className="blog">
-        {/* <div className="title">{tl("Stories")}</div> */}
         <div className="blog-items">
           {true ? (
             <div className="storiesList">
@@ -41,50 +42,39 @@ const Blog = () => {
                 slidesPerView={5}
                 spaceBetween={50}
               >
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-                  (el) => (
-                    <SwiperSlide>
-                      <div className="eachVideo">
-                        {/* <div
-                          style={{
-                            width: 287,
-                            height: 270,
-                            background: "red",
-                            margin: 10,
-                            border: "3px solid green ",
-                          }}
-                        /> */}
-                        <Video
-                          controls={[
-                            "PlayPause",
-                            "Seek",
-                            "Time",
-                            "Volume",
-                            "Fullscreen",
-                          ]}
-                          style={{
-                            height: 270,
-                            width: 287,
-                            borderRadius: 10,
-                            margin: " 0 10px",
-                          }}
-                          key={el}
-                        >
-                          <source
-                            // src="/tiktok.mp4"
-                            type="video/webm"
-                          />
-                        </Video>
-                        <div className="underVideo">
-                          <p>
-                            Lorem ipsum dolor sit amet consectetur. Volutpat
-                            arcu tortor integer urna quis dictum rutrum.
-                          </p>
-                        </div>
+                {arr.map((el) => (
+                  <SwiperSlide>
+                    <div className="eachVideo">
+                      <Video
+                        controls={[
+                          "PlayPause",
+                          "Seek",
+                          "Time",
+                          "Volume",
+                          "Fullscreen",
+                        ]}
+                        style={{
+                          height: 270,
+                          width: 287,
+                          borderRadius: 10,
+                          margin: " 0 10px",
+                        }}
+                        key={el.id}
+                      >
+                        <source
+                          src={
+                            `https://api.safin24.uz/storage/images/videos/` +
+                            el.image_name
+                          }
+                          type="video/webm"
+                        />
+                      </Video>
+                      <div className="underVideo">
+                        <p>{el.description}</p>
                       </div>
-                    </SwiperSlide>
-                  )
-                )}
+                    </div>
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
           ) : (
