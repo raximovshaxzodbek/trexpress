@@ -30,13 +30,40 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
             options={[{ value: "text 1" }, { value: "text 2" }]}
           />
         </Input.Group> */}
-        <Input.Group compact={true} style={{height: 70}}>
-          <Select style={{height: 70, width: "30%"}} defaultValue={1}>
-            <Option value="1" style={{backgroungImage:'url("/assets/images/app-store.png")'}}><img src="/assets/images/app-store.png" /></Option>
-            <Option value="2" style={{backgroungImage:'url("/assets/images/app-store.png")'}}><img src="/assets/images/app-store.png" /></Option>
-            <Option value="3" style={{backgroungImage:'url("/assets/images/app-store.png")'}}><img src="/assets/images/app-store.png" /></Option>
+        <Input.Group size="large" style={{ height: 70 }}>
+          <Select size="large"
+            style={{ height: 70, width: "30%" }}
+            defaultValue={1}
+          >
+            <Option
+              value="1"
+              style={{  
+                backgroungImage: 'url("/assets/images/app-store.png")',
+                height: 70,
+              }}
+            >
+              <img src="/assets/images/app-store.png" />
+            </Option>
+            <Option
+              value="2"
+              style={{
+                backgroungImage: 'url("/assets/images/app-store.png")',
+                height: 70,
+              }}
+            >
+              <img src="/assets/images/app-store.png" />
+            </Option>
+            <Option
+              value="3"
+              style={{
+                backgroungImage: 'url("/assets/images/app-store.png")',
+                height: 70,
+              }}
+            >
+              <img src="/assets/images/app-store.png" />
+            </Option>
           </Select>
-          <Input style={{ width: "70%", height: 70 }} type="tel" />
+          <Input  style={{ width: "70%", height: 70 }} type="tel" />
         </Input.Group>
         <div className="privacy">
           <input type="checkbox" onChange={() => setPrivacy(!privacy)} />

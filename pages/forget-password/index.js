@@ -68,7 +68,7 @@ const ForgetPassword = () => {
           {formStep === "new-password" && <NewPassword />}
         </div>
         <div className="auth-banner">
-          <img src={images.AuthBanner} alt="Auth banner" />
+          <img src="/assets/images/Online-security-registration.png" alt="Auth banner" />
         </div>
       </div>
     </div>
