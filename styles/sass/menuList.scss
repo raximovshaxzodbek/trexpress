@@ -7,7 +7,7 @@
   font-size: 14px;
 
   @media (max-width: 1250px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: flex-start;
     height: auto;
     gap: 10px;
@@ -29,7 +29,7 @@
     border-radius: 10px;
 
     @media (max-width: 1250px) and (min-width: 577px) {
-      padding: 10px 5px 2px 5px;
+      padding: 0px 5px 2px 5px;
       font-size: 14px;
       flex-wrap: wrap;
     }

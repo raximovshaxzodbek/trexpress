@@ -215,6 +215,7 @@ const ProductData = ({
   const getRating = (key) => {
     return product?.rating_percent[key]?.toFixed(1);
   };
+  console.log(showExtras);
   return (
     <div className="product-data">
       <div className="color-size">
@@ -243,7 +244,7 @@ const ProductData = ({
             </div>
           )}
         </div>
-        {showExtras.extras?.map((item, key) => {
+        {showExtras.extras?.map((item, key) => {  
           return (
             <div
               key={key}
@@ -290,6 +291,15 @@ const ProductData = ({
                 : tl("out of stock")
             }`}</span>
           </div>
+
+         <div>
+         <StockIcon />
+          <span>{`${
+            showExtras?.stock?.quantity >= 0
+              ? showExtras?.stock?.quantity + tl(" in stock")
+              : tl("out of stock")
+          }`}</span>
+         </div>
         </div>
       </div>
 

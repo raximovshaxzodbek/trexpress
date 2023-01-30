@@ -112,6 +112,7 @@ const DeliveryType = ({ setCheckoutContent, setStepKey, setDeliveryType }) => {
           setPromoCode(res.data.name);
           dispatch(addCoupon(res.data));
           setError("success");
+          console.log(res.data.name);
         })
         .catch((error) => {
           console.log(error);
@@ -119,6 +120,7 @@ const DeliveryType = ({ setCheckoutContent, setStepKey, setDeliveryType }) => {
         });
     } else setError(null);
   };
+
   const handleTab = (key) => {
     let deliveryPickup = {};
     setTabKey(key);
