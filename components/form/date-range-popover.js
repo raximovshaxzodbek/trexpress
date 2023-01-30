@@ -49,7 +49,7 @@ export default function DateRangePopover({
         type="text"
         placeholder={value ? value : "dd/mm/yyyy"}
         onFocus={() => showDatepicker(true)}
-        disabled={disabled}
+        // disabled={disabled}
         value={value}
         readOnly={true}
       />
