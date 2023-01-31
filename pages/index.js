@@ -23,6 +23,7 @@ import { LoaderStore } from "../components/LoaderStore/LoaderStore";
 import ProductLoader from "../components/loader/product";
 import SkeletonInput from "../components/skelton/Skeleton-Input";
 import axios from "axios";
+import Link from "next/link";
 function Home() {
   const [discountList, setDiscountList] = useState(null);
   const [mostSales, setMostSales] = useState(null);
@@ -106,7 +107,7 @@ function Home() {
               </Col>
             ))}
       </Row>
-      {/* <Blog/> */}
+      <Blog />
       {/*  <CategoryByChild />
       <CategoryByParent /> */}
       {/*   <MegaSale /> */}
@@ -198,15 +199,16 @@ export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
         </div>
         <div className="shopInner">
           <h3>{shopTitle}</h3>
-          <a
-            href={`/stores/${uuid}`}
-            style={{
-              color: "black",
-              textDecoration: "none",
-            }}
-          >
-            <LoginCircleLineIcon size={20} />{" "}
-          </a>
+          <Link href={`/stores/${uuid}`}>
+            <a
+              style={{
+                color: "black",
+                textDecoration: "none",
+              }}
+            >
+              <LoginCircleLineIcon size={20} />{" "}
+            </a>
+          </Link>
 
           {/* <img
             src={`https://api.safin24.uz/storage/images/` + logo}
