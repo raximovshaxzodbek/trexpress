@@ -69,7 +69,7 @@ const SerachFilter = ({ className }) => {
       >
         <div className="search-input-wrapper">
          {/*  <Category /> */}
-          {router.pathname === "/products/[id]"  && (
+          {/* {router.pathname === "/products/[id]"  && (
             <Link href={`/stores/${shop.uuid}`}>
               <a className="current-store">
                 <div className="logo">
@@ -81,7 +81,7 @@ const SerachFilter = ({ className }) => {
                 </div>
               </a>
             </Link>
-          )}
+          )} */}
          {/*  {router.pathname === "/" && (
             new Array(10).fill("Store").map(el => 
               <Link href={`/stores/${shop.uuid}`}>

@@ -19,8 +19,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    // gap: 19px;
-    // flex-wrap: wrap;
+
     .storiesList {
       display: flex;
       width: 100%;
@@ -33,7 +32,6 @@
       background-color: #fff;
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
-      // width: clac(100% + 15%);
       width: 115%;
       margin-left: 10px;
       p {
@@ -45,21 +43,6 @@
         padding: 10px 0;
       }
     }
-
-    /*   .swiperStoriesList {
-         display: grid !important;
-          grid-template-columns: repeat(10, 1fr) !important;
-        .swiperWrapper {
-          display: grid !important;
-          grid-template-columns: repeat(10, 1fr) !important;
-          .eachVideo {
-            //  max-width: 200px;
-            .swiper-slide {
-              height: 100%;
-            }
-          }
-        }
-      } */
   }
 
   .blog-card {

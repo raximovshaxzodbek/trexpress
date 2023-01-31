@@ -78,7 +78,6 @@
         P {
           cursor: pointer;
           font-size: 14px;
-          
         }
         -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -148,6 +147,74 @@
             height: 15px;
           }
         }
+      }
+    }
+    .current-store {
+      /* width: 213px;
+      height: 50px;
+      background: var(--secondary-bg);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      padding: 13px 10px; */
+      background-color: #fff;
+      border-radius: 10px;
+      margin-left: 7px;
+      width: max-content;
+      padding: 10px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      @media (max-width: 1250px) {
+        width: 50%;
+      }
+
+      .logo {
+        height: 40px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+
+      .data {
+        .name {
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 19px;
+          letter-spacing: -1px;
+          color: var(--black);
+        }
+
+        .type {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          letter-spacing: -1px;
+          color: #bababa;
+        }
+      }
+
+   /*    @media (max-width: 1200px) {
+        .data {
+          display: none;
+        }
+      } */
+
+      /*  @media (max-width: 1200px) {
+        width: 100px;
+      } */
+
+     /*  @media (min-width: 265px) and (max-width: 376px) {
+        width: 80px !important;
+      } */
+
+      @media (min-width: 376px) and (max-width: 768px) {
+        // display: none;
       }
     }
   }
