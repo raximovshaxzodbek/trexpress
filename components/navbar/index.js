@@ -97,12 +97,13 @@ const Navbar = ({ handleContent }) => {
               <span className="amount">{tl("Basket")}</span>
             </a>
           )} */}
-          <div className="login-btn">
-          <UserAvatar />
-          </div>
+
           <div className="cart-amount" onClick={() => click("order-list")}>
             <ShoppingCartLineIcon size={20} />
             <span>{tl("Basket")}</span>
+          </div>
+          <div className="login-btn">
+            <UserAvatar />
           </div>
           {/*  <Link href="/saved-store">
             <a className="square saved">
@@ -146,7 +147,6 @@ const Navbar = ({ handleContent }) => {
               })}
             </div>
           </div> */}
-          
         </div>
       </div>
       <CustomDrawer
