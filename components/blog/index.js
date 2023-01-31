@@ -46,7 +46,7 @@ const Blog = () => {
                   <SwiperSlide>
                     <div className="eachVideo">
                       <Video
-                        controls/* ={[
+                        controls /* ={[
                           "PlayPause",
                           "Seek",
                           "Time",
