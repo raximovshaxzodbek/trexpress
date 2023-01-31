@@ -97,6 +97,9 @@ const Navbar = ({ handleContent }) => {
               <span className="amount">{tl("Basket")}</span>
             </a>
           )} */}
+          <div className="login-btn">
+          <UserAvatar />
+          </div>
           <div className="cart-amount" onClick={() => click("order-list")}>
             <ShoppingCartLineIcon size={20} />
             <span>{tl("Basket")}</span>
@@ -143,7 +146,7 @@ const Navbar = ({ handleContent }) => {
               })}
             </div>
           </div> */}
-          <UserAvatar />
+          
         </div>
       </div>
       <CustomDrawer

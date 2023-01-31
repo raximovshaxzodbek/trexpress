@@ -162,8 +162,6 @@
         }
       }
 
-      
-
       .search-filter {
         position: relative;
         display: flex;
@@ -424,6 +422,10 @@
       }
     }
 
+    @media (max-width: 576px) {
+      gap: 0 !important;
+    }
+
     @media (max-width: 1186px) {
       justify-content: flex-start;
       gap: 20px;
@@ -433,7 +435,7 @@
       }
 
       .square {
-        display: none;
+        display: none !important;
       }
     }
   }
@@ -451,18 +453,13 @@
     }
 
     @media (max-width: 680px) {
+      gap: 0 !important;
       .left {
         width: 84%;
       }
       .right {
         width: 15%;
       }
-    }
-    .wallet {
-    }
-
-    .square {
-      padding: auto;
     }
   }
 
@@ -502,9 +499,11 @@
   }
 
   @media (max-width: 470px) {
-    .left,
+    .left {
+      width: 80%;
+    }
     .right {
-      width: 50%;
+      width: 20%;
     }
 
     .right {
@@ -518,6 +517,9 @@
   height: 40px;
   position: relative;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     width: 40px;
@@ -615,9 +617,14 @@
     }
   }
 
-  /* @media (max-width: 768px) {
-    display: none;
-  } */
+  @media (max-width: 768px) {
+    padding: 0 !important;
+    margin: 0 !important;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
 
 .sidebar {
