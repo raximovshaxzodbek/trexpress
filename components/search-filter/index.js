@@ -81,7 +81,8 @@ const SerachFilter = ({ className }) => {
                 </div>
               </a>
             </Link>
-          )}
+          )
+          }
          {/*  {router.pathname === "/" && (
             new Array(10).fill("Store").map(el => 
               <Link href={`/stores/${shop.uuid}`}>

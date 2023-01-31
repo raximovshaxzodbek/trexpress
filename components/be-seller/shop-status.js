@@ -1,7 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const ShopStatus = ({ title, text, icon, className, href = "" }) => {
+const ShopStatus = ({
+  title,
+  text,
+  icon,
+  className,
+  href = "https://admin.safin24.uz",
+}) => {
   const { t: tl } = useTranslation();
   return (
     <div className="tab-pane">
