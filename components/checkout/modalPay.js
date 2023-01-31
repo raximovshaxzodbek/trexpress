@@ -21,7 +21,8 @@ const ModalPay = (props) => {
       </div>
       <Modal
         open={modal}
-        onOk={() => setModal(false)}
+        onCancel={() => setModal(false)}
+        closable
         style={{
           top: 80,
           left: -80,
@@ -39,31 +40,27 @@ const ModalPay = (props) => {
         </div>
 
         <div className="cardfilling">
-
           <div className="cardnumber">
             <input type="number" placeholder="Enter the card number" />
             <img src="./assets/images/humo.svg" alt="404" />
           </div>
 
-
-
           <div className="card-date">
             <input type="number" placeholder="MM" />
             <input type="number" placeholder="YY" />
-            
           </div>
 
-         
-          
+          <div className="modalBottom">
+            <button style={{ width: "100% !important" }} id="btnpay">
+              Pay
+            </button>
+          </div>
         </div>
 
-
-        <div className="modalBottom">
-        <button>Pay</button>
+        <div className="bottompayment">
+          <p>Total value payable</p>
+          <p>2 059 000 UZB</p>
         </div>
-       
-
-
       </Modal>
     </>
   );
