@@ -6,6 +6,7 @@ import { images } from "../../constants/images";
 import CustomDrawer from "../drawer";
 import DiscordLoader from "../loader/discord-loader";
 import AddNewCard from "./add-new-card";
+import ModalPay from "./modalPay";
 import CustomSelect from "../form/custom-select";
 import { useDispatch, useSelector } from "react-redux";
 import { addToOrderAddress } from "../../redux/slices/order";
@@ -34,6 +35,8 @@ const PaymentMethod = ({
   const currentAddress = order?.shops[0]?.delivery_address_id;
   const targetLocation = userLocation?.split(",");
   const addressList = [];
+  
+
   address?.forEach((item) => {
     addressList.push({
       id: item.id,
@@ -204,22 +207,10 @@ const PaymentMethod = ({
               ) : (
                 <DiscordLoader />
               )}
-              <div className="method-item">
-                <div className="shipping-type">
-                  <div className="type">
-                      {/* <RecordCircleLineIcon color="#61DC00" size={20} /> */}
-                      {/* <CheckboxBlankCircleLineIcon size={20} /> */}
-                    <span>add cart</span>
-                  </div>
-                    <img
-                      className="method-icon"
-                      src="./assets/images/addCreditCard.jpg"
-                      alt="New cart"
-                    />
-                </div>
-                {/* <div className="delivery-time">{type?.translation?.title}</div> */}
-              </div>
+         
+            <ModalPay />
             </div>
+
           </div>
         </div>
         <div className="btn-group">

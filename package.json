@@ -48,6 +48,7 @@
     "react-modern-drawer": "^1.1.1",
     "react-otp-input": "^2.4.0",
     "react-paystack": "^4.0.1",
+    "react-phone-number-input": "^3.2.16",
     "react-rating": "^2.0.5",
     "react-razorpay": "^1.1.5",
     "react-redux": "^8.0.2",
