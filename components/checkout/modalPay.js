@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import React, { useState } from "react";
 const ModalPay = (props) => {
   const [modal, setModal] = useState(false);
@@ -37,6 +37,33 @@ const ModalPay = (props) => {
             </h3>
           </div>
         </div>
+
+        <div className="cardfilling">
+
+          <div className="cardnumber">
+            <input type="number" placeholder="Enter the card number" />
+            <img src="./assets/images/humo.svg" alt="404" />
+          </div>
+
+
+
+          <div className="card-date">
+            <input type="number" placeholder="MM" />
+            <input type="number" placeholder="YY" />
+            
+          </div>
+
+         
+          
+        </div>
+
+
+        <div className="modalBottom">
+        <button>Pay</button>
+        </div>
+       
+
+
       </Modal>
     </>
   );
