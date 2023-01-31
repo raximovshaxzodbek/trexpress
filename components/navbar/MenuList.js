@@ -11,6 +11,10 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import { useInView } from "react-intersection-observer";
 import axios from "axios";
 import SkeletonInput from "../skelton/Skeleton-Input";
+import { useRouter } from "next/router";
+import { useContext } from "react";
+import { MainContext } from "../../utils/contexts/MainContext";
+import { imgBaseUrl } from "../../constants";
 
 export const MenuList = () => {
   const { t: tl } = useTranslation();
@@ -18,6 +22,8 @@ export const MenuList = () => {
   const [display, setDisplay] = useState("none");
   const [num, setNum] = useState(0);
   const [quality, setQuality] = useState(4);
+  const { isOpen, setIsOpen, shop } = useContext(MainContext);
+
 
   const [arr, setArr] = useState(() => {
     (async () => {
@@ -47,6 +53,8 @@ export const MenuList = () => {
 
   const wids = useWindowSize();
   const wid = wids.width;
+
+  const router = useRouter()
 
   return (
     <div className="menuListWrapper">
@@ -110,6 +118,19 @@ export const MenuList = () => {
               </div> */}
             </div>
           </Link>
+          {router.pathname === "/products/[id]"  && (
+            <Link href={`/stores/${shop.uuid}`}>
+              <a className="current-store">
+                <div className="logo">
+                  <img src={imgBaseUrl + shop?.logo_img} alt="Logo" />
+                </div>
+                <div className="data">
+                  <div className="name">{shop?.translation?.title}</div>
+                  <div className="type">{tl("Store")}</div>
+                </div>
+              </a>
+            </Link>
+          )}
         </div>
       </div>
       <div

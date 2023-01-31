@@ -106,6 +106,10 @@
         @media (max-width: 995px) {
           width: 70%;
         }
+
+        @media (max-width: 970px) {
+          width: 100%;
+        }
         @media (max-width: 768px) {
           width: calc(100%);
           gap: 2px;
@@ -158,55 +162,7 @@
         }
       }
 
-      .current-store {
-        min-width: 213px;
-        height: 50px;
-        background: var(--secondary-bg);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        gap: 17px;
-        padding: 13px 10px;
-
-        .logo {
-          height: 40px;
-
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-          }
-        }
-
-        .data {
-          .name {
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 19px;
-            letter-spacing: -1px;
-            color: var(--black);
-          }
-
-          .type {
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 17px;
-            letter-spacing: -1px;
-            color: #bababa;
-          }
-        }
-
-        @media (min-width: 265px) and (max-width: 376px) {
-          width: 180px !important;
-          height: 54px;
-        }
-
-        @media (min-width: 376px) and (max-width: 768px) {
-          width: 213px;
-          height: 54px;
-        }
-      }
+      
 
       .search-filter {
         position: relative;
@@ -297,8 +253,8 @@
         width: 40%;
 
         @media (max-width: 970px) {
-          width: 140px;
-          display: flex;
+          width: 60px;
+          display: none !important;
           justify-content: center;
           text-align: center;
           svg {
@@ -482,6 +438,44 @@
     }
   }
 
+  @media (max-width: 768px) {
+    gap: 10px;
+    .left {
+      width: 80%;
+    }
+    .right {
+      width: 20%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    @media (max-width: 680px) {
+      .left {
+        width: 84%;
+      }
+      .right {
+        width: 15%;
+      }
+    }
+    .wallet {
+    }
+
+    .square {
+      padding: auto;
+    }
+  }
+
+  @media (max-width: 978px) {
+    gap: 0;
+    .left {
+      width: 90%;
+    }
+    .right {
+      width: 10%;
+    }
+  }
+
   @media (max-width: 900px) {
     width: 100%;
     border-radius: 8px;
@@ -496,6 +490,9 @@
         padding: 0 16px;
       }
     }
+  }
+
+  @media (max-width: 768px) {
   }
 
   @media (max-width: 576px) {
@@ -618,9 +615,9 @@
     }
   }
 
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     display: none;
-  }
+  } */
 }
 
 .sidebar {

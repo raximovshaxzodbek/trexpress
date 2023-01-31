@@ -215,7 +215,6 @@ const ProductData = ({
   const getRating = (key) => {
     return product?.rating_percent[key]?.toFixed(1);
   };
-  console.log(showExtras);
   return (
     <div className="product-data">
       <div className="color-size">

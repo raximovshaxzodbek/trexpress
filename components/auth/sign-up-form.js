@@ -40,7 +40,7 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
             style={{ width: "30%" }}
             defaultActiveFirstOption={true}
             autoFocus={true}
-            // suffixIcon={<img src="/assets/russia.png" width={80} height={50} />}
+            suffixIcon={<img src="/assets/russia.png" style={{display: "flex", justifyContent: "space-between"}} width={80} height={50} />}
           >
             <Option value="rus">
               <img src="/assets/russia.png" width={80} height={60} />
