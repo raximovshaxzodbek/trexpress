@@ -68,7 +68,7 @@ const SerachFilter = ({ className }) => {
         }
       >
         <div className="search-input-wrapper">
-         {/*  <Category /> */}
+          {/*  <Category /> */}
           {/* {router.pathname === "/products/[id]"  && (
             <Link href={`/stores/${shop.uuid}`}>
               <a className="current-store">
@@ -82,9 +82,7 @@ const SerachFilter = ({ className }) => {
               </a>
             </Link>
           )} */}
-          )
-          }
-         {/*  {router.pathname === "/" && (
+          {/*  {router.pathname === "/" && (
             new Array(10).fill("Store").map(el => 
               <Link href={`/stores/${shop.uuid}`}>
               <a className="current-store">
@@ -107,7 +105,7 @@ const SerachFilter = ({ className }) => {
               onFocus={() => handleClick("search")}
               placeholder={tl("Search products")}
             />
-            
+
             {searchResult?.data && (
               <div className="search-result-count">
                 {searchResult?.data?.length}
@@ -129,11 +127,10 @@ const SerachFilter = ({ className }) => {
               setSearchTerm={setSearchTerm}
               setIsOpen={setIsOpen}
             />
-           {/*  <FilterContent isSearching={isSearching} isOpen={isOpen} /> */}
+            {/*  <FilterContent isSearching={isSearching} isOpen={isOpen} /> */}
           </div>
         </div>
-        <div className="filter-links">
-        </div>
+        <div className="filter-links"></div>
         <SelectAddress />
       </div>
     </>
