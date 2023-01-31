@@ -204,6 +204,21 @@ const PaymentMethod = ({
               ) : (
                 <DiscordLoader />
               )}
+              <div className="method-item">
+                <div className="shipping-type">
+                  <div className="type">
+                      {/* <RecordCircleLineIcon color="#61DC00" size={20} /> */}
+                      {/* <CheckboxBlankCircleLineIcon size={20} /> */}
+                    <span>add cart</span>
+                  </div>
+                    <img
+                      className="method-icon"
+                      src="./assets/images/addCreditCard.jpg"
+                      alt="New cart"
+                    />
+                </div>
+                {/* <div className="delivery-time">{type?.translation?.title}</div> */}
+              </div>
             </div>
           </div>
         </div>
