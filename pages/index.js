@@ -106,7 +106,7 @@ function Home() {
               </Col>
             ))}
       </Row>
-      <Blog/>
+      {/* <Blog/> */}
       {/*  <CategoryByChild />
       <CategoryByParent /> */}
       {/*   <MegaSale /> */}
