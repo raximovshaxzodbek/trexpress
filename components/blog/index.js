@@ -28,7 +28,6 @@ const Blog = () => {
 
   const width = useWindowSize();
   const wid = width.width;
-  console.log(wid);
 
   return (
     <div className="blog-wrapper">
@@ -37,37 +36,28 @@ const Blog = () => {
           {true ? (
             <div className="storiesList">
               <Swiper
-                // shortSwipes={false}
-                // centeredSlidesBounds={true}
-                // centeredSlides={true}
+                // direction=""
+                // centerInsufficientSlides={true}
+                  shortSwipes={false}
+                //   centeredSlidesBounds={true}
+                //   centeredSlides={true}
                 className="swiperStoriesList"
                 freeMode={false}
                 modules={[Mousewheel, FreeMode, Navigation]}
                 pagination={true}
+                slidesPerGroup={4}
                 slidesPerView={
-                  5
-                 /*  wid > 1600
+                  wid > 1500
                     ? 5
-                    : wid > 1500
+                    : wid > 1220
                     ? 4
-                    : wid > 1200
-                    ? 3
-                    : wid > 800
-                    ? 2
-                    : wid > 350 && 1 */
-                }
-                spaceBetween={
-                  50
-                 /*  wid > 1400
-                    ? 5
-                    : wid > 1200
-                    ? 3
                     : wid > 1000
+                    ? 3
+                    : wid > 760
                     ? 2
-                    : wid > 800
-                    ? 1
-                    : wid > 350 && 1 */
+                    : 1
                 }
+                spaceBetween={wid > 1400 && 50}
               >
                 {arr.map((el) => (
                   <SwiperSlide>

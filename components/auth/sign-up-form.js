@@ -16,7 +16,6 @@ import "react-phone-number-input/style.css";
 import en from "react-phone-number-input/locale/en";
 
 const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
-  console.log(phone);
   const [privacy, setPrivacy] = useState(true);
   const { t: tl } = useTranslation();
   const onFinish = (e) => {
@@ -24,7 +23,6 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
     if (phone && isValidPhoneNumber && isPossiblePhoneNumber) {
       getVerifyCode();
       setPhone(formatPhoneNumber(phone));
-      alert(phone);
     }
   };
   return (
@@ -32,7 +30,7 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
       <form onSubmit={onFinish}>
         <PhoneInput
           labels={en}
-          defaultCountry="RU"
+          // defaultCountry="RU"
           value={phone}
           onChange={(phone) => {
             setPhone(() => {
