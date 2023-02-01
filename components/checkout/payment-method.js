@@ -208,7 +208,7 @@ const PaymentMethod = ({
                 <DiscordLoader />
               )}
          
-            <ModalPay />
+            <ModalPay totalAmount = {totalAmount} />
             </div>
 
           </div>

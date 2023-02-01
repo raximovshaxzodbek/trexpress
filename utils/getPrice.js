@@ -13,6 +13,7 @@ export const commafy = (num) => {
 
 export const getPrice = (price = 0) => {
   const cookies = parseCookies();
+
   if (price) {
     if (cookies.currency_symbol) {
       return `${decodeURI(cookies.currency_symbol)} ${commafy(
