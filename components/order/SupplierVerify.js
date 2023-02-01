@@ -3,31 +3,13 @@ import { useTranslation } from "react-i18next";
 import { imgBaseUrl } from "../../constants";
 import { getPrice } from "../../utils/getPrice";
 
-const Supplier = ({ shop, product }) => {
+const Supplier = ({ shop, products }) => {
   const { t: tl } = useTranslation();
-  const getCurrentPrice = () => {
-    let _tax = product.shop_tax + product.productTax;
-    let _discount = product.stockId.discount
-      ? product.stockId.discount * product.qty
-      : 0;
-    let _price = product.total_price + product.shop_tax;
-    // product.forEach((item) => {
-    //   let totalDiscount = item.stockId.discount
-    //     ? item.stockId.discount * item.qty
-    //     : 0;
-    //   total_tax += item.shop_tax + item.productTax;
-    //   total_discount += totalDiscount;
-    //   total_price += item.total_price + item.shop_tax;
-    // });
-    return { _discount, _price, _tax };
-  };
   const getTotalPrice = () => {
-    // let total_tax = product.shop_tax + product.productTax
-    // let  total_discount = product.stockId.discount
-    //     ? product.stockId.discount * product.qty
-    //     : 0;
-    // let  total_price = product.total_price + product.shop_tax
-    product.forEach((item) => {
+    let total_tax = 0,
+      total_discount = 0,
+      total_price = 0;
+    products.forEach((item) => {
       let totalDiscount = item.stockId.discount
         ? item.stockId.discount * item.qty
         : 0;
@@ -37,7 +19,7 @@ const Supplier = ({ shop, product }) => {
     });
     return { total_discount, total_price, total_tax };
   };
-  const { _discount, _price, _tax } = getCurrentPrice();
+  const { total_discount, total_price, total_tax } = getTotalPrice();
 
   return (
     <div className="supplier">
@@ -53,20 +35,22 @@ const Supplier = ({ shop, product }) => {
       <div className="prices">
         <div className="item">
           <div className="label">{tl("Total product price")}</div>
-          <div className="value">{getPrice(_price + _discount - _tax)}</div>
+          <div className="value">
+            {getPrice(total_price + total_discount - total_tax)}
+          </div>
         </div>
         <div className="item">
           <div className="label">{tl("Discount")}</div>
-          <div className="value">{getPrice(_discount)}</div>
+          <div className="value">{getPrice(total_discount)}</div>
         </div>
         <div className="item">
           <div className="label">{tl("Tax")}</div>
-          <div className="value">{getPrice(_tax)}</div>
+          <div className="value">{getPrice(total_tax)}</div>
         </div>
 
         <div className="item">
           <div className="label">{tl("Total amount")}</div>
-          <div className="value">{getPrice(_price)}</div>
+          <div className="value">{getPrice(total_price)}</div>
         </div>
       </div>
     </div>
