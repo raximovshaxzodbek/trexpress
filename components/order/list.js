@@ -131,10 +131,18 @@ const OrderList = ({ setOpen }) => {
                 <div key={key} className="product-list-item">
                   {product.map((orderedProduct, key) => {
                     return (
-                      <OrderProduct key={key} orderedProduct={orderedProduct} />
+                      <>
+                        <OrderProduct
+                          key={key}
+                          orderedProduct={orderedProduct}
+                        />
+                        <Supplier
+                          shop={orderedProduct.shop}
+                          product={orderedProduct}
+                        />
+                      </>
                     );
                   })}
-                  <Supplier shop={product[0].shop} products={product} />
                 </div>
               );
             })}

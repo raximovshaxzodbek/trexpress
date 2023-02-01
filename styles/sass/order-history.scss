@@ -255,8 +255,9 @@
     width: 100%;
 
     .product-list-item {
+      background-color: #eff1f5;
+
       width: 880px;
-      background: var(--card-bg);
       padding: 30px;
       border-radius: 10px;
       padding-bottom: 20px;
@@ -289,7 +290,7 @@
 
 .supplier {
   padding-top: 20px;
-  margin-top: 40px;
+  margin: 40px 0 60px 0;
   border-top: 1px solid var(--black);
   display: flex;
   align-items: center;
@@ -363,7 +364,7 @@
         line-height: 20px;
         letter-spacing: -0.3px;
         color: var(--black);
-        white-space: nowrap;
+        white-space: wrap;
 
         @media (max-width: 768px) {
           font-size: 12px;
@@ -385,6 +386,7 @@
 }
 
 .total-amoun-wrapper {
+  background-color: #EFF1F5;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -415,7 +417,8 @@
 }
 
 .total-amount {
-  background: var(--card-bg);
+  // background: var(--card-bg);
+  background-color: #EFF1F5;
   border-radius: 20px;
   padding: 35px 28px;
   width: 450px;
@@ -425,7 +428,7 @@
     height: 13px;
     width: 100%;
     border-top: 1px solid var(--black);
-    border-bottom: 1px solid var(--black);
+    // border-bottom: 1px solid var(--black);
     margin-top: 158px;
 
     @media (max-width: 768px) {
@@ -438,7 +441,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 24px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
     &:first-child {
       padding-top: 0;
@@ -636,7 +639,7 @@
           .product-data {
             height: max-content;
             overflow: hidden;
-            background-color: #EFF1F5;
+            background-color: #eff1f5;
 
             .left {
               width: 100px;
