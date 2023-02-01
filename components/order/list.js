@@ -96,7 +96,7 @@ const OrderList = ({ setOpen }) => {
 
   return (
     <div className="order-list">
-      <div className="order-list-header">
+      {/* <div className="order-list-header">
         <div className="product-count">{`${cart?.cartTotalQuantity} ${tl(
           "products"
         )}`}</div>
@@ -114,7 +114,7 @@ const OrderList = ({ setOpen }) => {
             <span>{tl("Delete all")}</span>
           </button>
         )}
-      </div>
+      </div> */}
       {cart?.cartTotalQuantity === 0 ? (
         <Empty
           setOpen={setOpen}
@@ -124,62 +124,83 @@ const OrderList = ({ setOpen }) => {
           text2="To select items, go to the stores"
         />
       ) : (
-        <div className="content">
-          <div className="products-lists">
-            {showProduct?.map((product, key) => {
-              return (
-                <div key={key} className="product-list-item">
-                  {product.map((orderedProduct, key) => {
-                    return (
-                      <>
-                        <OrderProduct
-                          key={key}
-                          orderedProduct={orderedProduct}
-                        />
-                        <Supplier
-                          shop={orderedProduct.shop}
-                          product={orderedProduct}
-                        />
-                      </>
-                    );
-                  })}
-                </div>
-              );
-            })}
+        <>
+          <div className="order-list-header">
+            <div className="product-count">{`${cart?.cartTotalQuantity} ${tl(
+              "products"
+            )}`}</div>
+            {counter > 0 && (
+              <div className="product-count">{`${counter} ${tl(
+                "out.of.stock.message"
+              )}`}</div>
+            )}
+            {cart?.cartTotalQuantity > 0 && (
+              <button
+                className="btn-secondary"
+                onClick={() => dispatch(clearCart())}
+              >
+                <DeleteBin3LineIcon />
+                <span>{tl("Delete all")}</span>
+              </button>
+            )}
           </div>
-          <div className="total-amoun-wrapper">
-            <div className="total-amount">
-              <div className="amount-item">
-                <div className="key">{tl("Total product price")}</div>
-                <div className="value">
-                  {getPrice(total_price + totalDiscount)}
-                </div>
-              </div>
-              <div className="amount-item">
-                <div className="key">{tl("Discount")}</div>
-                <div className="value">{getPrice(totalDiscount)}</div>
-              </div>
-              <div className="amount-item">
-                <div className="key">{tl("VAT Tax")}</div>
-                <div className="value">{getPrice(vatTax)}</div>
-              </div>
-              <div className="amount-item">
-                <div className="key">{tl("Shop tax")}</div>
-                <div className="value">{getPrice(shopTax)}</div>
-              </div>
-              <span></span>
-              <div className="amount-item">
-                <div className="key">{tl("Total amount")}</div>
-                <div className="value">
-                  {getPrice(total_price + vatTax + shopTax)}
-                </div>
-              </div>
+          <div className="content">
+            <div className="products-lists">
+              {showProduct?.map((product, key) => {
+                return (
+                  <div key={key} className="product-list-item">
+                    {product.map((orderedProduct, key) => {
+                      return (
+                        <>
+                          <OrderProduct
+                            key={key}
+                            orderedProduct={orderedProduct}
+                          />
+                          <Supplier
+                            shop={orderedProduct.shop}
+                            product={orderedProduct}
+                          />
+                        </>
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
-            <Link href="/checkout">
-              <button className="btn-success">{tl("Go to checkuot")}</button>
-            </Link>
+            <div className="total-amoun-wrapper">
+              <div className="total-amount">
+                <div className="amount-item">
+                  <div className="key">{tl("Total product price")}</div>
+                  <div className="value">
+                    {getPrice(total_price + totalDiscount)}
+                  </div>
+                </div>
+                <div className="amount-item">
+                  <div className="key">{tl("Discount")}</div>
+                  <div className="value">{getPrice(totalDiscount)}</div>
+                </div>
+                <div className="amount-item">
+                  <div className="key">{tl("VAT Tax")}</div>
+                  <div className="value">{getPrice(vatTax)}</div>
+                </div>
+                <div className="amount-item">
+                  <div className="key">{tl("Shop tax")}</div>
+                  <div className="value">{getPrice(shopTax)}</div>
+                </div>
+                <span></span>
+                <div className="amount-item">
+                  <div className="key">{tl("Total amount")}</div>
+                  <div className="value">
+                    {getPrice(total_price + vatTax + shopTax)}
+                  </div>
+                </div>
+              </div>
+              <Link href="/checkout">
+                <button className="btn-success">{tl("Go to checkuot")}</button>
+              </Link>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

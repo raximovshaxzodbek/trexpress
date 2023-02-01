@@ -209,10 +209,13 @@
 
     .product-count {
       font-weight: 500;
-      font-size: 16px;
-      line-height: 20px;
-      letter-spacing: -0.4px;
       color: var(--black);
+      font-family: Inter;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: 0em;
+      padding-left: 40px;
 
       @media (max-width: 768px) {
         font-size: 13px;
@@ -223,7 +226,7 @@
     .clear-cart {
       display: flex;
       align-items: center;
-      background: #f8f8f8;
+      background: #EFF1F5;
       border-radius: 10px;
       gap: 10px;
       padding: 13px 22px;
@@ -255,13 +258,15 @@
     width: 100%;
 
     .product-list-item {
-      background-color: #eff1f5;
-
-      width: 880px;
       padding: 30px;
       border-radius: 10px;
-      padding-bottom: 20px;
-      margin-bottom: 17px;
+      // padding-bottom: 20px;
+      .order-product {
+        padding: 32px 37px 50px 29px;
+        width: 100%;
+        background-color: #eff1f5;
+        border-radius: 10px;
+      }
 
       @media (max-width: 1024px) {
         width: 100%;
@@ -277,20 +282,15 @@
   @media (max-width: 1420px) {
     flex-direction: column;
     gap: 30px;
-
-    .products-lists {
-      width: 100%;
-
-      .order-product {
-        width: 100% !important;
-      }
-    }
   }
 }
 
 .supplier {
-  padding-top: 20px;
-  margin: 40px 0 60px 0;
+  background-color: #eff1f5;
+  padding: 20px 30px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin: 0px 0 20px 0;
   border-top: 1px solid var(--black);
   display: flex;
   align-items: center;
@@ -386,7 +386,6 @@
 }
 
 .total-amoun-wrapper {
-  background-color: #EFF1F5;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -397,6 +396,7 @@
 
   button {
     margin-top: 17px;
+    background-color: #04d300;
 
     @media (max-width: 1024px) {
       max-width: 100%;
@@ -418,8 +418,8 @@
 
 .total-amount {
   // background: var(--card-bg);
-  background-color: #EFF1F5;
-  border-radius: 20px;
+  background-color: #eff1f5;
+  border-radius: 10px;
   padding: 35px 28px;
   width: 450px;
 
@@ -639,7 +639,7 @@
           .product-data {
             height: max-content;
             overflow: hidden;
-            background-color: #eff1f5;
+            // background-color: #eff1f5;
 
             .left {
               width: 100px;
