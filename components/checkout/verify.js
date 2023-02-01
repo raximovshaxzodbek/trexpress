@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import MessageInput from "../form/msg-input";
 import Ordered from "../products/ordered";
 import { useSelector, useDispatch } from "react-redux";
-import Supplier from "../order/supplier";
+import SupplierVerify from "../order/SupplierVerify";
 import { OrderApi } from "../../api/main/order";
 import { clearCart, clearOrderShops } from "../../redux/slices/cart";
 import { addNote, clearOrder } from "../../redux/slices/order";
@@ -189,7 +189,7 @@ const Verify = ({
                         <Ordered key={key} orderedProduct={orderedProduct} />
                       );
                     })}
-                    <Supplier shop={product[0].shop} products={product} />
+                    <SupplierVerify shop={product[0].shop} products={product} />
                   </div>
                 );
               })}
