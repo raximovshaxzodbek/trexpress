@@ -3,20 +3,22 @@ import { useTranslation } from "react-i18next";
 import { imgBaseUrl } from "../../constants";
 import { getPrice } from "../../utils/getPrice";
 
-const Supplier = ({ shop, products }) => {
+const Supplier = ({ shop, product }) => {
   const { t: tl } = useTranslation();
   const getTotalPrice = () => {
-    let total_tax = 0,
-      total_discount = 0,
-      total_price = 0;
-    products.forEach((item) => {
-      let totalDiscount = item.stockId.discount
-        ? item.stockId.discount * item.qty
+    let total_tax = product.shop_tax + product.productTax
+    let  total_discount = product.stockId.discount
+        ? product.stockId.discount * product.qty
         : 0;
-      total_tax += item.shop_tax + item.productTax;
-      total_discount += totalDiscount;
-      total_price += item.total_price + item.shop_tax;
-    });
+    let  total_price = product.total_price + product.shop_tax
+    // products.forEach((item) => {
+    //   let totalDiscount = item.stockId.discount
+    //     ? item.stockId.discount * item.qty
+    //     : 0;
+    //   total_tax += item.shop_tax + item.productTax;
+    //   total_discount += totalDiscount;
+    //   total_price += item.total_price + item.shop_tax;
+    // });
     return { total_discount, total_price, total_tax };
   };
   const { total_discount, total_price, total_tax } = getTotalPrice();

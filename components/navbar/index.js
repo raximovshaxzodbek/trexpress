@@ -66,8 +66,7 @@ const Navbar = ({ handleContent }) => {
           )}
           <Link href="/">
             <a className="logo">
-              {/*  {settings?.title ? settings?.title : "Site title"} */}
-              Safin24
+               {settings?.title ? settings?.title : "Safin24"}
             </a>
           </Link>
           <SerachFilter

@@ -281,25 +281,23 @@
 
       .info-msg {
         color: #059;
-        background-color: #BEF;
+        background-color: #bef;
       }
 
       .success-msg {
         color: #270;
-        background-color: #DFF2BF;
+        background-color: #dff2bf;
       }
 
       .warning-msg {
-        color: #9F6000;
-        background-color: #FEEFB3;
+        color: #9f6000;
+        background-color: #feefb3;
       }
 
       .error-msg {
-        color: #D8000C;
-        background-color: #FFBABA;
+        color: #d8000c;
+        background-color: #ffbaba;
       }
-
-
 
       .pickup-time {
         width: 476px;
@@ -431,7 +429,6 @@
         letter-spacing: -0.01em;
         color: var(--black);
       }
-
     }
 
     .price {
@@ -528,7 +525,6 @@
     }
 
     .total-amoun-wrapper {
-
       height: max-content;
       display: flex;
       flex-direction: column;
@@ -563,11 +559,11 @@
     }
 
     .amount-item {
+      background-color: red !important;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 24px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 
       &:first-child {
         padding-top: 0;
@@ -611,7 +607,6 @@
 
   .right {
     width: 100%;
-    max-width: 880px;
 
     .title {
       font-weight: 500;
@@ -704,7 +699,6 @@
   gap: 94px;
 
   .card-form {
-
     .card-number,
     .full-name {
       width: 400px;

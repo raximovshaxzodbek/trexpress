@@ -38,7 +38,7 @@ const Blog = () => {
               <Swiper
                 // direction=""
                 // centerInsufficientSlides={true}
-                  shortSwipes={false}
+                  // shortSwipes={false}
                 //   centeredSlidesBounds={true}
                 //   centeredSlides={true}
                 className="swiperStoriesList"

@@ -183,10 +183,12 @@ div {
     margin-bottom: 40px;
 
     .title {
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 16px;
-      letter-spacing: -0.02em;
+      font-family: Inter;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 36px;
+      letter-spacing: 0em;
+      text-align: left;
       color: var(--black);
     }
 
@@ -569,8 +571,6 @@ abbr[title] {
   }
 }
 
-
-
 .rc-slider-handle {
   opacity: 1 !important;
   width: 38px !important;
@@ -589,7 +589,6 @@ abbr[title] {
   &[aria-valuenow="100"] {
     margin-left: -27px;
   }
-
 }
 
 .rc-slider-disabled {
@@ -640,7 +639,7 @@ abbr[title] {
     margin: 0 !important;
   }
 
-  @media (max-width:768px) {
+  @media (max-width: 768px) {
     flex-direction: column;
     gap: 20px;
   }
@@ -951,7 +950,6 @@ abbr[title] {
       .time {
         margin-top: 6px;
       }
-
     }
   }
 }
@@ -1030,7 +1028,7 @@ abbr[title] {
   }
 }
 
-.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal,
 .swiper-pagination-custom,
 .swiper-pagination-fraction {
@@ -1328,7 +1326,6 @@ abbr[title] {
 }
 
 .chat-container {
-
   * {
     font-family: "Inter", sans-serif !important;
   }
@@ -1419,15 +1416,15 @@ abbr[title] {
   vertical-align: top;
   background: var(--primary-bg);
   border-radius: 7px;
-  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
-  transition: margin .3s;
+  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014,
+    0 9px 28px 8px #0000000d;
+  transition: margin 0.3s;
   display: none;
 
   &.active {
     display: block;
   }
 }
-
 
 .rdp-head_cell {
   color: var(--black);
@@ -1485,13 +1482,10 @@ abbr[title] {
       height: 10px;
       color: var(--black);
     }
-
   }
-
 }
 
 .pay-later {
-
   .method-item,
   button {
     margin: 20px auto;
