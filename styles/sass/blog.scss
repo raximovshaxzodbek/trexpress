@@ -23,24 +23,73 @@
     .storiesList {
       display: flex;
       width: 100%;
-    }
-    .underVideo {
-      display: flex;
-      align-items: center;
-      margin-top: 6px;
-      padding: 7px 15px;
-      background-color: #fff;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      width: 115%;
-      margin-left: 10px;
-      p {
-        font-family: Inter;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 15px;
-        letter-spacing: 0em;
-        padding: 10px 0;
+      .swiperStoriesList {
+        width: 100%;
+        background-color: red;
+        .eachVideo {
+          width: 100% !important;
+          .rh5v-Overlay_component {
+            border-radius: 10px !important;
+            .rh5v-Overlay_inner {
+              background-color: transparent;
+              border-radius: 50% !important;
+              svg {
+                width: 80px;
+                height: 80px;
+                left: 25% !important;
+              }
+            }
+          }
+          .rh5v-DefaultPlayer_video {
+            object-fit: cover;
+          }
+          .rh5v-DefaultPlayer_controls {
+            background-color: transparent !important;
+            .rh5v-Volume_component {
+              background-color: transparent !important;
+              button {
+                width: 40px !important;
+                height: 40px !important;
+                color: red !important;
+                background-color: transparent !important;
+                svg {
+                  width: 30px !important;
+                  height: 30px !important;
+                  color: red !important;
+                  background-color: transparent !important;
+                }
+              }
+              .rh5v-Volume_slider {
+                display: none !important;
+                .rh5v-Volume_track {
+                  .rh5v-Volume_fill {
+                    input {
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .underVideo {
+            display: flex;
+            align-items: center;
+            margin-top: 2px;
+            padding: 7px 15px;
+            background-color: #fff;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            width: 287px;
+            margin-left: 10px;
+            p {
+              font-family: Inter;
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 15px;
+              letter-spacing: 0em;
+              padding: 10px 0;
+            }
+          }
+        }
       }
     }
   }

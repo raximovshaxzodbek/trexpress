@@ -26,7 +26,9 @@ const Blog = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  console.log(arr);
+  const width = useWindowSize();
+  const wid = width.width;
+  console.log(wid);
 
   return (
     <div className="blog-wrapper">
@@ -35,33 +37,59 @@ const Blog = () => {
           {true ? (
             <div className="storiesList">
               <Swiper
+                // shortSwipes={false}
+                // centeredSlidesBounds={true}
+                // centeredSlides={true}
                 className="swiperStoriesList"
                 freeMode={false}
                 modules={[Mousewheel, FreeMode, Navigation]}
                 pagination={true}
-                slidesPerView={5}
-                spaceBetween={50}
+                slidesPerView={
+                  5
+                 /*  wid > 1600
+                    ? 5
+                    : wid > 1500
+                    ? 4
+                    : wid > 1200
+                    ? 3
+                    : wid > 800
+                    ? 2
+                    : wid > 350 && 1 */
+                }
+                spaceBetween={
+                  50
+                 /*  wid > 1400
+                    ? 5
+                    : wid > 1200
+                    ? 3
+                    : wid > 1000
+                    ? 2
+                    : wid > 800
+                    ? 1
+                    : wid > 350 && 1 */
+                }
               >
                 {arr.map((el) => (
                   <SwiperSlide>
                     <div className="eachVideo">
                       <Video
-                        controls /* ={[
-                          "PlayPause",
-                          "Seek",
-                          "Time",
+                        controls={[
+                          // "PlayPause",
+                          // "Seek",
+                          // "Time",
                           "Volume",
-                          "Fullscreen",
-                        ]} */
+                          // "Fullscreen",
+                        ]}
                         style={{
                           height: 270,
                           width: 287,
                           borderRadius: 10,
-                          margin: " 0 10px",
+                          margin: "0 10px",
                         }}
                         key={el.id}
                       >
                         <source
+                          style={{ backgroundColor: "transparent" }}
                           src={
                             `https://api.safin24.uz/storage/images/videos/` +
                             el.image_name
@@ -95,3 +123,22 @@ const Blog = () => {
 };
 
 export default Blog;
+
+function useWindowSize() {
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
