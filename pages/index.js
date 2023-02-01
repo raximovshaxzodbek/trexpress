@@ -76,8 +76,6 @@ function Home() {
     })();
   });
 
-  console.log(shops);
-
   return (
     <>
       <SEO />
