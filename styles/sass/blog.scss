@@ -25,10 +25,16 @@
       width: 100%;
       .swiperStoriesList {
         width: 100%;
-        background-color: red;
+        display: flex;
         .eachVideo {
           width: 100% !important;
+          display: flex;
+          flex-direction: column;
+          &.swiper-slide-active{
+              width: 100px !important;
+          }
           .rh5v-Overlay_component {
+            margin: 0 auto !important;
             border-radius: 10px !important;
             .rh5v-Overlay_inner {
               background-color: transparent;

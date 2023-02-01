@@ -34,12 +34,13 @@ const SignUp = () => {
       .post("/api/v1/auth/register", { phone })
       .then((res) => {
         setVerifyPhone(res.data.data);
+        console.log(res.data.data);
         setFormKey("confirm");
         setLoader(false);
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.message);
+        toast.error(error.response.data);
         setLoader(false);
       });
   };
