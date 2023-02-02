@@ -24,6 +24,7 @@ const OrderList = ({ setOpen }) => {
   const dispatch = useDispatch();
   const [counter, setCounter] = useState(0);
   const cart = useSelector((state) => state.cart, shallowEqual);
+  console.log(cart.cartItems);
 
   const getGroupById = (flattenExtras = []) => {
     let result = [];
