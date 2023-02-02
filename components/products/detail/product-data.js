@@ -180,6 +180,8 @@ const ProductData = ({
     setShop(product.shop);
   }, [product]);
 
+  console.log(showExtras);
+
   const handleExtrasClick = (e) => {
     const index = extrasIds.findIndex(
       (item) => item.extra_group_id === e.extra_group_id
@@ -243,7 +245,7 @@ const ProductData = ({
             </div>
           )}
         </div>
-        {showExtras.extras?.map((item, key) => {  
+        {showExtras.extras?.map((item, key) => {
           return (
             <div
               key={key}
@@ -257,6 +259,7 @@ const ProductData = ({
                   const isActive = extrasIds?.findIndex(
                     (item) => item.id === e.id
                   );
+                if(item[0].extra_group_id === e.extra_group_id) {
                   return (
                     <div
                       key={key}
@@ -275,6 +278,7 @@ const ProductData = ({
                       )}
                     </div>
                   );
+                }
                 })}
               </div>
             </div>
@@ -291,7 +295,7 @@ const ProductData = ({
             }`}</span>
           </div>
 
-        {/*  <div>
+          {/*  <div>
          <StockIcon />
           <span>{`${
             showExtras?.stock?.quantity >= 0
