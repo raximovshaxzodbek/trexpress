@@ -25,6 +25,7 @@ const ByPrice = ({ handleFilter }) => {
     setSort(value);
     handleFilter({ sort: value });
   };
+
   return (
     <div className="by-price">
       <div className="title">{tl("Price")}</div>
