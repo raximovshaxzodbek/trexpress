@@ -57,7 +57,7 @@ const ProductSection = ({
                   <Filter3LineIcon size={16} />
                   <span>{tl("Filter")}</span>
                 </div>
-                {/* <div className="layout-type">
+                <div className="layout-type">
                   <span
                     onClick={() => setLayout("vertical")}
                     className={layout === "vertical" && "active"}
@@ -74,7 +74,7 @@ const ProductSection = ({
                   >
                     <PauseFillIcon />
                   </span>
-                </div> */}
+                </div>
                 <div className="all-products-sort">
                   <Select
                     defaultValue={"Sort by"}
@@ -108,7 +108,7 @@ const ProductSection = ({
                 </div>
               </div>
             </div>
-          )}
+          )}  
           <div className="section-content">{children}</div>
         </div>
       </div>
