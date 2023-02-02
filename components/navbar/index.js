@@ -32,6 +32,9 @@ const Navbar = ({ handleContent }) => {
   const settings = useSelector((state) => state.settings.data);
   const notification = useSelector((state) => state.notification.data);
   const cart = useSelector((state) => state.cart);
+  const savedProduct = useSelector(
+    (state) => state.savedProduct.savedProductList
+  );
   const {
     notificationList,
     handleNotification,
@@ -88,7 +91,9 @@ const Navbar = ({ handleContent }) => {
           )}
           <Link href="/stores/liked-product">
             <a className="square">
-              <HeartLineIcon size={20} />
+              <Badge overflowCount={99} count={savedProduct.length}>
+                <HeartLineIcon size={20} />
+              </Badge>
               <span>{tl("Favorite")}</span>
             </a>
           </Link>
