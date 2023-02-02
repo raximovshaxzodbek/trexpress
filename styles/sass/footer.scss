@@ -171,27 +171,30 @@
       padding: 1rem 3rem 3 rem 2rem;
       .secOne {
         width: 40%;
+        height: 70px;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 10px;
+        padding: 0 30px;
 
         .store {
-          width: 120px;
+          width: 140px;
           display: flex;
-          gap: 10px;
+          gap: 5px;
           justify-content: center;
-          height: 40px;
+          height: 60px;
           align-items: center;
           background: #ffffff;
           border: 1px solid rgba(0, 0, 0, 0.3);
           border-radius: 8px;
           cursor: pointer;
+          
 
           .hrefPlayMarketAppStore {
             color: #000;
             font-style: normal;
             font-weight: 400;
-            font-size: 0.4rem;
+            font-size: 12px;
             line-height: 17px;
           }
 
