@@ -16,15 +16,12 @@ import { useContext } from "react";
 import { MainContext } from "../../utils/contexts/MainContext";
 import { imgBaseUrl } from "../../constants";
 
-export const MenuList = () => {
+export const MenuList = ({ Product, query }) => {
   const { t: tl } = useTranslation();
   const [changeScroll, ssetChangeScroll] = useState("none");
   const [display, setDisplay] = useState("none");
   const [num, setNum] = useState(0);
-  const [quality, setQuality] = useState(4);
-  const { isOpen, setIsOpen, shop } = useContext(MainContext);
-
-
+  const { shop } = useContext(MainContext);
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
@@ -34,18 +31,7 @@ export const MenuList = () => {
     })();
   });
 
-  console.log(arr);
 
-  const someArr = new Array(10)
-    .fill("Lorem ipsum")
-    .map((el, index) => <p key={index}>{el}</p>);
-
-  const allArr = new Array(6).fill(someArr).map((el, index) => (
-    <div className="eachColHover" key={index}>
-      <h1>Lorem</h1>
-      {el}
-    </div>
-  ));
 
   const { ref, inView } = useInView();
   useEffect(() => {
@@ -56,7 +42,7 @@ export const MenuList = () => {
   const wids = useWindowSize();
   const wid = wids.width;
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <div className="menuListWrapper">
@@ -115,12 +101,9 @@ export const MenuList = () => {
                 <CheeseLineIcon />
                 <p>{tl("Advantageous")}</p>
               </div>
-              {/* <div className="suffix">
-                <ArrowRigthIcon />
-              </div> */}
             </div>
           </Link>
-          {router.pathname === "/products/[id]"  && (
+          {router.pathname === "/products/[id]" && (
             <Link href={`/stores/${shop.uuid}`}>
               <a className="current-store">
                 <div className="logo">
@@ -148,14 +131,23 @@ export const MenuList = () => {
       >
         {arr?.length > 0 &&
           arr.map(({ translation: { title }, children }, index) => (
-            <div>
+            <div className="subMenuHover">
               <Link href={`/all-product?category_id=${title.id}`} key={index}>
-                <p>{title}</p>
+                <p style={{ textAlign: "center", marginBottom: 20 }}>{title}</p>
               </Link>
-
               <div>
                 {children?.map((el, index) => (
-                  <p key={index}>{el.keywords}</p>
+                  <Link
+                    href={{
+                      pathname: `/all-product`,
+                      query: {
+                        category_id: el.id,
+                      },
+                    }}
+                    key={index}
+                  >
+                    <p key={index}>{el.keywords}</p>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -181,6 +173,6 @@ function useWindowSize() {
     window.addEventListener("resize", handleResize);
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+  }, []);
   return windowSize;
 }

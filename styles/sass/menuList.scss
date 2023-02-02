@@ -199,7 +199,7 @@
         }
       }
 
-   /*    @media (max-width: 1200px) {
+      /*    @media (max-width: 1200px) {
         .data {
           display: none;
         }
@@ -209,7 +209,7 @@
         width: 100px;
       } */
 
-     /*  @media (min-width: 265px) and (max-width: 376px) {
+      /*  @media (min-width: 265px) and (max-width: 376px) {
         width: 80px !important;
       } */
 
@@ -239,15 +239,14 @@
   z-index: 2;
   position: absolute;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-
-  p {
-    cursor: pointer;
-    font-size: 14px;
-    text-align: justify;
-  }
-  .eachColHover {
+  .subMenuHover {
     display: flex;
     flex-direction: column;
     height: 100%;
+    p {
+      cursor: pointer;
+      font-size: 14px;
+      text-align: justify;
+    }
   }
 }
