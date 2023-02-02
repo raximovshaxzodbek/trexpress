@@ -20,6 +20,7 @@ import { parseCookies } from "nookies";
 import SerachFilter from "../search-filter";
 import { useRouter } from "next/router";
 import { MenuList } from "./MenuList";
+import { Avatar, Badge } from "antd";
 
 const Navbar = ({ handleContent }) => {
   const { t: tl } = useTranslation();
@@ -30,6 +31,7 @@ const Navbar = ({ handleContent }) => {
   const user = useSelector((state) => state.user.data);
   const settings = useSelector((state) => state.settings.data);
   const notification = useSelector((state) => state.notification.data);
+  const cart = useSelector((state) => state.cart);
   const {
     notificationList,
     handleNotification,
@@ -66,7 +68,7 @@ const Navbar = ({ handleContent }) => {
           )}
           <Link href="/">
             <a className="logo">
-               {settings?.title ? settings?.title : "Safin24"}
+              {settings?.title ? settings?.title : "Safin24"}
             </a>
           </Link>
           <SerachFilter
@@ -98,7 +100,9 @@ const Navbar = ({ handleContent }) => {
           )} */}
 
           <div className="cart-amount" onClick={() => click("order-list")}>
-            <ShoppingCartLineIcon size={20} />
+            <Badge overflowCount={99} count={cart.cartItems.length}>
+              <ShoppingCartLineIcon size={20} />
+            </Badge>
             <span>{tl("Basket")}</span>
           </div>
           <div className="login-btn">
