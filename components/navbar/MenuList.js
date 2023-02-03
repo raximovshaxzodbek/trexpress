@@ -68,7 +68,7 @@ export const MenuList = ({ Product, query }) => {
                   >
                     <Link href={`/all-product?category_id=${category.id}`}>
                       <p ref={index === 0 ? ref : ""}>
-                        {category.translation?.title}
+                        {tl(category.translation?.title)}
                       </p>
                     </Link>
                   </SwiperSlide>

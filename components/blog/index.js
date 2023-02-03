@@ -11,9 +11,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import axios from "axios";
+import { Modal } from "antd";
 
 const Blog = () => {
   const { t: tl } = useTranslation();
+  const [modalOpen, setModalOpen] = useState(false);
   const [arr, setArr] = useState([]);
   useEffect(() => {
     axios
@@ -38,7 +40,7 @@ const Blog = () => {
               <Swiper
                 // direction=""
                 // centerInsufficientSlides={true}
-                  // shortSwipes={false}
+                // shortSwipes={false}
                 //   centeredSlidesBounds={true}
                 //   centeredSlides={true}
                 className="swiperStoriesList"
@@ -59,40 +61,74 @@ const Blog = () => {
                 }
                 spaceBetween={wid > 1400 && 50}
               >
-                {arr.map((el) => (
-                  <SwiperSlide>
-                    <div className="eachVideo">
-                      <Video
-                        controls={[
-                          // "PlayPause",
-                          // "Seek",
-                          // "Time",
-                          "Volume",
-                          // "Fullscreen",
-                        ]}
-                        style={{
-                          height: 270,
-                          width: 287,
-                          borderRadius: 10,
-                          margin: "0 10px",
-                        }}
-                        key={el.id}
-                      >
-                        <source
-                          style={{ backgroundColor: "transparent" }}
-                          src={
-                            `https://api.safin24.uz/storage/images/videos/` +
-                            el.image_name
-                          }
-                          type="video/webm"
-                        />
-                      </Video>
-                      <div className="underVideo">
-                        <p>{el.description}</p>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
+                {arr &&
+                  arr.map((el, index) => {
+                    let url = `https://api.safin24.uz/storage/images/videos/${el.image_name}`;
+                    // let url = "https://www.youtube.com/watch?v=j8S0F-rP9v0"
+                    return (
+                      <SwiperSlide>
+                        <div className="eachVideo">
+                          <Video
+                            controls={["Volume"]}
+                            style={{
+                              height: 270,
+                              width: 287,
+                              borderRadius: 10,
+                              margin: "0 10px",
+                            }}
+                            key={el.id}
+                          >
+                            <source
+                              style={{ backgroundColor: "transparent" }}
+                              src={url}
+                            />
+                          </Video>
+                          <div
+                            className="underVideo"
+                            onClick={() => setModalOpen(true)}
+                          >
+                            <p>{el.description}</p>
+                          </div>
+                        </div>
+                        {/* <div
+                          className="modalVideo"
+                          // style={{ display: setModalOpen ? "flex" : "none" }}
+                        >
+                          <video src={url} className="video" />
+                        </div> */}
+                        {
+                          <Modal
+                            maskStyle={{
+                              opacity: 0.5,
+                              background: "rgba(0,0,0,.3)",
+                            }}
+                            maskClosable={true}
+                            mask={true}
+                            style={{
+                              background: "transparent",
+                              width: "max-content",
+                            }}
+                            centered={true}
+                            open={modalOpen}
+                            onCancel={() => setModalOpen(false)}
+                            onClick={() => setModalOpen(false)}
+                          >
+                            <Video
+                              key={el.id}
+                              controls={["Volume"]}
+                              style={{
+                                height: 400,
+                                width: 300,
+                                borderRadius: 10,
+                              }}
+                            >
+                              <source src={url} />
+                            </Video>
+                          </Modal>
+                        }
+                      </SwiperSlide>
+                    );
+                  })}
               </Swiper>
             </div>
           ) : (
@@ -131,4 +167,34 @@ function useWindowSize() {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
   return windowSize;
+}
+{
+  /* <Modal
+                            maskStyle={{
+                              opacity: 0.5,
+                              background: "rgba(0,0,0,.3)",
+                            }}
+                            maskClosable={true}
+                            mask={true}
+                            style={{
+                              background: "transparent",
+                              width: "max-content",
+                            }}
+                            centered={true}
+                            open={modalOpen}
+                            onCancel={() => setModalOpen(false)}
+                            onClick={() => setModalOpen(false)}
+                          >
+                            <Video
+                              key={el.id}
+                              controls={["Volume"]}
+                              style={{
+                                height: 400,
+                                width: 300,
+                                borderRadius: 10,
+                              }}
+                            >
+                              <source src={url} />
+                            </Video>
+                          </Modal> */
 }
