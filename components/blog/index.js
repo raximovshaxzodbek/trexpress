@@ -28,6 +28,13 @@ const Blog = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  const [urlVideo, setUrlVideo] = useState("");
+
+  const handleClick = (video) => {
+    setUrlVideo(`https://api.safin24.uz/storage/images/videos/${video}`);
+    setModalOpen(true);
+  };
+
   const width = useWindowSize();
   const wid = width.width;
 
@@ -63,7 +70,7 @@ const Blog = () => {
               >
                 {arr &&
                   arr.map((el, index) => {
-                    let url = `https://api.safin24.uz/storage/images/videos/${el.image_name}`;
+                    let url = ``;
                     // let url = "https://www.youtube.com/watch?v=j8S0F-rP9v0"
                     return (
                       <SwiperSlide>
@@ -80,12 +87,15 @@ const Blog = () => {
                           >
                             <source
                               style={{ backgroundColor: "transparent" }}
-                              src={url}
+                              src={
+                                `https://api.safin24.uz/storage/images/videos/` +
+                                el.image_name
+                              }
                             />
                           </Video>
                           <div
                             className="underVideo"
-                            onClick={() => setModalOpen(true)}
+                            onClick={() => handleClick(el.image_name)}
                           >
                             <p>{el.description}</p>
                           </div>
@@ -122,7 +132,7 @@ const Blog = () => {
                                 borderRadius: 10,
                               }}
                             >
-                              <source src={url} />
+                              <source src={urlVideo} />
                             </Video>
                           </Modal>
                         }
