@@ -30,8 +30,8 @@
           width: 100% !important;
           display: flex;
           flex-direction: column;
-          &.swiper-slide-active{
-              width: 100px !important;
+          &.swiper-slide-active {
+            width: 100px !important;
           }
           .rh5v-Overlay_component {
             margin: 0 auto !important;
@@ -96,6 +96,22 @@
             }
           }
         }
+        .modalVideo {
+          justify-content: center;
+          align-items: center;
+          width: 100vh;
+          height: 100vh;
+          opacity: 0.3;
+          background-color: rgba(0, 0, 0, 0.3);
+          .video {
+            width: 400px;
+            height: 500px;
+          }
+        }
+        // .ant-modal-content {
+        //   background-color: transparent !important;
+        //   width: 200px !important;
+        // }
       }
     }
   }

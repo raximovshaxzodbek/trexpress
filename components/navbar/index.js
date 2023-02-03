@@ -91,7 +91,7 @@ const Navbar = ({ handleContent }) => {
           )}
           <Link href="/stores/liked-product">
             <a className="square">
-              <Badge overflowCount={99} count={savedProduct.length}>
+              <Badge overflowCount={9} count={savedProduct.length}>
                 <HeartLineIcon size={20} />
               </Badge>
               <span>{tl("Favorite")}</span>
@@ -103,9 +103,8 @@ const Navbar = ({ handleContent }) => {
               <span className="amount">{tl("Basket")}</span>
             </a>
           )} */}
-
           <div className="cart-amount" onClick={() => click("order-list")}>
-            <Badge overflowCount={99} count={cart.cartItems.length}>
+            <Badge overflowCount={9} count={cart.cartItems.length}>
               <ShoppingCartLineIcon size={20} />
             </Badge>
             <span>{tl("Basket")}</span>
