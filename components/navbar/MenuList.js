@@ -31,8 +31,6 @@ export const MenuList = ({ Product, query }) => {
     })();
   });
 
-
-
   const { ref, inView } = useInView();
   useEffect(() => {
     const prev = document.getElementsByClassName("swiper-button-prev")[0];
@@ -63,7 +61,7 @@ export const MenuList = ({ Product, query }) => {
                   <SwiperSlide
                     key={category.uuid}
                     onMouseLeave={() => setDisplay("none")}
-                    onMouseOver={() => setDisplay("grid")}
+                    onMouseOver={() => setDisplay("flex")}
                     onClick={() => setNum(index)}
                   >
                     <Link href={`/all-product?category_id=${category.id}`}>
@@ -77,7 +75,7 @@ export const MenuList = ({ Product, query }) => {
                   <SwiperSlide
                     key={index}
                     onMouseLeave={() => setDisplay("none")}
-                    onMouseOver={() => setDisplay("grid")}
+                    onMouseOver={() => setDisplay("flex")}
                     onClick={() => setNum(index)}
                   >
                     <SkeletonInput />
@@ -119,12 +117,12 @@ export const MenuList = ({ Product, query }) => {
         </div>
       </div>
       <div
-        onMouseOver={() => setDisplay("grid")}
+        onMouseOver={() => setDisplay("flex")}
         onMouseLeave={() => setDisplay("none")}
         className="skeletonBetween"
       ></div>
       <div
-        onMouseOver={() => setDisplay("grid")}
+        onMouseOver={() => setDisplay("flex")}
         onMouseLeave={() => setDisplay("none")}
         className="menuHover"
         style={{ display: `${display}` }}
@@ -133,7 +131,7 @@ export const MenuList = ({ Product, query }) => {
           arr.map(({ translation: { title }, children }, index) => (
             <div className="subMenuHover">
               <Link href={`/all-product?category_id=${title.id}`} key={index}>
-                <p style={{ textAlign: "center", marginBottom: 20 }}>{title}</p>
+                <p>{title}</p>
               </Link>
               <div>
                 {children?.map((el, index) => (
