@@ -63,7 +63,7 @@ const Footer = () => {
           <div className="upperFooter">
             {windowSize.width > 768 ? (
               <div className="footerCols">
-                <div>
+                <div className="footer-inner">
                   <h1 className="title">Safin24</h1>
                   <ul
                     style={{
@@ -75,7 +75,7 @@ const Footer = () => {
                     {firstCol}
                   </ul>
                 </div>
-                <div>
+                <div className="footer-inner">
                   <h1 className="title">About us</h1>
                   <ul
                     style={{
@@ -87,7 +87,7 @@ const Footer = () => {
                     {secondCol}
                   </ul>
                 </div>
-                <div>
+                <div className="footer-inner">
                   <h1 className="title">Social Media</h1>
                   <ul
                     style={{
@@ -100,7 +100,7 @@ const Footer = () => {
                     {thirdCol}
                   </ul>
                 </div>
-                <div>
+                <div className="footer-inner">
                   <h1 className="title">Lorem Ipsum</h1>
                   <ul
                     style={{
@@ -113,7 +113,7 @@ const Footer = () => {
                     {fourCol}
                   </ul>
                 </div>
-                <div>
+                <div className="footer-inner">
                   <h1 className="title">Help</h1>
                   <ul
                     style={{
@@ -220,8 +220,8 @@ const Footer = () => {
               </div>
             </div>
             <div className="secTwo">
-              <div>© 2023 Eezy Inc. All rights reserved</div>
-              <div>| Terms of Use | Privacy and Policy</div>
+              <p>© 2023 Eezy Inc. All rights reserved</p>
+              <p>| Terms of Use | Privacy and Policy</p>
             </div>
           </div>
         </div>

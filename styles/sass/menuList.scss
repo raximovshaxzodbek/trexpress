@@ -224,7 +224,6 @@
   background: #c7c7c7;
 }
 .menuHover {
-  display: grid;
   border-radius: 10px;
   justify-self: center;
   left: 0;
@@ -232,21 +231,36 @@
   margin: auto;
   padding: 16px;
   width: 95%;
+  justify-content: space-between;
+  align-items: center;
+  text-align: start;
   max-width: 1400px;
   height: 300px;
   background: #fff;
-  grid-template-columns: repeat(6, 1fr);
   z-index: 2;
   position: absolute;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   .subMenuHover {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
     height: 100%;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 100%;
+    }
     p {
       cursor: pointer;
       font-size: 14px;
-      text-align: justify;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      text-align: start;
+      width: 90%;
     }
   }
 }

@@ -121,6 +121,7 @@ const Blog = () => {
                     }
                   }
                   // centered={true}
+                  centered={true}
                   open={modalOpen}
                   onCancel={() => setModalOpen(false)}
                   onClick={() => setModalOpen(false)}
