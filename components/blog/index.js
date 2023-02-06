@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import axios from "axios";
-import { Modal } from "antd";
+import { Modal, Image } from "antd";
 
 const Blog = () => {
   const { t: tl } = useTranslation();
@@ -51,14 +51,14 @@ const Blog = () => {
                 slidesPerGroup={4}
                 slidesPerView={
                   wid > 1500
-                    ? 5
+                    ? 6
                     : wid > 1220
-                    ? 4
+                    ? 5
                     : wid > 1000
-                    ? 3
+                    ? 4
                     : wid > 760
-                    ? 2
-                    : 1
+                    ? 3
+                    : 2
                 }
                 spaceBetween={wid > 1400 && 50}
               >
@@ -66,29 +66,38 @@ const Blog = () => {
                   arr.map((el, index) => {
                     return (
                       <SwiperSlide>
-                        <div className="eachVideo">
-                          <Video
-                            controls={["Volume"]}
+                        <div
+                          className="eachVideo"
+                          onClick={() => handleClick(el.image_name)}
+                        >
+                          {/* <Video
+                            controls={[]}
                             style={{
-                              height: 270,
-                              width: 287,
+                              height: 400,
+                              width: 200,
                               borderRadius: 10,
-                              margin: "0 10px",
                             }}
                             key={el.id}
                           >
                             <source
-                              style={{ backgroundColor: "transparent" }}
                               src={
                                 `https://api.safin24.uz/storage/images/videos/` +
                                 el.image_name
                               }
                             />
-                          </Video>
-                          <div
-                            className="underVideo"
-                            onClick={() => handleClick(el.image_name)}
-                          >
+                          </Video> */}
+                          <div>
+                            <Image
+                              style={{
+                                height: 400,
+                                width: 200,
+                                borderRadius: 10,
+                              }}
+                              preview={false}
+                              src="/assets/images/be-seller-banner.png"
+                            />
+                          </div>
+                          <div className="underVideo">
                             <p>{el.description}</p>
                           </div>
                         </div>
@@ -103,11 +112,15 @@ const Blog = () => {
                   }}
                   maskClosable={true}
                   mask={true}
-                  style={{
-                    background: "transparent",
-                    width: "max-content",
-                  }}
-                  centered={true}
+                  style={
+                    {
+                      // display: "flex",
+                      // justifyContent: "center",
+                      // alignItems: "center",
+                      // margin: "auto",
+                    }
+                  }
+                  // centered={true}
                   open={modalOpen}
                   onCancel={() => setModalOpen(false)}
                   onClick={() => setModalOpen(false)}
@@ -115,13 +128,16 @@ const Blog = () => {
                   <Video
                     controls={["Volume"]}
                     style={{
-                      height: 400,
-                      width: 300,
+                      top: 0,
+                      height: "100vh",
+                      wid: "50vh",
                       borderRadius: 10,
+                      objectFit: "cover",
                     }}
                   >
                     <source src={urlVideo} />
                   </Video>
+                  {/* <div className="">X</div> */}
                 </Modal>
               </Swiper>
             </div>
