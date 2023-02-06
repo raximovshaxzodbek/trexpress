@@ -1,12 +1,13 @@
 .swiperBrands {
   width: 100%;
   margin: 0px 0 10px 0;
-  background: #fff;
+  color: var(--black);
+  background: var(--secondary-bg) !important;
   border-radius: 10px;
 
   a {
     text-decoration: none;
-    color: black;
+    color: var(--black);
   }
 
   .skeletonBrandList {

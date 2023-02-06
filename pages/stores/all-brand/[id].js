@@ -35,7 +35,7 @@ const BrandDetail = ({ setLoader, brand, products }) => {
     getProduct(4, page);
     setPage(page + 1);
   };
-  console.log(brand);
+
   return (
     <>
       <SEO title={brand?.data?.title} image={brand?.data?.img} />
@@ -43,7 +43,7 @@ const BrandDetail = ({ setLoader, brand, products }) => {
         <BrandBanner brand={brand} />
         <ProductSection
           total={products.meta.total}
-          title="BRand - laCOste"
+          title={brand?.data?.title}
           sort={true}
         >
           {layout === "vertical" &&

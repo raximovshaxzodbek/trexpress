@@ -28,6 +28,7 @@ export const getLanguage = (array = () => {}) => {
   serviceWithOutToken
     .get("/api/v1/rest/languages/active")
     .then((res) => {
+      console.log(res.data.data);
       array(res.data.data);
       const defaultLanguage = res.data.data.find((item) => item.default === 1);
       if (!language_id) {

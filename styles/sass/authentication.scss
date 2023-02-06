@@ -167,7 +167,6 @@
       }
 
       .PhoneInputCountryIcon--border {
-        
         /* Removed `background-color` because when an `<img/>` was still loading
            it would show a dark gray rectangle. */
         /* For some reason the `<img/>` is not stretched to 100% width and height
@@ -202,7 +201,7 @@
       /* Styling native country `<select/>`. */
 
       .PhoneInputCountry {
-        border-right: .5px solid #EFF1F5 !important;
+        border-right: 0.5px solid #eff1f5 !important;
         padding: 0 10px;
         position: relative;
         align-self: stretch;
@@ -390,11 +389,23 @@
     justify-content: center;
     align-items: center;
 
+    @media (max-width: 1400px) {
+      width: 100%;
+      // height: 90%;
+      height: calc(100vh - 125px);
+      align-items: start;
+    }
+
     img {
       width: 50%;
       height: 50%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 10px;
+    }
+    @media (max-width: 1000px) {
+      // width: 90%;
+      // height: 90%;
+      // height: calc(100vh - 125px);
     }
 
     @media (max-width: 768px) {
