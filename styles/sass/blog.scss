@@ -69,11 +69,14 @@
             width: 100px !important;
           }
           .rh5v-DefaultPlayer_component {
+            object-fit: cover !important;
             height: 100vh !important;
             width: 50vh !important;
             margin: 0 auto !important;
             border-radius: 10px !important;
             .rh5v-DefaultPlayer_video {
+              object-fit: cover !important;
+
               @media (max-width: 1000px) {
                 height: 70vh;
                 top: 0 !important;
@@ -84,11 +87,13 @@
               }
             }
             .rh5v-Overlay_component {
+              object-fit: cover !important;
               height: 0;
               width: 0;
               margin: 0 auto !important;
               border-radius: 10px !important;
               .rh5v-DefaultPlayer_video {
+                object-fit: cover !important;
                 @media (max-width: 1000px) {
                   height: 70vh;
                   top: 0 !important;

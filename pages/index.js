@@ -106,8 +106,8 @@ function Home() {
             ))}
       </Row>
       <Blog />
-       <CategoryByChild />
-      <CategoryByParent />
+       {/* <CategoryByChild />
+      <CategoryByParent /> */}
       {/*   <MegaSale /> */}
       <ProductSection icon={true} title="Super discounts of the week">
         {discountList ? (
