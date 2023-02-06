@@ -304,7 +304,7 @@
 }
 .ant-modal .ant-modal-content {
   position: relative;
-  background-color: black !important;
+  background: var(--secondary-bg) !important;
   background-clip: padding-box;
   border: 0;
   border-radius: 8px;

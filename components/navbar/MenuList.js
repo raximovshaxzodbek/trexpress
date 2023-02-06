@@ -15,16 +15,15 @@ import { useRouter } from "next/router";
 import { useContext } from "react";
 import { MainContext } from "../../utils/contexts/MainContext";
 import { imgBaseUrl } from "../../constants";
+import axiosService from "../../services/axios";
 
-export const MenuList = ({ Product, query }) => {
+export const MenuList = () => {
   const { t: tl } = useTranslation();
-  const [changeScroll, ssetChangeScroll] = useState("none");
   const [display, setDisplay] = useState("none");
-  const [num, setNum] = useState(0);
   const { shop } = useContext(MainContext);
   const [arr, setArr] = useState(() => {
     (async () => {
-      axios
+      axiosService
         .get(`https://api.safin24.uz/api/v1/rest/categories/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
@@ -46,6 +45,7 @@ export const MenuList = ({ Product, query }) => {
     <div className="menuListWrapper">
       <div className="menuListContainer">
         <div className="categoriesList">
+          {/* <p>{tl("hello")}</p> */}
           <Swiper
             mousewheel={true}
             scrollbar={true}
@@ -66,7 +66,7 @@ export const MenuList = ({ Product, query }) => {
                   >
                     <Link href={`/all-product?category_id=${category.id}`}>
                       <p ref={index === 0 ? ref : ""}>
-                        {tl(category.translation?.title)}
+                        {category.translation?.title}
                       </p>
                     </Link>
                   </SwiperSlide>
@@ -144,7 +144,7 @@ export const MenuList = ({ Product, query }) => {
                     }}
                     key={index}
                   >
-                    <p key={index}>{el.keywords}</p>
+                    <p key={index}>{el.translation?.title}</p>
                   </Link>
                 ))}
               </div>

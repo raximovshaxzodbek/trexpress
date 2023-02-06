@@ -58,7 +58,9 @@ const Blog = () => {
                     ? 4
                     : wid > 760
                     ? 3
-                    : 2
+                    : wid > 410
+                    ? 2
+                    : 1
                 }
                 spaceBetween={wid > 1400 && 50}
               >
