@@ -103,10 +103,6 @@ const Blog = () => {
                   }}
                   maskClosable={true}
                   mask={true}
-                  style={{
-                    background: "transparent",
-                    width: "max-content",
-                  }}
                   centered={true}
                   open={modalOpen}
                   onCancel={() => setModalOpen(false)}
