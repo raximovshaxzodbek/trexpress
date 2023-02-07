@@ -9,7 +9,6 @@ import "swiper/css/navigation";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { useInView } from "react-intersection-observer";
-import axios from "axios";
 import SkeletonInput from "../skelton/Skeleton-Input";
 import { useRouter } from "next/router";
 import { useContext } from "react";
@@ -19,6 +18,7 @@ import axiosService from "../../services/axios";
 
 export const MenuList = () => {
   const { t: tl } = useTranslation();
+  console.log(tl("hello"));
   const [display, setDisplay] = useState("none");
   const { shop } = useContext(MainContext);
   const [arr, setArr] = useState(() => {
@@ -40,12 +40,13 @@ export const MenuList = () => {
   const wid = wids.width;
 
   const router = useRouter();
+  const locale = router.locale;
+  console.log(router.locale);
 
   return (
     <div className="menuListWrapper">
       <div className="menuListContainer">
         <div className="categoriesList">
-          {/* <p>{tl("hello")}</p> */}
           <Swiper
             mousewheel={true}
             scrollbar={true}
@@ -89,7 +90,10 @@ export const MenuList = () => {
             <div className="btn sideBtn link">
               <div className="label">
                 <FlashlightFillIcon size={32} color="#61DC00" />
-                <p>{tl("Often buy")}</p>
+                <p>
+                  {locale === "ru" && "Часто покупают"}
+                  {locale === "en" && "Often buy"}
+                </p>
               </div>
             </div>
           </Link>
@@ -97,7 +101,10 @@ export const MenuList = () => {
             <div className="btn sideBtn link">
               <div className="label">
                 <CheeseLineIcon />
-                <p>{tl("Advantageous")}</p>
+                <p>
+                  {locale === "ru" && "Выгодно"}
+                  {locale === "en" && "Advantageous"}
+                </p>
               </div>
             </div>
           </Link>
@@ -174,3 +181,6 @@ function useWindowSize() {
   }, []);
   return windowSize;
 }
+
+//tl("Often buy")
+//tl("Advantageous")

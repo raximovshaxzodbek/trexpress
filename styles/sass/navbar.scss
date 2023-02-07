@@ -365,7 +365,7 @@
     .cart-amount,
     .square {
       cursor: pointer;
-      color: var(--black);
+      color: #000;
       display: flex;
       align-items: center;
       border-radius: 10px;
@@ -390,6 +390,7 @@
         gap: 0;
         width: 30px;
         height: 30px;
+        color: #000;
         @media (max-width: 1200px) {
           padding: 0;
           width: 35px;
@@ -545,7 +546,7 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #fff;
+    color: var(--black);
     background: #61dc00;
   }
 
