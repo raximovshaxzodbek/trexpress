@@ -41,6 +41,8 @@
   background: var(--secondary-bg);
   border-radius: 10px;
   margin-bottom: 17px;
+  padding-top: 0 !important;
+  padding-right: 17px;
 
   .right {
     display: flex;
@@ -475,8 +477,6 @@
         border-radius: 0 !important;
         margin-bottom: 0 !important;
       }
-
-
 
       @media (max-width: 768px) {
         width: 100%;

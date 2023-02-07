@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import InputText from "../form/input-text";
 import Loader4LineIcon from "remixicon-react/Loader4LineIcon";
 import { Input, Select } from "antd";
-import pic from "../../public/assets/russia.png";
 import { DownSquareOutlined } from "@ant-design/icons";
 import PhoneInput, {
   formatPhoneNumber,
@@ -14,21 +13,32 @@ import PhoneInput, {
 } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import en from "react-phone-number-input/locale/en";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
   const [privacy, setPrivacy] = useState(true);
+  const ref = useRef(null);
   const { t: tl } = useTranslation();
   const onFinish = (e) => {
     e.preventDefault();
     if (phone && isValidPhoneNumber && isPossiblePhoneNumber) {
       getVerifyCode();
       setPhone(formatPhoneNumber(phone));
+    } else {
+      alert("fr");
     }
   };
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
   return (
     <div className="sign-up-form">
       <form onSubmit={onFinish}>
         <PhoneInput
+          ref={ref}
           labels={en}
           // defaultCountry="RU"
           value={phone}
@@ -44,28 +54,6 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
           // label="Phone number"
           placeholder=""
         /> */}
-        {/* <Input.Group compact>
-          <Select
-            showArrow={true}
-            size="large"
-            style={{ width: "30%" }}
-            defaultActiveFirstOption={true}
-            autoFocus={true}
-            suffixIcon={<img src="/assets/russia.png" style={{display: "flex", justifyContent: "space-between"}} width={80} height={50} />}
-          >
-            <Option value="rus">
-              <img src="/assets/russia.png" width={80} height={60} />
-            </Option>
-            <Option value="uz">
-              <img src="/assets/russia.png" width={80} height={60} />
-            </Option>
-            <Option value="en">
-              <img src="/assets/russia.png" width={80} height={60} />
-            </Option>
-          </Select>
-          <Input style={{ width: "70%", height: 70 }} type="tel" />
-        </Input.Group> */}
-
         <div style={{ height: 18 }} />
         <div className="privacy">
           <input type="checkbox" onChange={() => setPrivacy(!privacy)} />
@@ -75,9 +63,9 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
         </div>
         <button
           data-loader={loader}
-          disabled={!(!privacy && phone)}
-          // type="submit"
-          // className="btn-auth"
+          disabled={(privacy || !phone)}
+          type="submit"
+          className="btn-auth"
         >
           {/* <Loader4LineIcon /> */}
           {tl("Send SMS code")}

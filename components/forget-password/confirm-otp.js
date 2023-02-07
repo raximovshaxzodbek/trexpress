@@ -45,35 +45,37 @@ const Confirm = ({ verify, setFormStep, sumbimtEnterPhone }) => {
       });
   };
   return (
-    <div className="confirm">
-      <div className="sent-gmail">{`${tl("sent-sms")} ${verify.phone}`}</div>
-      <OtpInput
-        value={otp}
-        onChange={handleChange}
-        numInputs={6}
-        separator={""}
-        className="otp-input"
-      />
-      <div className="btn-group">
-        <button
-          data-loader={loader}
-          className="btn-success confirm-btn"
-          onClick={handleConfirm}
-        >
-          <Loader4LineIcon />
-          {tl("Confirm")}
-        </button>
-        {isTimeOver ? (
-          <button className="btn-dark" onClick={handleResend}>
-            <RefreshLineIcon size={28} />
+    <form onSubmit={handleConfirm}>
+      <div className="confirm">
+        <div className="sent-gmail">{`${tl("sent-sms")} ${verify.phone}`}</div>
+        <OtpInput
+          shouldAutoFocus={true}
+          value={otp}
+          onChange={handleChange}
+          numInputs={6}
+          separator={""}
+          className="otp-input"
+        />
+        <div className="btn-group">
+          <button data-loader={loader} className="btn-success confirm-btn">
+            <Loader4LineIcon />
+            {tl("Confirm")}
           </button>
-        ) : (
-          <button className="btn-dark">
-            <Countdown isTimeOver={isTimeOver} setIsTimeOver={setIsTimeOver} />
-          </button>
-        )}
+          {isTimeOver ? (
+            <button className="btn-dark" onClick={handleResend}>
+              <RefreshLineIcon size={28} />
+            </button>
+          ) : (
+            <button className="btn-dark">
+              <Countdown
+                isTimeOver={isTimeOver}
+                setIsTimeOver={setIsTimeOver}
+              />
+            </button>
+          )}
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 
