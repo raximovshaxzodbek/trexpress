@@ -14,7 +14,7 @@ const ForgetPassword = () => {
   const { t: tl } = useTranslation();
   const settings = useSelector((state) => state.settings.data);
   const [formStep, setFormStep] = useState("enter-phone");
-  const [phone, setPhone] = useState(true);
+  const [phone, setPhone] = useState();
   const [loader, setLoader] = useState(false);
   const [verify, setVerify] = useState(false);
 
@@ -53,6 +53,7 @@ const ForgetPassword = () => {
           <div className="title">{tl("Forget password")}</div>
           {formStep === "enter-phone" && (
             <EnterPhone
+              phone={phone}
               loader={loader}
               setPhone={setPhone}
               sumbimtEnterPhone={sumbimtEnterPhone}

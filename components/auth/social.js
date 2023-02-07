@@ -64,7 +64,6 @@ const SocialAuth = () => {
               path: "/",
             });
             getUser();
-            console.log("Hello");
             if (router.query.invite) {
               router.push(`/invite/${router.query.invite}`);
             } else router.push("/");
@@ -75,7 +74,6 @@ const SocialAuth = () => {
           });
       });
     } catch (error) {
-      console.log("Hello");
       console.log(error.message);
       toast.error(error.message);
     }

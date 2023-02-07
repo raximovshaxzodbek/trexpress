@@ -18,7 +18,6 @@ import axiosService from "../../services/axios";
 
 export const MenuList = () => {
   const { t: tl } = useTranslation();
-  console.log(tl("hello"));
   const [display, setDisplay] = useState("none");
   const { shop } = useContext(MainContext);
   const [arr, setArr] = useState(() => {
@@ -41,7 +40,7 @@ export const MenuList = () => {
 
   const router = useRouter();
   const locale = router.locale;
-  console.log(router.locale);
+  console.log(locale);
 
   return (
     <div className="menuListWrapper">
@@ -91,6 +90,7 @@ export const MenuList = () => {
               <div className="label">
                 <FlashlightFillIcon size={32} color="#61DC00" />
                 <p>
+                  {!locale && tl("Often buy")}
                   {locale === "ru" && "Часто покупают"}
                   {locale === "en" && "Often buy"}
                 </p>
@@ -102,6 +102,7 @@ export const MenuList = () => {
               <div className="label">
                 <CheeseLineIcon />
                 <p>
+                  {!locale && tl("Advantageous")}
                   {locale === "ru" && "Выгодно"}
                   {locale === "en" && "Advantageous"}
                 </p>
