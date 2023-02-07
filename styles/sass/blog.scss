@@ -4,22 +4,26 @@
   height: 90vh !important;
   width: 50vh !important;
   margin: auto !important;
-  position: relative;
+  position: static !important;
   .ant-modal-body {
     width: 100% !important;
     height: 100% !important;
   }
-  .ant-modal-close {
-    .ant-modal-close-x {
-      width: 60px !important;
-      height: 60px !important;
-      color: red !important;
-      position: absolute;
-      top: -100px;
-      right: -300px;
-      font-size: 40px !important;
+
+  .closeModal {
+    font-size: 35px;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: -20%;
+    cursor: pointer;
+    transform: scale(1.5);
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.6);
     }
   }
+
   @media (max-width: 1000px) {
     top: 0 !important;
     height: 70vh !important;
@@ -68,6 +72,7 @@
           &.swiper-slide-active {
             width: 100px !important;
           }
+
           .rh5v-DefaultPlayer_component {
             object-fit: cover !important;
             height: 100vh !important;
@@ -85,6 +90,10 @@
                 left: 0 !important;
                 position: relative !important;
               }
+            }
+
+            .rh5v-Volume_icon {
+              padding: 0px !important;
             }
             .rh5v-Overlay_component {
               object-fit: cover !important;
@@ -147,12 +156,6 @@
               }
               .rh5v-Volume_slider {
                 display: none !important;
-                .rh5v-Volume_track {
-                  .rh5v-Volume_fill {
-                    input {
-                    }
-                  }
-                }
               }
             }
           }
