@@ -17,7 +17,7 @@ import { imgBaseUrl } from "../../constants";
 import axiosService from "../../services/axios";
 
 export const MenuList = () => {
-  const { t: tl } = useTranslation();
+  const { t: tl } = useTranslation("common");
   const [display, setDisplay] = useState("none");
   const { shop } = useContext(MainContext);
   const [arr, setArr] = useState(() => {
@@ -40,7 +40,6 @@ export const MenuList = () => {
 
   const router = useRouter();
   const locale = router.locale;
-  console.log(locale);
 
   return (
     <div className="menuListWrapper">

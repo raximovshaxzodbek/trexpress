@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 import { FreeMode } from "swiper";
 
 const HomeBanner = ({ bannerList }) => {
-  console.log(bannerList);
   return (
     <>
       <Swiper freeMode={false} modules={[FreeMode]} pagination={true}>

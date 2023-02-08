@@ -1,4 +1,5 @@
 import { Modal } from "antd";
+import axios from "axios";
 import { parseCookies } from "nookies";
 import React, { useState } from "react";
 import { useRef } from "react";
@@ -8,6 +9,9 @@ const ModalPay = (props) => {
   const totalPrice = props.totalAmount;
   const cookies = parseCookies();
   const [card, setCard] = useState({});
+  const [card_number, setCard_number] = useState("");
+  const [yearExp, setYearExp] = useState("");
+  const [monthExp, setMonthExp] = useState("");
   const iconRef = useState(null);
   const ref = useRef(null);
   const borderRef = useRef(null);
@@ -38,15 +42,36 @@ const ModalPay = (props) => {
     }
   };
 
-  const handleChange = (e) => {
-    setCard({ ...card, [e.target.name]: e.target.value });
+  // const handleChange = (e) => {
+  //   setCard({ ...card, [e.target.name]: e.target.value });
+  // };
+
+  const handleCardNumber = (e) => {
+    setCard_number(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  // const handleExpiryNumber = (e) => {
+  //   setCard({ ...card, expiry: expiry });
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (card.number && card.month && card.year) {
-      setCard({});
+    if (card_number && monthExp && yearExp) {
+      setCard({
+        card_number: card_number,
+        expiry: yearExp + monthExp,
+      });
+
+      console.log(card)
+
+      await axios.post("/partner/bind-card/create HTTP/1.1", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer 35|ZdkFJw0h36Jg46P4MkZVNDejmSeTCikKdlyA5KK9 `,
+          // Host: safin24.uz,
+        },
+      });
       e.target.reset();
     } else {
       ref.current.style = "opacity:1";
@@ -87,14 +112,14 @@ const ModalPay = (props) => {
         }}
       >
         <div className="modalTop">
-          <div className="logomodal">Logo SAFIN24</div>
+          <div className="logomodal">Привяжите карту</div>
 
-          <div className="orderId">
+          {/* <div className="orderId">
             <h3>
               The boarding shop that is being purchased is SAFIN24. Order number
               No. 329013
             </h3>
-          </div>
+          </div> */}
         </div>
 
         <form className="cardfilling" onSubmit={handleSubmit}>
@@ -106,21 +131,20 @@ const ModalPay = (props) => {
               name="number"
               type="number"
               placeholder="Enter the card number"
-              value={card.number}
-              onChange={handleChange}
+              value={card_number}
+              onChange={handleCardNumber}
               onInput={handleKey}
             />
             <img ref={iconRef} src="./assets/images/humo.svg" alt="404" />
           </div>
-
           <div className="card-date">
             <input
               ref={inputref}
               type="number"
               placeholder="MM"
               name="month"
-              value={card.month}
-              onChange={handleChange}
+              value={monthExp}
+              onChange={(e) => setMonthExp(e.target.value)}
               onInput={month}
             />
             <input
@@ -128,8 +152,8 @@ const ModalPay = (props) => {
               type="number"
               placeholder="YY"
               name="year"
-              value={card.year}
-              onChange={handleChange}
+              value={yearExp}
+              onChange={(e) => setYearExp(e.target.value)}
               onInput={year}
             />
           </div>
@@ -141,12 +165,12 @@ const ModalPay = (props) => {
           </div>
         </form>
 
-        <div className="bottompayment">
-          <p>Total value payable</p>
-          <p>
-            {totalPrice} {cookies.currency_symbol}
-          </p>
-        </div>
+          {/* <div className="bottompayment">
+            <p>Total value payable</p>
+            <p>
+              {totalPrice} {cookies.currency_symbol}
+            </p>
+          </div> */}
       </Modal>
     </>
   );

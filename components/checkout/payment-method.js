@@ -35,7 +35,6 @@ const PaymentMethod = ({
   const currentAddress = order?.shops[0]?.delivery_address_id;
   const targetLocation = userLocation?.split(",");
   const addressList = [];
-  
 
   address?.forEach((item) => {
     addressList.push({
@@ -207,10 +206,8 @@ const PaymentMethod = ({
               ) : (
                 <DiscordLoader />
               )}
-         
-            <ModalPay totalAmount = {totalAmount} />
+              <ModalPay totalAmount={totalAmount} />
             </div>
-
           </div>
         </div>
         <div className="btn-group">
