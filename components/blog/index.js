@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import axios from "axios";
 import { Modal, Image } from "antd";
-
+import CloseLineIcon from "remixicon-react/CloseLineIcon";
 const Blog = () => {
   const { t: tl } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
@@ -72,22 +72,6 @@ const Blog = () => {
                           className="eachVideo"
                           onClick={() => handleClick(el.image_name)}
                         >
-                          {/* <Video
-                            controls={[]}
-                            style={{
-                              height: 400,
-                              width: 200,
-                              borderRadius: 10,
-                            }}
-                            key={el.id}
-                          >
-                            <source
-                              src={
-                                `https://api.safin24.uz/storage/images/videos/` +
-                                el.image_name
-                              }
-                            />
-                          </Video> */}
                           <div>
                             <Image
                               style={{
@@ -114,15 +98,7 @@ const Blog = () => {
                   }}
                   maskClosable={true}
                   mask={true}
-                  style={
-                    {
-                      // display: "flex",
-                      // justifyContent: "center",
-                      // alignItems: "center",
-                      // margin: "auto",
-                    }
-                  }
-                  // centered={true}
+                  closable={false}
                   centered={true}
                   open={modalOpen}
                   onCancel={() => setModalOpen(false)}
@@ -140,7 +116,11 @@ const Blog = () => {
                   >
                     <source src={urlVideo} />
                   </Video>
-                  {/* <div className="">X</div> */}
+
+                  <CloseLineIcon
+                    className="closeModal"
+                    onClick={() => setModalOpen(false)}
+                  />
                 </Modal>
               </Swiper>
             </div>
