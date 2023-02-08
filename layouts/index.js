@@ -9,10 +9,26 @@ import WalletHistory from "../components/wallet/history";
 import TransferWallet from "../components/wallet/transfer";
 import { MainContext } from "../utils/contexts/MainContext";
 import LookDetail from "../components/looks/detail";
-import { BrandList } from "../components/navbar/BrandList";
+import { setLanguage } from "../utils/setLanguage";
+
+
 const Layout = ({ children }) => {
-  const { isOpen, setIsOpen, open, setOpen, content, setContent } =
-    useContext(MainContext);
+  const {
+    isOpen,
+    setIsOpen,
+    open,
+    setOpen,
+    content,
+    setContent,
+    theme,
+    setTheme,
+    currency,
+    language,
+    checkProduct,
+    checkViewedProduct,
+    getNotification,
+    handleLanguae,
+  } = useContext(MainContext);
 
   const handleContent = (key) => {
     setContent(key);
@@ -24,10 +40,14 @@ const Layout = ({ children }) => {
   }, []);
   return (
     <>
+      <div className="topNavbar">
+        {/* <CustomSelect /> */}
+        <select></select>
+        <button onClick={() => setTheme("light")}>light</button>
+        <button onClick={() => setLanguage()}>change lang</button>
+      </div>
       <div className="container">
-        <Navbar
-          handleContent={handleContent}
-        />
+        <Navbar handleContent={handleContent} />
         {children}
         <Footer />
         <CustomDrawer title="Top up wallet" open={open} setOpen={setOpen}>

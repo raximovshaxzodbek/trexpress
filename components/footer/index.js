@@ -220,8 +220,8 @@ const Footer = () => {
               </div>
             </div>
             <div className="secTwo">
-              <p>© 2023 Eezy Inc. All rights reserved</p>
-              <p>| Terms of Use | Privacy and Policy</p>
+              <p>Safin24</p>
+              {/* <p>| Terms of Use | Privacy and Policy</p> */}
             </div>
           </div>
         </div>
