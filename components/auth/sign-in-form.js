@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InputPassword from "../form/input-password";
 import serviceWithOutToken from "../../services/auth";
 import { useDispatch } from "react-redux";
@@ -22,27 +22,30 @@ import Link from "next/link";
 import { useRef } from "react";
 const SignInForm = () => {
   const ref = useRef(null);
-
+  const dispatch = useDispatch();
   const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
   const [loader, setLoader] = useState(false);
-  const dispatch = useDispatch();
   const router = useRouter();
   const { getUser } = useContext(MainContext);
   const { t: tl } = useTranslation();
   const [phone, setPhone] = useState();
 
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
   const onFinish = async (e) => {
     setLoader(true);
-    e.preventDefault();
+    e && e.preventDefault();
     const body = {};
     setError("");
     dispatch(clearUser());
-    if (!userData.login?.includes("@")) {
-      body.phone =/*  userData.login; */ phone
-    } /* else {
-      body.email = userData.login;
-    } */
+    // if (!userData.login?.includes("@")) {
+    body.phone = phone /*  userData.login; */;
+    // } else {
+    //   body.email = userData.login;
+    // }
 
     body.password = userData.password;
     serviceWithOutToken
