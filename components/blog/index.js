@@ -13,6 +13,7 @@ import { FreeMode, Navigation, Mousewheel } from "swiper";
 import axios from "axios";
 import { Modal, Image } from "antd";
 import CloseLineIcon from "remixicon-react/CloseLineIcon";
+import cl from  "../../styles/onlyBlog.module.css"
 const Blog = () => {
   const { t: tl } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
@@ -90,39 +91,43 @@ const Blog = () => {
                       </SwiperSlide>
                     );
                   })}
-                <Modal
-                  destroyOnClose={true}
-                  maskStyle={{
-                    opacity: 0.8,
-                    background: "rgba(0,0,0,1)",
+              </Swiper>
+              <Modal
+              // className={cl.ant-modal cl.ant-modal-content}
+                destroyOnClose={true}
+                maskStyle={{
+                  opacity: 0.8,
+                  background: "rgba(0,0,0,1)",
+                }}
+                maskClosable={true}
+                mask={true}
+                closable={true}
+                centered={true}
+                open={modalOpen}
+                onCancel={() => setModalOpen(false)}
+                onClick={() => setModalOpen(false)}
+                style={{
+                  background: "transparent",
+                }}
+              >
+                <Video
+                  controls={["Volume"]}
+                  style={{
+                    top: 0,
+                    height: "100vh",
+                    wid: "50vh",
+                    borderRadius: 10,
+                    objectFit: "cover",
                   }}
-                  maskClosable={true}
-                  mask={true}
-                  closable={false}
-                  centered={true}
-                  open={modalOpen}
-                  onCancel={() => setModalOpen(false)}
-                  onClick={() => setModalOpen(false)}
                 >
-                  <Video
-                    controls={["Volume"]}
-                    style={{
-                      top: 0,
-                      height: "100vh",
-                      wid: "50vh",
-                      borderRadius: 10,
-                      objectFit: "cover",
-                    }}
-                  >
-                    <source src={urlVideo} />
-                  </Video>
+                  <source src={urlVideo} />
+                </Video>
 
-                  <CloseLineIcon
+                {/* <CloseLineIcon
                     className="closeModal"
                     onClick={() => setModalOpen(false)}
-                  />
-                </Modal>
-              </Swiper>
+                  /> */}
+              </Modal>
             </div>
           ) : (
             <>

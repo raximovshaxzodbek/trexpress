@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import { parseCookies } from "nookies";
+import { parseCookies, setCookie } from "nookies";
 import { useEffect } from "react";
 import { useState, useContext, createContext } from "react";
 import { useDispatch } from "react-redux";
 import { UserApi } from "../../api/main/user";
 import { clearCart, clearOrderShops } from "../../redux/slices/cart";
+import { clearViewedList } from "../../redux/slices/viewed-product";
 import i18n from "../../services/i18next";
 import informationService from "../../services/informationService";
 import { useThemeDetector } from "../hooks/useThemeDetector";
@@ -20,7 +21,6 @@ export const SettingsContextProvider = ({ children }) => {
   const cookies = parseCookies();
   const router = useRouter();
   const {
-    theme,
     setTheme,
     currency,
     language,

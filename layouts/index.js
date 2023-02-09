@@ -26,17 +26,15 @@ const Layout = ({ children }) => {
     setTheme,
     language,
   } = useContext(MainContext);
-  const {} = useContext(SettingsContext);
-
-  const handleClick = (key) => {
-    if (key === "auto") {
-      setTheme(key);
-      setCookie(null, "theme", isDarkTheme ? "dark" : "light");
-    } else {
-      setTheme(key);
-      setCookie(null, "theme", key);
-    }
-  };
+  const {
+    defaultCurrency,
+    defaultLanguage,
+    handleLanguae,
+    handleCurrency,
+    handleClick,
+    languageList,
+    currencyList,
+  } = useContext(SettingsContext);
 
   const handleContent = (key) => {
     setContent(key);
@@ -50,11 +48,32 @@ const Layout = ({ children }) => {
   return (
     <>
       <div className="topNavbar">
-        <CustomSelect />
-        <select></select>
-        <button onClick={() => handleClick("light")}>light</button>
-        <button onClick={() => handleClick("dark")}>dark</button>
-        <button onClick={() => setLanguage(language)}>change lang</button>
+        <CustomSelect
+          // label="Language"
+          options={languageList()}
+          onChange={(e) => {
+            handleLanguae(e);
+          }}
+          value={defaultLanguage}
+        />
+        <select onChange={(e) => handleClick(e.target.value)}>
+          <option value={"light"}>light</option>
+          <option value={"dark"}>dark</option>
+        </select>
+        <CustomSelect
+          options={[
+            {
+              value: "light",
+              id: 1,
+            },
+            {
+              value: "dark",
+              id: 1,
+            },
+          ]}
+          // label="theme"
+          onChange={() => handleClick(theme === "light" ? "dark" : "light")}
+        />
       </div>
       <div className="container">
         <Navbar handleContent={handleContent} />

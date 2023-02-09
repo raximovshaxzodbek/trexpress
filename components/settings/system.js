@@ -46,6 +46,7 @@ const System = ({ setLoader }) => {
     languageList,
     currencyList,
   } = useContext(SettingsContext);
+
   return (
     <div className="system">
       <div className="title">{tl("Others")}</div>
