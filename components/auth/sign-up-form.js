@@ -13,8 +13,7 @@ import PhoneInput, {
 } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import en from "react-phone-number-input/locale/en";
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
   const [privacy, setPrivacy] = useState(true);
@@ -40,6 +39,7 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
         <PhoneInput
           ref={ref}
           labels={en}
+          placeholder="Phone number"
           // defaultCountry="RU"
           value={phone}
           onChange={(phone) => {

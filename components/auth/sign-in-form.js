@@ -10,8 +10,19 @@ import InputText from "../form/input-text";
 import Loader4LineIcon from "remixicon-react/Loader4LineIcon";
 import { MainContext } from "../../utils/contexts/MainContext";
 import { useTranslation } from "react-i18next";
+import en from "react-phone-number-input/locale/en";
+
+import PhoneInput, {
+  formatPhoneNumber,
+  formatPhoneNumberIntl,
+  isValidPhoneNumber,
+  isPossiblePhoneNumber,
+} from "react-phone-number-input";
 import Link from "next/link";
+import { useRef } from "react";
 const SignInForm = () => {
+  const ref = useRef(null);
+
   const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
   const [loader, setLoader] = useState(false);
@@ -19,6 +30,7 @@ const SignInForm = () => {
   const router = useRouter();
   const { getUser } = useContext(MainContext);
   const { t: tl } = useTranslation();
+  const [phone, setPhone] = useState();
 
   const onFinish = async (e) => {
     setLoader(true);
@@ -27,10 +39,11 @@ const SignInForm = () => {
     setError("");
     dispatch(clearUser());
     if (!userData.login?.includes("@")) {
-      body.phone = userData.login;
-    } else {
+      body.phone =/*  userData.login; */ phone
+    } /* else {
       body.email = userData.login;
-    }
+    } */
+
     body.password = userData.password;
     serviceWithOutToken
       .post("/api/v1/auth/login", body)
@@ -71,11 +84,24 @@ const SignInForm = () => {
         <div style={{ textAlign: "center", color: "red", marginBottom: 10 }}>
           {error}
         </div>
-        <InputText
+        {/* <InputText
           name="login"
           onChange={onChange}
           label="Login"
           placeholder="Phone number"
+        /> */}
+        <PhoneInput
+          ref={ref}
+          labels={en}
+          placeholder="fsge"
+          // defaultCountry="RU"
+          value={phone}
+          onChange={(phone) => {
+            setPhone(() => {
+              setPhone(formatPhoneNumberIntl(phone));
+            });
+          }}
+          // onChange={onChange}
         />
         <InputPassword
           name="password"
