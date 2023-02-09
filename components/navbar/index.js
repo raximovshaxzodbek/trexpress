@@ -1,21 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import LoginCircleLineIcon from "remixicon-react/LoginCircleLineIcon";
-import Wallet3LineIcon from "remixicon-react/Wallet3LineIcon";
-import Bookmark3LineIcon from "remixicon-react/Bookmark3LineIcon";
+
 import ShoppingCartLineIcon from "remixicon-react/ShoppingCartLineIcon";
 import HeartLineIcon from "remixicon-react/HeartLineIcon";
-import Notification4LineIcon from "remixicon-react/Notification4LineIcon";
 import Link from "next/link";
 import Sidebar from "../sidebar";
 import CustomDrawer from "../drawer";
-import SelectAddress from "../form/select-address";
 import MobileNav from "./mobile";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import useWindowSize from "../../utils/hooks/useWindowSize";
 import { MainContext } from "../../utils/contexts/MainContext";
 import UserAvatar from "./avatar";
-import { getPrice } from "../../utils/getPrice";
 import { parseCookies } from "nookies";
 import SerachFilter from "../search-filter";
 import { useRouter } from "next/router";
@@ -97,12 +93,6 @@ const Navbar = ({ handleContent }) => {
               <span>{tl("Favorite")}</span>
             </a>
           </Link>
-          {/* {user?.wallet && (
-            <a className="wallet">
-              <Wallet3LineIcon size={20} />
-              <span className="amount">{tl("Basket")}</span>
-            </a>
-          )} */}
           <div className="cart-amount" onClick={() => click("order-list")}>
             <Badge overflowCount={9} count={cart.cartItems.length}>
               <ShoppingCartLineIcon size={20} />
@@ -112,48 +102,6 @@ const Navbar = ({ handleContent }) => {
           <div className="login-btn">
             <UserAvatar />
           </div>
-          {/*  <Link href="/saved-store">
-            <a className="square saved">
-              <Bookmark3LineIcon size={20} />
-            </a>
-          </Link> */}
-          {/* <div className="square notification-wrapper">
-            <Notification4LineIcon size={20} />
-            <div className="notification">
-              <div className="header">
-                <div className="title">{tl("Notification")}</div>
-                <div
-                  className="mark-all"
-                  onClick={() =>
-                    handleMarkAllNotification(
-                      notificationList.map((item) => item.id)
-                    )
-                  }
-                >
-                  {tl("Mark all")}
-                </div>
-              </div>
-              {notificationList?.map((item, key) => {
-                return (
-                  <Link key={key} href={`/notification/${item.uuid}`}>
-                    <div
-                      className="item"
-                      onClick={() => handleNotification(item.id)}
-                    >
-                      <div className="header">
-                        <div className="title">{item.translation?.title}</div>
-                        <div className="time">{item.published_at}</div>
-                        {!readed(item) && <span></span>}
-                      </div>
-                      <div className="content">
-                        {item?.translation?.short_desc}
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div> */}
         </div>
       </div>
       <CustomDrawer

@@ -68,6 +68,7 @@
           &.swiper-slide-active {
             width: 100px !important;
           }
+
           .rh5v-DefaultPlayer_component {
             object-fit: cover !important;
             height: 100vh !important;
@@ -85,6 +86,10 @@
                 left: 0 !important;
                 position: relative !important;
               }
+            }
+
+            .rh5v-Volume_icon {
+              padding: 0px !important;
             }
             .rh5v-Overlay_component {
               object-fit: cover !important;
@@ -147,12 +152,6 @@
               }
               .rh5v-Volume_slider {
                 display: none !important;
-                .rh5v-Volume_track {
-                  .rh5v-Volume_fill {
-                    input {
-                    }
-                  }
-                }
               }
             }
           }
