@@ -27,8 +27,8 @@ const SignUp = () => {
   const [userData, setUserData] = useState({});
   const { getUser } = useContext(MainContext);
 
-  // 946758050
-  const getVerifyCode = () => {
+  const getVerifyCode = (e) => {
+    e && e.preventDefault();
     setLoader(true);
     serviceWithOutToken
       .post("/api/v1/auth/register", { phone })
@@ -44,7 +44,8 @@ const SignUp = () => {
         setLoader(false);
       });
   };
-  const handleConfirm = () => {
+  const handleConfirm = (e) => {
+    e && e.preventDefault();
     setLoader(true);
     serviceWithOutToken
       .post("/api/v1/auth/verify/phone", {
@@ -68,7 +69,7 @@ const SignUp = () => {
   };
   const onSubmit = (e) => {
     setLoader(true);
-    e.preventDefault();
+    e && e.preventDefault();
     UserApi.update(userData)
       .then(() => {
         setLoader(false);
@@ -132,7 +133,10 @@ const SignUp = () => {
           {/* <SocialAuth /> */}
         </div>
         <div className="auth-banner">
-          <img src="/assets/images/Online-security-registration.png" alt="Auth banner" />
+          <img
+            src="/assets/images/Online-security-registration.png"
+            alt="Auth banner"
+          />
         </div>
       </div>
     </div>

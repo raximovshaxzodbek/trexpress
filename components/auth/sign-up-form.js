@@ -13,19 +13,21 @@ import PhoneInput, {
 } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import en from "react-phone-number-input/locale/en";
+import ru from "react-phone-number-input/locale/ru";
 import { useEffect, useRef } from "react";
+import { useContext } from "react";
+import { SettingsContext } from "../../utils/contexts/SettingContext";
 
 const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
   const [privacy, setPrivacy] = useState(true);
+  const { defaultLanguage } = useContext(SettingsContext);
   const ref = useRef(null);
   const { t: tl } = useTranslation();
   const onFinish = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     if (phone && isValidPhoneNumber && isPossiblePhoneNumber) {
       getVerifyCode();
       setPhone(formatPhoneNumber(phone));
-    } else {
-      alert("fr");
     }
   };
 
@@ -38,7 +40,7 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
       <form onSubmit={onFinish}>
         <PhoneInput
           ref={ref}
-          labels={en}
+          labels={defaultLanguage == 1 ? en : ru}
           placeholder="Phone number"
           // defaultCountry="RU"
           value={phone}
@@ -63,7 +65,7 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
         </div>
         <button
           data-loader={loader}
-          disabled={(privacy || !phone)}
+          disabled={privacy || !phone}
           type="submit"
           className="btn-auth"
         >
