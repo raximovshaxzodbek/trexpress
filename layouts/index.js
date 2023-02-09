@@ -53,6 +53,7 @@ const Layout = ({ children }) => {
           options={languageList()}
           onChange={(e) => {
             handleLanguae(e);
+            window.location.reload();
           }}
           value={defaultLanguage}
         />
