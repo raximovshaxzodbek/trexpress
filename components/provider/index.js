@@ -5,14 +5,17 @@ import { persistor, store } from "../../redux/store";
 import { ToastContainer } from "react-toastify";
 import { PersistGate } from "redux-persist/integration/react";
 import MainContextProvider from "../../utils/contexts/MainContext";
+import { SettingsContextProvider } from "../../utils/contexts/SettingContext";
 
 const Providers = ({ children }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <MainContextProvider>
-          <AuthProvider>{children}</AuthProvider>
-          <ToastContainer newestOnTop />
+          <SettingsContextProvider>
+            <AuthProvider>{children}</AuthProvider>
+            <ToastContainer newestOnTop />
+          </SettingsContextProvider>
         </MainContextProvider>
       </PersistGate>
     </Provider>

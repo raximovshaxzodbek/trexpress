@@ -15,6 +15,7 @@ import { useContext } from "react";
 import { MainContext } from "../../utils/contexts/MainContext";
 import { imgBaseUrl } from "../../constants";
 import axiosService from "../../services/axios";
+import { SettingsContext } from "../../utils/contexts/SettingContext";
 
 export const MenuList = () => {
   const { t: tl } = useTranslation("common");

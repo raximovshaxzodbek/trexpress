@@ -105,8 +105,7 @@ function Home() {
               </Col>
             ))}
       </Row>
-      <Blog />
-       {/* <CategoryByChild />
+      {/* <CategoryByChild />
       <CategoryByParent /> */}
       {/*   <MegaSale /> */}
       <ProductSection icon={true} title="Super discounts of the week">
@@ -145,6 +144,8 @@ function Home() {
           />
         )}
       </ProductSection>
+      <Blog />
+
       <BeSeller />
       <Row id="row">
         {shops?.length > 0

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import EnterAddress from "../components/address/enter-delivery-address";
 import CustomDrawer from "../components/drawer";
 import Footer from "../components/footer";
@@ -10,7 +10,9 @@ import TransferWallet from "../components/wallet/transfer";
 import { MainContext } from "../utils/contexts/MainContext";
 import LookDetail from "../components/looks/detail";
 import { setLanguage } from "../utils/setLanguage";
-
+import { setCookie } from "nookies";
+import { SettingsContext } from "../utils/contexts/SettingContext";
+import CustomSelect from "../components/form/custom-select";
 
 const Layout = ({ children }) => {
   const {
@@ -22,13 +24,19 @@ const Layout = ({ children }) => {
     setContent,
     theme,
     setTheme,
-    currency,
     language,
-    checkProduct,
-    checkViewedProduct,
-    getNotification,
-    handleLanguae,
   } = useContext(MainContext);
+  const {} = useContext(SettingsContext);
+
+  const handleClick = (key) => {
+    if (key === "auto") {
+      setTheme(key);
+      setCookie(null, "theme", isDarkTheme ? "dark" : "light");
+    } else {
+      setTheme(key);
+      setCookie(null, "theme", key);
+    }
+  };
 
   const handleContent = (key) => {
     setContent(key);
@@ -38,13 +46,15 @@ const Layout = ({ children }) => {
   useEffect(() => {
     if (!content) setOpen(false);
   }, []);
+
   return (
     <>
       <div className="topNavbar">
-        {/* <CustomSelect /> */}
+        <CustomSelect />
         <select></select>
-        <button onClick={() => setTheme("light")}>light</button>
-        <button onClick={() => setLanguage()}>change lang</button>
+        <button onClick={() => handleClick("light")}>light</button>
+        <button onClick={() => handleClick("dark")}>dark</button>
+        <button onClick={() => setLanguage(language)}>change lang</button>
       </div>
       <div className="container">
         <Navbar handleContent={handleContent} />
