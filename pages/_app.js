@@ -19,9 +19,6 @@ import informationService from "../services/informationService";
 import i18n from "../services/i18next";
 import { parseCookies } from "nookies";
 import { I18nextProvider } from "react-i18next";
-import { appWithTranslation } from "next-i18next";
-// import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import nextI18NextConfig from "../next-i18next.config.js";
 
 const WithOutLayout = [
   "/settings",

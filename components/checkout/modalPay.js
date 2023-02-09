@@ -4,9 +4,8 @@ import { parseCookies } from "nookies";
 import React, { useState } from "react";
 import { useRef } from "react";
 
-const ModalPay = (props) => {
+const ModalPay = () => {
   const [modal, setModal] = useState(false);
-  const totalPrice = props.totalAmount;
   const cookies = parseCookies();
   const [card, setCard] = useState({});
   const [card_number, setCard_number] = useState("");
@@ -63,15 +62,16 @@ const ModalPay = (props) => {
         expiry: yearExp + monthExp,
       });
 
-      console.log(card)
+      console.log(card);
 
-      await axios.post("/partner/bind-card/create HTTP/1.1", {
+      const data = await axios.post("/partner/bind-card/create HTTP/1.1", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer 35|ZdkFJw0h36Jg46P4MkZVNDejmSeTCikKdlyA5KK9 `,
           // Host: safin24.uz,
         },
       });
+      console.log(data.data);
       e.target.reset();
     } else {
       ref.current.style = "opacity:1";
@@ -165,7 +165,7 @@ const ModalPay = (props) => {
           </div>
         </form>
 
-          {/* <div className="bottompayment">
+        {/* <div className="bottompayment">
             <p>Total value payable</p>
             <p>
               {totalPrice} {cookies.currency_symbol}
