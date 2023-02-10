@@ -1,11 +1,14 @@
-import { Modal } from "antd";
 import axios from "axios";
 import { parseCookies } from "nookies";
 import React, { useState } from "react";
 import { useRef } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 const ModalPay = () => {
-  const [modal, setModal] = useState(false);
+  const [open, setOpen] = useState(false);
   const cookies = parseCookies();
   const [card, setCard] = useState({});
   const [card_number, setCard_number] = useState("");
@@ -16,6 +19,21 @@ const ModalPay = () => {
   const borderRef = useRef(null);
   const inputref = useRef(null);
   const inputref2 = useRef(null);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #ffffff",
+    borderRadius:"10px",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const handleClose = () => setOpen(false);
 
   const handleKey = (e) => {
     if (e.target.value.length > 4) {
@@ -90,7 +108,7 @@ const ModalPay = () => {
 
   return (
     <>
-      <div className="method-item" onClick={() => setModal(true)}>
+      <div className="method-item" onClick={() => setOpen(true)}>
         <div className="shipping-type">
           <div className="type">
             <span>add cart</span>
@@ -102,77 +120,64 @@ const ModalPay = () => {
           />
         </div>
       </div>
+
       <Modal
-        open={modal}
-        onCancel={() => setModal(false)}
-        closable
-        style={{
-          top: 80,
-          left: -80,
-        }}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        <div className="modalTop">
-          <div className="logomodal">Привяжите карту</div>
-
-          {/* <div className="orderId">
-            <h3>
-              The boarding shop that is being purchased is SAFIN24. Order number
-              No. 329013
-            </h3>
-          </div> */}
-        </div>
-
-        <form className="cardfilling" onSubmit={handleSubmit}>
-          <span className="card-notification" ref={ref}>
-            Fill all fields
-          </span>
-          <div className="cardnumber" ref={borderRef}>
-            <input
-              name="number"
-              type="number"
-              placeholder="Enter the card number"
-              value={card_number}
-              onChange={handleCardNumber}
-              onInput={handleKey}
-            />
-            <img ref={iconRef} src="./assets/images/humo.svg" alt="404" />
-          </div>
-          <div className="card-date">
-            <input
-              ref={inputref}
-              type="number"
-              placeholder="MM"
-              name="month"
-              value={monthExp}
-              onChange={(e) => setMonthExp(e.target.value)}
-              onInput={month}
-            />
-            <input
-              ref={inputref2}
-              type="number"
-              placeholder="YY"
-              name="year"
-              value={yearExp}
-              onChange={(e) => setYearExp(e.target.value)}
-              onInput={year}
-            />
+        <Box sx={style}>
+          <div className="modalTop">
+            <div className="logomodal">Привяжите карту</div>
           </div>
 
-          <div className="modalBottom">
-            <button style={{ width: "100% !important" }} id="btnpay">
-              Pay
-            </button>
-          </div>
-        </form>
+          <form className="cardfilling" onSubmit={handleSubmit}>
+            <span className="card-notification" ref={ref}>
+              Fill all fields
+            </span>
+            <div className="cardnumber" ref={borderRef}>
+              <input
+                name="number"
+                type="number"
+                placeholder="Enter the card number"
+                value={card_number}
+                onChange={handleCardNumber}
+                onInput={handleKey}
+              />
+              <img ref={iconRef} src="./assets/images/humo.svg" alt="404" />
+            </div>
+            <div className="card-date">
+              <input
+                ref={inputref}
+                type="number"
+                placeholder="MM"
+                name="month"
+                value={monthExp}
+                onChange={(e) => setMonthExp(e.target.value)}
+                onInput={month}
+              />
+              <input
+                ref={inputref2}
+                type="number"
+                placeholder="YY"
+                name="year"
+                value={yearExp}
+                onChange={(e) => setYearExp(e.target.value)}
+                onInput={year}
+              />
+            </div>
 
-        {/* <div className="bottompayment">
-            <p>Total value payable</p>
-            <p>
-              {totalPrice} {cookies.currency_symbol}
-            </p>
-          </div> */}
+            <div className="modalBottom">
+              <button style={{ width: "100% !important" }} id="btnpay">
+                Pay
+              </button>
+            </div>
+          </form>
+        </Box>
       </Modal>
     </>
   );
 };
 export default ModalPay;
+
