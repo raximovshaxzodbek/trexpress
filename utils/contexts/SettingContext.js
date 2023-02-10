@@ -13,7 +13,6 @@ import { setCurrency } from "../setCurrency";
 import { setLanguage } from "../setLanguage";
 import { MainContext } from "./MainContext";
 
-
 export const SettingsContext = createContext();
 
 export const SettingsContextProvider = ({ children }) => {
