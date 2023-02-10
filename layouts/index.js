@@ -36,6 +36,8 @@ const Layout = ({ children }) => {
     currencyList,
   } = useContext(SettingsContext);
 
+  console.log(languageList());
+
   const handleContent = (key) => {
     setContent(key);
     setOpen(true);
@@ -49,7 +51,6 @@ const Layout = ({ children }) => {
     <>
       <div className="topNavbar">
         <CustomSelect
-          // label="Language"
           options={languageList()}
           onChange={(e) => {
             handleLanguae(e);
@@ -57,23 +58,25 @@ const Layout = ({ children }) => {
           }}
           value={defaultLanguage}
         />
-        <select onChange={(e) => handleClick(e.target.value)}>
+        {/* <select onChange={(e) => handleClick(e.target.value)}>
           <option value={"light"}>light</option>
           <option value={"dark"}>dark</option>
-        </select>
+        </select> */}
         <CustomSelect
+          value={theme}
           options={[
             {
               value: "light",
-              id: 1,
+              id: "light",
             },
             {
               value: "dark",
-              id: 1,
+              id: "dark",
             },
           ]}
-          // label="theme"
-          onChange={() => handleClick(theme === "light" ? "dark" : "light")}
+          onChange={() => {
+            handleClick(theme === "light" ? "dark" : "light");
+          }}
         />
       </div>
       <div className="container">
