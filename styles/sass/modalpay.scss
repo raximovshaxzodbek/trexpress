@@ -1,213 +1,213 @@
-.ant-modal-content {
-  position: relative;
-  background-color: #eff1f5 !important;
-  background-clip: padding-box;
-  border: 0;
-  border-radius: 8px;
-  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%),
-    0 9px 28px 8px rgb(0 0 0 / 5%);
-  pointer-events: auto;
-  width: 650px !important;
-  height: 530px !important;
-  display: flex !important;
-  gap: 50px !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  padding: 50px 50px !important;
+// .ant-modal-content {
+//   position: relative;
+//   background-color: #eff1f5 !important;
+//   background-clip: padding-box;
+//   border: 0;
+//   border-radius: 8px;
+//   box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%),
+//     0 9px 28px 8px rgb(0 0 0 / 5%);
+//   pointer-events: auto;
+//   width: 650px !important;
+//   height: 530px !important;
+//   display: flex !important;
+//   gap: 50px !important;
+//   flex-direction: column !important;
+//   align-items: center !important;
+//   padding: 50px 50px !important;
 
-  input {
-    outline: none;
-    border: none;
-  }
+//   input {
+//     outline: none;
+//     border: none;
+//   }
 
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+//   input::-webkit-outer-spin-button,
+//   input::-webkit-inner-spin-button {
+//     -webkit-appearance: none;
+//     margin: 0;
+//   }
 
-  /* Firefox */
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
+//   /* Firefox */
+//   input[type="number"] {
+//     -moz-appearance: textfield;
+//   }
 
-  .modalTop {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+//   .modalTop {
+//     width: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     gap: 20px;
 
-    .logomodal {
-      width: 173px;
-      height: 48px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #ffffff;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 15px;
-      line-height: 20px;
-      /* identical to box height, or 133% */
+//     .logomodal {
+//       width: 173px;
+//       height: 48px;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       background: #ffffff;
+//       border-radius: 10px;
+//       font-weight: 600;
+//       font-size: 15px;
+//       line-height: 20px;
+//       /* identical to box height, or 133% */
 
-      text-align: center;
+//       text-align: center;
 
-      color: #000000;
-    }
+//       color: #000000;
+//     }
 
-    .orderId {
-      width: 100%;
-      text-align: center;
+//     .orderId {
+//       width: 100%;
+//       text-align: center;
 
-      h3 {
-        width: 370px;
-        height: 40px;
-        font-family: "Petrona";
-        font-style: normal;
-        font-weight: 600;
-        font-size: 15px;
-        line-height: 20px;
-        /* or 133% */
-        text-align: center;
+//       h3 {
+//         width: 370px;
+//         height: 40px;
+//         font-family: "Petrona";
+//         font-style: normal;
+//         font-weight: 600;
+//         font-size: 15px;
+//         line-height: 20px;
+//         /* or 133% */
+//         text-align: center;
 
-        color: #000000;
-      }
-    }
-  }
+//         color: #000000;
+//       }
+//     }
+//   }
 
-  .cardfilling {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 20px;
+//   .cardfilling {
+//     width: 100%;
+//     display: flex;
+//     align-items: center;
+//     flex-direction: column;
+//     gap: 20px;
+//     margin-top: 20px;
 
-    .card-notification {
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 16px;
-      /* identical to box height, or 80% */
-      opacity: 0;
-      transition: 0.3s;
-      letter-spacing: 0.04em;
-      color: #ff0000;
-      text-shadow: 20px 0px 40px #ff0000;
-    }
+//     .card-notification {
+//       font-weight: 600;
+//       font-size: 20px;
+//       line-height: 16px;
+//       /* identical to box height, or 80% */
+//       opacity: 0;
+//       transition: 0.3s;
+//       letter-spacing: 0.04em;
+//       color: #ff0000;
+//       text-shadow: 20px 0px 40px #ff0000;
+//     }
 
-    .cardnumber {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 70px;
-      background: #ffffff;
-      box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      padding: 0 10px;
-      img {
-        width: 60px;
-        height: 100%;
-        opacity: 0;
-      }
+//     .cardnumber {
+//       width: 100%;
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//       height: 70px;
+//       background: #ffffff;
+//       box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
+//       border-radius: 10px;
+//       padding: 0 10px;
+//       img {
+//         width: 60px;
+//         height: 100%;
+//         opacity: 0;
+//       }
 
-      input {
-        width: 80%;
-        height: 100%;
-        outline: none;
-        border: none;
-        font-weight: 600;
-        color: #000000;
+//       input {
+//         width: 80%;
+//         height: 100%;
+//         outline: none;
+//         border: none;
+//         font-weight: 600;
+//         color: #000000;
 
-        &::placeholder {
-          font-weight: 600;
-          font-size: 14px;
-          line-height: 16px;
-          /* or 67% */
+//         &::placeholder {
+//           font-weight: 600;
+//           font-size: 14px;
+//           line-height: 16px;
+//           /* or 67% */
 
-          letter-spacing: 0.04em;
+//           letter-spacing: 0.04em;
 
-          color: #cecece;
-        }
-      }
-    }
+//           color: #cecece;
+//         }
+//       }
+//     }
 
-    .card-date {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      gap: 20px;
+//     .card-date {
+//       width: 100%;
+//       display: flex;
+//       justify-content: flex-end;
+//       gap: 20px;
 
-      input {
-        width: 80px;
-        height: 50px;
-        background: #ffffff;
-        /* Foreground color(white) */
+//       input {
+//         width: 80px;
+//         height: 50px;
+//         background: #ffffff;
+//         /* Foreground color(white) */
 
-        border: 1px solid #ffffff;
-        box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        text-align: center;
-        &::placeholder {
-          font-weight: 600;
-          font-size: 14px;
-          line-height: 16px;
-          /* or 67% */
-          text-align: center;
+//         border: 1px solid #ffffff;
+//         box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
+//         border-radius: 10px;
+//         text-align: center;
+//         &::placeholder {
+//           font-weight: 600;
+//           font-size: 14px;
+//           line-height: 16px;
+//           /* or 67% */
+//           text-align: center;
 
-          letter-spacing: 0.04em;
+//           letter-spacing: 0.04em;
 
-          color: #cecece;
-        }
-      }
-    }
+//           color: #cecece;
+//         }
+//       }
+//     }
 
-    .modalBottom {
-      width: 100%;
-      height: 50px;
-      background: #428dfc;
-      box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      button {
-        width: 100%;
-        background: none;
-        border: none;
-        outline: none;
-        height: 100%;
-        color: white;
-      }
-    }
-  }
+//     .modalBottom {
+//       width: 100%;
+//       height: 50px;
+//       background: #428dfc;
+//       box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.1);
+//       border-radius: 10px;
+//       display: flex;
+//       justify-content: center;
+//       button {
+//         width: 100%;
+//         background: none;
+//         border: none;
+//         outline: none;
+//         height: 100%;
+//         color: white;
+//       }
+//     }
+//   }
 
-  .bottompayment {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
+//   .bottompayment {
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-between;
+//     margin-top: 25px;
 
-    p {
-      font-family: "Petrona";
-      font-style: normal;
-      font-weight: 800;
-      font-size: 16px;
-      line-height: 30px;
-      /* or 125% */
+//     p {
+//       font-family: "Petrona";
+//       font-style: normal;
+//       font-weight: 800;
+//       font-size: 16px;
+//       line-height: 30px;
+//       /* or 125% */
 
-      letter-spacing: 0.04em;
+//       letter-spacing: 0.04em;
 
-      /* Black button */
+//       /* Black button */
 
-      color: #000000;
-    }
-  }
-  .ant-btn-default {
-    display: none !important;
-  }
+//       color: #000000;
+//     }
+//   }
+//   .ant-btn-default {
+//     display: none !important;
+//   }
 
-  .ant-modal-footer {
-    display: none !important;
-  }
-}
+//   .ant-modal-footer {
+//     display: none !important;
+//   }
+// }

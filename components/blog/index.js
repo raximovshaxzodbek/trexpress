@@ -13,7 +13,7 @@ import { FreeMode, Navigation, Mousewheel } from "swiper";
 import axios from "axios";
 import { Modal, Image } from "antd";
 import CloseLineIcon from "remixicon-react/CloseLineIcon";
-import cl from  "../../styles/onlyBlog.module.css"
+import cl from "../../styles/onlyBlog.module.css";
 const Blog = () => {
   const { t: tl } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
@@ -93,7 +93,7 @@ const Blog = () => {
                   })}
               </Swiper>
               <Modal
-              // className={cl.ant-modal cl.ant-modal-content}
+                // className={cl.ant-modal cl.ant-modal-content}
                 destroyOnClose={true}
                 maskStyle={{
                   opacity: 0.8,
@@ -102,7 +102,6 @@ const Blog = () => {
                 maskClosable={true}
                 mask={true}
                 closable={true}
-                centered={true}
                 open={modalOpen}
                 onCancel={() => setModalOpen(false)}
                 onClick={() => setModalOpen(false)}
