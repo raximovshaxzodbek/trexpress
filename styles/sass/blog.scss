@@ -6,15 +6,6 @@
   padding: 10px 5px;
   margin-bottom: 10px;
 
-  // .title {
-  //   margin-bottom: 33px;
-  //   font-weight: 500;
-  //   font-size: 30px;
-  //   line-height: 40px;
-  //   letter-spacing: -0.02em;
-  //   color: var(--black);
-  // }
-
   .blog-items {
     display: flex;
     align-items: center;
@@ -34,106 +25,15 @@
           &.swiper-slide-active {
             width: 100px !important;
           }
-          .rh5v-DefaultPlayer_component {
-            object-fit: cover !important;
-            height: 100vh !important;
-            width: 50vh !important;
-            margin: 0 auto !important;
-            border-radius: 10px !important;
-            .rh5v-DefaultPlayer_video {
-              object-fit: cover !important;
 
-              @media (max-width: 1000px) {
-                height: 70vh;
-                top: 0 !important;
-                right: 0 !important;
-                bottom: 0 !important;
-                left: 0 !important;
-                position: relative !important;
-              }
-            }
-            .rh5v-Overlay_component {
-              object-fit: cover !important;
-              height: 0;
-              width: 0;
-              margin: 0 auto !important;
-              border-radius: 10px !important;
-              .rh5v-DefaultPlayer_video {
-                object-fit: cover !important;
-                @media (max-width: 1000px) {
-                  height: 70vh;
-                  top: 0 !important;
-                  right: 0 !important;
-                  bottom: 0 !important;
-                  left: 0 !important;
-                  position: relative !important;
-                }
-              }
-              .rh5v-Overlay_inner {
-                background-color: transparent;
-                border-radius: 50% !important;
-                svg {
-                  width: 80px;
-                  height: 80px;
-                  left: 25% !important;
-                }
-              }
-            }
-            .rh5v-Overlay_inner {
-              background-color: transparent;
-              border-radius: 50% !important;
-              svg {
-                width: 80px;
-                height: 80px;
-                left: 25% !important;
-              }
-            }
-          }
-
-          .rh5v-DefaultPlayer_video {
-            height: 100%;
-            width: 100%;
-            object-fit: cover !important;
-          }
-          .rh5v-DefaultPlayer_controls {
-            background-color: transparent !important;
-            .rh5v-Volume_component {
-              background-color: transparent !important;
-              button {
-                width: 40px !important;
-                height: 40px !important;
-                color: red !important;
-                background-color: transparent !important;
-                svg {
-                  width: 30px !important;
-                  height: 30px !important;
-                  color: red !important;
-                  background-color: transparent !important;
-                }
-              }
-              .rh5v-Volume_slider {
-                display: none !important;
-                .rh5v-Volume_track {
-                  .rh5v-Volume_fill {
-                    input {
-                    }
-                  }
-                }
-              }
-            }
-          }
           .underVideo {
             display: flex;
             align-items: center;
-            margin-top: 2px;
             padding: 7px 15px;
-            background-color: #fff;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            width: 200px;
+            text-transform: capitalize;
+            background-color: rgb(255, 255, 255);
             // margin-left: 10px;
             p {
-              // font-family: Inter;
               font-size: 16px;
               font-weight: 400;
               line-height: 15px;
@@ -263,6 +163,81 @@
     }
   }
 
+  .rh5v-DefaultPlayer_component {
+    object-fit: cover !important;
+    height: 100vh !important;
+    width: 50vh !important;
+    margin: 0 auto !important;
+    border-radius: 10px !important;
+
+    .rh5v-DefaultPlayer_video {
+      object-fit: cover !important;
+
+      @media (max-width: 1000px) {
+        height: 70vh;
+        top: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        position: relative !important;
+      }
+    }
+    .rh5v-Overlay_component {
+      object-fit: cover !important;
+      height: 100% !important;
+      width: 100% !important;
+      border-radius: 10px !important;
+      .rh5v-DefaultPlayer_video {
+        object-fit: cover !important;
+      }
+      .rh5v-Overlay_inner {
+        background-color: transparent;
+        border-radius: 50% !important;
+        svg {
+          width: 80px;
+          height: 80px;
+          left: 25% !important;
+        }
+      }
+    }
+    .rh5v-Overlay_inner {
+      background-color: transparent;
+      border-radius: 50% !important;
+      svg {
+        width: 80px;
+        height: 80px;
+        left: 25% !important;
+      }
+    }
+  }
+
+  .rh5v-DefaultPlayer_video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover !important;
+  }
+  .rh5v-DefaultPlayer_controls {
+    background-color: transparent !important;
+    .rh5v-Volume_component {
+      background-color: transparent !important;
+      button {
+        width: 40px !important;
+        height: 40px !important;
+
+        background-color: transparent !important;
+        svg {
+          width: 30px !important;
+          height: 30px !important;
+
+          background-color: transparent !important;
+        }
+      }
+      .rh5v-Volume_slider {
+        display: none !important;
+      }
+    }
+  }
+
   @media (max-width: 412px) {
     .title {
       font-size: 18px;
@@ -273,6 +248,12 @@
     padding: 23px 12px;
   }
 }
+
+
+.rh5v-Volume_icon {
+  padding: 0 !important;
+}
+
 
 .blog-detail {
   .banner {
@@ -475,17 +456,23 @@
   }
 }
 
-.ant-modal .ant-modal-content {
-  position: relative;
+.ant-modal-content {
+  position: absolute !important;
   background: black !important;
-  border: 0;
-  border-radius: 8px;
-  box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%),
-    0 9px 28px 8px rgb(0 0 0 / 5%);
-  pointer-events: auto;
-  padding: 20px 24px;
+  bottom: 0 !important;
+  top: 0 !important;
+  height: 30vh !important;
+  margin: auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+  padding: 0 !important;
+
+  .ant-modal-body {
+    height: 100% !important;
+  }
 }
 
-.ant-modal-footer{
+.ant-modal-footer {
   display: none !important;
 }

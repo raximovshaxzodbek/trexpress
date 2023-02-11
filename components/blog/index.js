@@ -76,7 +76,7 @@ const Blog = () => {
                           <div>
                             <Image
                               style={{
-                                height: 400,
+                                height: 250,
                                 width: 200,
                                 borderRadius: 10,
                               }}

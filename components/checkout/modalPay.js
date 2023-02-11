@@ -28,7 +28,7 @@ const ModalPay = () => {
     width: 400,
     bgcolor: "background.paper",
     border: "2px solid #ffffff",
-    borderRadius:"10px",
+    borderRadius: "10px",
     boxShadow: 24,
     p: 4,
   };
@@ -80,8 +80,6 @@ const ModalPay = () => {
         expiry: yearExp + monthExp,
       });
 
-      console.log(card);
-
       const data = await axios.post("/partner/bind-card/create HTTP/1.1", {
         headers: {
           "Content-Type": "application/json",
@@ -89,8 +87,9 @@ const ModalPay = () => {
           // Host: safin24.uz,
         },
       });
-      console.log(data.data);
+
       e.target.reset();
+      setOpen(false);
     } else {
       ref.current.style = "opacity:1";
       borderRef.current.style = "border:2px solid red";
@@ -170,7 +169,7 @@ const ModalPay = () => {
 
             <div className="modalBottom">
               <button style={{ width: "100% !important" }} id="btnpay">
-                Pay
+                Add Cart
               </button>
             </div>
           </form>
@@ -180,4 +179,3 @@ const ModalPay = () => {
   );
 };
 export default ModalPay;
-
