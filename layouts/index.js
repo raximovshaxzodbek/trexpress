@@ -13,6 +13,9 @@ import { setLanguage } from "../utils/setLanguage";
 import { setCookie } from "nookies";
 import { SettingsContext } from "../utils/contexts/SettingContext";
 import CustomSelect from "../components/form/custom-select";
+import { Switch } from "@mui/material";
+import MoonClearFillIcon  from 'remixicon-react/MoonClearFillIcon'
+import SunCloudyFillIcon from "remixicon-react/SunFillIcon"
 
 const Layout = ({ children }) => {
   const {
@@ -49,6 +52,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <p>Aлоқа маркази : +99871 209 99 44</p>
+      <MoonClearFillIcon />
+      <Switch />
+    <SunCloudyFillIcon />
       <div className="topNavbar">
         <CustomSelect
           options={languageList()}
