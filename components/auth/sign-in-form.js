@@ -96,7 +96,7 @@ const SignInForm = () => {
         <PhoneInput
           ref={ref}
           labels={en}
-          placeholder="fsge"
+          placeholder="Phone number"
           // defaultCountry="RU"
           value={phone}
           onChange={(phone) => {

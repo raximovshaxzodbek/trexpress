@@ -71,6 +71,15 @@ const ModalPay = () => {
   //   setCard({ ...card, expiry: expiry });
   // };
 
+  // let str
+
+  console.log(() => {
+    str;
+  });
+
+  let consumerKey = "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia";
+  let customerSecret = "mVDSfWJIF0M4Az9rYtcY9KfTnsAa";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -80,14 +89,14 @@ const ModalPay = () => {
         expiry: yearExp + monthExp,
       });
 
-      const data = await axios.post("/partner/bind-card/create HTTP/1.1", {
+      const data = await axios.post("/partner/bind-card/create", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer 35|ZdkFJw0h36Jg46P4MkZVNDejmSeTCikKdlyA5KK9 `,
-          // Host: safin24.uz,
+          Authorization: `Bearer Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh`,
+          Host: "partner.paymo.uz",
         },
       });
-
+      console.log(data.data);
       e.target.reset();
       setOpen(false);
     } else {

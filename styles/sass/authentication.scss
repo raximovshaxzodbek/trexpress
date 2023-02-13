@@ -143,6 +143,7 @@
         border-radius: 10px;
         display: flex;
         align-items: center;
+        background: transparent !important;
       }
 
       .PhoneInputInput {
@@ -152,6 +153,7 @@
         min-width: 0;
         border: none !important;
         font-size: 20px;
+        background: transparent !important;
       }
 
       .PhoneInputCountryIcon {
@@ -201,7 +203,7 @@
       /* Styling native country `<select/>`. */
 
       .PhoneInputCountry {
-        border-right: 0.5px solid #eff1f5 !important;
+        border-right: 0.5px solid #000 !important;
         padding: 0 10px;
         position: relative;
         align-self: stretch;
