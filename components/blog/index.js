@@ -12,8 +12,7 @@ import "swiper/css/pagination";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import axios from "axios";
 import { Modal, Image } from "antd";
-import CloseLineIcon from "remixicon-react/CloseLineIcon";
-import cl from "../../styles/onlyBlog.module.css";
+
 const Blog = () => {
   const { t: tl } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);

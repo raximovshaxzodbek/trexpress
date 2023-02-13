@@ -13,9 +13,6 @@ import { setLanguage } from "../utils/setLanguage";
 import { setCookie } from "nookies";
 import { SettingsContext } from "../utils/contexts/SettingContext";
 import CustomSelect from "../components/form/custom-select";
-import { Switch } from "@mui/material";
-import MoonClearFillIcon  from 'remixicon-react/MoonClearFillIcon'
-import SunCloudyFillIcon from "remixicon-react/SunFillIcon"
 
 const Layout = ({ children }) => {
   const {
@@ -52,11 +49,8 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <p>Aлоқа маркази : +99871 209 99 44</p>
-      <MoonClearFillIcon />
-      <Switch />
-    <SunCloudyFillIcon />
       <div className="topNavbar">
+        <p>Aлоқа маркази : +99871 209 99 44</p>
         <CustomSelect
           options={languageList()}
           onChange={(e) => {
@@ -65,10 +59,6 @@ const Layout = ({ children }) => {
           }}
           value={defaultLanguage}
         />
-        {/* <select onChange={(e) => handleClick(e.target.value)}>
-          <option value={"light"}>light</option>
-          <option value={"dark"}>dark</option>
-        </select> */}
         <CustomSelect
           value={theme}
           options={[
@@ -80,9 +70,14 @@ const Layout = ({ children }) => {
               value: "dark",
               id: "dark",
             },
+            {
+              value: "auto",
+              id: "auto",
+            },
           ]}
-          onChange={() => {
-            handleClick(theme === "light" ? "dark" : "light");
+          onChange={(e) => {
+            console.log(e);
+            handleClick(e.value);
           }}
         />
       </div>
