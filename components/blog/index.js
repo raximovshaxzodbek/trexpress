@@ -12,8 +12,7 @@ import "swiper/css/pagination";
 import { FreeMode, Navigation, Mousewheel } from "swiper";
 import axios from "axios";
 import { Modal, Image } from "antd";
-import CloseLineIcon from "remixicon-react/CloseLineIcon";
-import cl from "../../styles/onlyBlog.module.css";
+
 const Blog = () => {
   const { t: tl } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,7 +22,7 @@ const Blog = () => {
     axios
       .get(`https://api.safin24.uz/api/v1/dashboard/user/importVideo`, {
         headers: {
-          Authorization: `Bearer 35|ZdkFJw0h36Jg46P4MkZVNDejmSeTCikKdlyA5KK9 `,
+          Authorization: `Bearer 35|ZdkFJw0h36Jg46P4MkZVNDejmSeTCikKdlyA5KK9`,
         },
       })
       .then((res) => setArr(res.data.data))

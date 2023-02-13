@@ -50,6 +50,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <div className="topNavbar">
+        <p>Aлоқа маркази : +99871 209 99 44</p>
         <CustomSelect
           options={languageList()}
           onChange={(e) => {
@@ -58,10 +59,6 @@ const Layout = ({ children }) => {
           }}
           value={defaultLanguage}
         />
-        {/* <select onChange={(e) => handleClick(e.target.value)}>
-          <option value={"light"}>light</option>
-          <option value={"dark"}>dark</option>
-        </select> */}
         <CustomSelect
           value={theme}
           options={[
@@ -73,9 +70,14 @@ const Layout = ({ children }) => {
               value: "dark",
               id: "dark",
             },
+            {
+              value: "auto",
+              id: "auto",
+            },
           ]}
-          onChange={() => {
-            handleClick(theme === "light" ? "dark" : "light");
+          onChange={(e) => {
+            console.log(e);
+            handleClick(e.value);
           }}
         />
       </div>

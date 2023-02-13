@@ -34,7 +34,7 @@ const SignUp = () => {
       .post("/api/v1/auth/register", { phone })
       .then((res) => {
         setVerifyPhone(res.data.data);
-        console.log(res.data.data);
+        console.log("sign-up verify number", res.data.data);
         setFormKey("confirm");
         setLoader(false);
       })
@@ -58,6 +58,7 @@ const SignUp = () => {
           maxAge: 30 * 24 * 60 * 60,
           path: "/",
         });
+        console.log("access token", res.data.data.token);
         getUser();
         setLoader(false);
       })
