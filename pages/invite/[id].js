@@ -23,7 +23,7 @@ const Invite = () => {
             setData(res.data);
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
       } else {
         toast.error("Please register first");

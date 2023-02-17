@@ -24,7 +24,7 @@ const MyRazorpay = ({ order, setCheckoutContent, payment, setOrderId }) => {
         setOrderId(res.data.id);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const handlePayment = useCallback(async (order) => {
@@ -52,7 +52,7 @@ const MyRazorpay = ({ order, setCheckoutContent, payment, setOrderId }) => {
             setCheckoutContent("status");
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
       },
       prefill: {

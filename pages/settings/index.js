@@ -34,7 +34,7 @@ const Settings = ({ setLoader }) => {
           dispatch(savedUser(res.data));
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         })
         .finally(() => {
           setLoader(false);

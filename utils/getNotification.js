@@ -10,7 +10,7 @@ export const getNotification = ({ vapid_key, setNotificationData }) => {
         UserApi.firebaseTokenUpdate({ firebase_token: currentToken })
           .then(() => {})
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
 
         onMessage(messaging, (payload) => {

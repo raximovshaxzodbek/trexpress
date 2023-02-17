@@ -34,7 +34,7 @@ const SavedLocation = ({ setOpen, setEditAddress, setLoader }) => {
         getUser();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       })
       .finally(() => {
         setLoader(false);

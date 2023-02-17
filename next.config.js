@@ -7,6 +7,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   env: {
+    ATMOS_TOKEN: "97883419-b706-3b2f-aa38-91b86f92a15d",
     MAP_KEY: "AIzaSyCjcdsFmCp9IITrBKL-QGPamisSvR4yUBY",
     API_URL: "https://api.safin24.uz", //https://api.safin24.uz
     DEFAULT_LOCATION: `${41.2646},${69.2163}`,

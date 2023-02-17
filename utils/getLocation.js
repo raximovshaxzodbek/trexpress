@@ -24,6 +24,6 @@ export const getLocationObj = ({ location, setAddress = () => {} }) => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 };

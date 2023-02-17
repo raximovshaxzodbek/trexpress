@@ -21,7 +21,7 @@ const Blog = ({ blogList }) => {
         setTotal(res.meta.total);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

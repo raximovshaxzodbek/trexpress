@@ -20,6 +20,7 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [checkoutContent, setCheckoutContent] = useState("delivery-type");
+  console.log(checkoutContent);
   const { address, getUser, setIsOpen, checkoutAddress, setCheckoutAddress } =
     useContext(MainContext);
   const [stepKey, setStepKey] = useState("address");
@@ -54,7 +55,7 @@ const Checkout = () => {
           setOpen(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     }
   };

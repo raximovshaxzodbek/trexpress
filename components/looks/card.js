@@ -30,7 +30,7 @@ const LookCard = ({ product }) => {
     BannerApi.liked(id)
       .then((res) => {})
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.error(error.response.data.message);
       });
   };

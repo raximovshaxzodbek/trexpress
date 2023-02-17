@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Slider from "rc-slider";
 import { parseCookies } from "nookies";
 import useDebounce from "../../../utils/hooks/useDebounce";
 import { useTranslation } from "react-i18next";
+import { MainContext } from "../../../utils/contexts/MainContext";
 const ByPrice = ({ handleFilter }) => {
   const { t: tl } = useTranslation();
   const cookies = parseCookies();
   const currency_rate = cookies?.currency_rate;
   const currency_symbol = cookies?.currency_symbol;
   const [range, setRange] = useState(null);
-  const [sort, setSort] = useState(null);
   const [showRange, setShowRange] = useState([0, 100000 * currency_rate]);
   const debouncedRange = useDebounce(range, 1000);
+  const { sort, setSprt } = useContext(MainContext);
   const handleChange = (value) => {
     setRange(value);
     setShowRange(value);

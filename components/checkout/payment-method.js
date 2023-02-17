@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { getPrice } from "../../utils/getPrice";
 import { useContext } from "react";
 import { AuthContext } from "../../utils/contexts/AuthContext";
+import { SettingsContext } from "../../utils/contexts/SettingContext";
 const PaymentMethod = ({
   setCheckoutContent,
   setStepKey,
@@ -25,6 +26,7 @@ const PaymentMethod = ({
   const { t: tl } = useTranslation();
   const dispatch = useDispatch();
   const { userLocation } = useContext(AuthContext);
+  const { getCreditCards, creditCards } = useContext(SettingsContext);
   const [open, setOpen] = useState(null);
   const [error, setError] = useState(false);
   const [paymentId, setPaymentId] = useState(null);
@@ -35,6 +37,13 @@ const PaymentMethod = ({
   const currentAddress = order?.shops[0]?.delivery_address_id;
   const targetLocation = userLocation?.split(",");
   const addressList = [];
+
+  useEffect(() => {
+    getCreditCards();
+  }, []);
+
+  // localStorage.clear()
+  console.log(creditCards);
 
   address?.forEach((item) => {
     addressList.push({
@@ -49,7 +58,7 @@ const PaymentMethod = ({
         setPaymentType(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const selectedAddress = addressList.find(
@@ -127,7 +136,7 @@ const PaymentMethod = ({
     (order?.coupon?.price ? order?.coupon?.price : 0);
 
   const handleContinue = () => {
-    if (paymentId.tag === "wallet") {
+    if (paymentId?.tag === "wallet") {
       if (user?.wallet?.price < totalAmount) {
         toast.error("You don't have enough funds in your wallet");
       } else {
@@ -147,6 +156,7 @@ const PaymentMethod = ({
       }
     }
   };
+
   return (
     <div className="payment-method">
       <div className="tab-pane">
@@ -206,6 +216,35 @@ const PaymentMethod = ({
               ) : (
                 <DiscordLoader />
               )}
+              {creditCards?.length > 0 &&
+                creditCards.map((el) => (
+                  <div
+                    key={el.card_number}
+                    className="method-item"
+                    onClick={() =>
+                      alert(
+                        "Перейти на страницу оплаты и оплатить с этой картф"
+                      )
+                    }
+                  >
+                    <div className="shipping-type">
+                      <p>{el.card_number}</p>
+                      <div>
+                        <p>year:{el.expiry.substr(0, 2)}</p>
+                        <p>month:{el.expiry.substr(2)}</p>
+                      </div>
+                      {/* <div className="type">
+                        <RecordCircleLineIcon color="#61DC00" size={20} />
+                        <CheckboxBlankCircleLineIcon size={20} />
+                        <span>тайп тэг</span>
+                      </div> */}
+                      {/* <div className="price">67868868</div> */}
+                    </div>
+                    {/* <div className="delivery-time">
+                      {type?.translation?.title}
+                    </div> */}
+                  </div>
+                ))}
               <ModalPay totalAmount={totalAmount} />
             </div>
           </div>
@@ -222,9 +261,9 @@ const PaymentMethod = ({
           </button>
         </div>
       </div>
-      <CustomDrawer title="Add new card" open={open} setOpen={setOpen}>
+      {/* <CustomDrawer title="Add new card" open={false} setOpen={setOpen}>
         <AddNewCard />
-      </CustomDrawer>
+      </CustomDrawer> */}
     </div>
   );
 };

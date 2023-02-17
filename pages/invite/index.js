@@ -26,7 +26,7 @@ const Invite = () => {
           setInviteList(res);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     } else {
       toast.error("Please register first");

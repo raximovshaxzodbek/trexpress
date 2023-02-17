@@ -29,6 +29,36 @@ const ProductSection = ({
     setDrawerTitle("Filter");
   };
 
+  const handleFilter = ({ brand_id, category_id, range = [], sort }) => {
+    const id = router.query.id;
+    const prevBrandId = router.query.brand_id;
+    const prevCategoryId = router.query.category_id;
+    const prevFrom = router.query.price_from;
+    const prevTo = router.query.price_to;
+    const prevSort = router.query.sort;
+    const str = QueryString.stringify({
+      brand_id:
+        brand_id == prevBrandId ? undefined : brand_id ? brand_id : prevBrandId,
+      category_id: category_id ? category_id : prevCategoryId,
+      price_from: range[0] ? range[0] : prevFrom,
+      price_to: range[1] ? range[1] : prevTo,
+      sort: sort ? sort : prevSort,
+      column_price: sort || prevSort ? "price" : undefined,
+    });
+    if (router.pathname === "/all-product") {
+      router.push(`/${routeHref[routeHref.length - 1]}?${str}`);
+    } else if (!id) {
+      router.push(`/stores/${routeHref[routeHref.length - 1]}?${str}`);
+    } else {
+      router.push(`/stores/${id}/${routeHref[routeHref.length - 1]}?${str}`);
+    }
+  };
+
+  const handleByPrice = (value) => {
+    setSort(value);
+    handleFilter({ sort: value });
+  };
+
   return (
     <div className="product-section">
       <div className="section-header">
@@ -47,7 +77,9 @@ const ProductSection = ({
         )}
       </div>
       <div className={`section-content-wrapper ${className}`}>
-        {filter && <VerticalFilter brandList={brandList} />}
+        {filter && (
+          <VerticalFilter handleFilter={handleFilter} brandList={brandList} />
+        )}
         <div className="container-full">
           {sort && (
             <div className="sort-header">
@@ -57,7 +89,7 @@ const ProductSection = ({
                   <Filter3LineIcon size={16} />
                   <span>{tl("Filter")}</span>
                 </div>
-                <div className="layout-type">
+                {/* <div className="layout-type">
                   <span
                     onClick={() => setLayout("vertical")}
                     className={layout === "vertical" && "active"}
@@ -74,9 +106,9 @@ const ProductSection = ({
                   >
                     <PauseFillIcon />
                   </span>
-                </div>
+                </div> */}
                 <div className="all-products-sort">
-                  <Select
+                  {/* <Select
                     defaultValue={"Sort by"}
                     options={[
                       {
@@ -85,7 +117,17 @@ const ProductSection = ({
                       },
                       {
                         value: "lowerPrice",
-                        label: "Lower price",
+
+                        label: (
+                          <button
+                            onSelect={() => {
+                              handleByPrice("asc");
+                              alert("work");
+                            }}
+                          >
+                            "Lower price"
+                          </button>
+                        ),
                       },
                       {
                         value: "The highest price",
@@ -95,20 +137,36 @@ const ProductSection = ({
                         value: "The newest",
                         label: "The newest",
                       },
-                      {
-                        value: "Most sold",
-                        label: "Most sold",
-                      },
+                      // {
+                      //   value: "Most sold",
+                      //   label: "Most sold",
+                      // },
                       {
                         value: "Highest rated",
                         label: "Highest rated",
                       },
+                      // {
+                      //   value: "",
+                      //   label: (
+                      //     <Link
+                      //       href={{
+                      //         pathname: `/all-product`,
+                      //         query: {
+                      //           category_id: el.id,
+                      //         },
+                      //       }}
+                      //       key={index}
+                      //     >
+                      //       label to link high rated e.g.
+                      //     </Link>
+                      //   ),
+                      // },
                     ]}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
-          )}  
+          )}
           <div className="section-content">{children}</div>
         </div>
       </div>

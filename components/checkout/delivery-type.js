@@ -98,7 +98,7 @@ const DeliveryType = ({ setCheckoutContent, setStepKey, setDeliveryType }) => {
         setDeliveryTypes(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const checkCoupon = (value) => {
@@ -112,10 +112,10 @@ const DeliveryType = ({ setCheckoutContent, setStepKey, setDeliveryType }) => {
           setPromoCode(res.data.name);
           dispatch(addCoupon(res.data));
           setError("success");
-          console.log(res.data.name);
+          console.log("coupon", res.data.name);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           setError("error");
         });
     } else setError(null);
@@ -361,7 +361,7 @@ const DeliveryType = ({ setCheckoutContent, setStepKey, setDeliveryType }) => {
                       <img src={imgBaseUrl + shop.logo} />
                     </div>
                     <div className="data">
-                      <div className="name">{shop.translation.title}</div>
+                      <div className="name">{shop.translation?.title}</div>
                       <div className="type">Store</div>
                     </div>
                   </div>

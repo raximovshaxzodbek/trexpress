@@ -49,7 +49,7 @@ const SingleOrderHistory = ({ setLoader, setOpenChat }) => {
           setLoader(false);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           setLoader(false);
         });
     }
@@ -64,7 +64,7 @@ const SingleOrderHistory = ({ setLoader, setOpenChat }) => {
         getOrderDetail();
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.success(error?.response?.data.message);
       });
   };
