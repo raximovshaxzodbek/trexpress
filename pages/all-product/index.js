@@ -12,8 +12,8 @@ import { images } from "../../constants/images";
 import SEO from "../../components/seo";
 
 const AllProduct = ({ Product, setLoader, query }) => {
-  // console.log(Product);
-  // console.log(query);
+  console.log("Product", Product);
+  console.log("query", query);
   const { t: tl } = useTranslation();
   const { layout, brandList, getBrand } = useContext(MainContext);
   const [List, setList] = useState(Product.data);
@@ -41,6 +41,7 @@ const AllProduct = ({ Product, setLoader, query }) => {
     getProduct(12, page);
     setPage(page + 1);
   };
+
   return (
     <>
       <SEO />

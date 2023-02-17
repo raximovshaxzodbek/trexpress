@@ -31,7 +31,7 @@ const ProductRate = ({ uuid, setOpen, getProduct }) => {
           setUploadImages([...uploadImages, res.data.title]);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           toast.error("Error");
         });
       const reader = new FileReader();
@@ -61,7 +61,7 @@ const ProductRate = ({ uuid, setOpen, getProduct }) => {
           handleClear();
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           toast.error(error.response.data.message);
         })
         .finally(() => {

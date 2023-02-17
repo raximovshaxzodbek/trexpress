@@ -71,7 +71,7 @@ const Verify = ({
         setCashback(res.data.price);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   useEffect(() => {
@@ -99,7 +99,7 @@ const Verify = ({
                 setCheckoutContent("status");
               })
               .catch((error) => {
-                console.log(error);
+                console.error(error);
               })
               .finally(() => {
                 if (payment.tag === "wallet") getUser();
@@ -109,7 +109,7 @@ const Verify = ({
           }
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           toast.error(error.response?.data?.message);
         });
     } else {

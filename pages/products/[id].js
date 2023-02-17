@@ -44,7 +44,7 @@ const ProductDetail = ({ productData }) => {
         setData(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const click = () => {
@@ -62,7 +62,7 @@ const ProductDetail = ({ productData }) => {
         setRelatedProduct(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 

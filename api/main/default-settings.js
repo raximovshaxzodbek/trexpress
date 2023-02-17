@@ -18,7 +18,7 @@ export const getCurrency = (array = () => {}) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 };
 
@@ -28,7 +28,6 @@ export const getLanguage = (array = () => {}) => {
   serviceWithOutToken
     .get("/api/v1/rest/languages/active")
     .then((res) => {
-      console.log(res.data.data);
       array(res.data.data);
       const defaultLanguage = res.data.data.find((item) => item.default === 1);
       if (!language_id) {
@@ -36,6 +35,6 @@ export const getLanguage = (array = () => {}) => {
       }
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 };

@@ -86,7 +86,7 @@ const OrderList = ({ setOpen }) => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   useEffect(() => {

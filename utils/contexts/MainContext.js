@@ -74,7 +74,7 @@ const MainContextProvider = ({ children }) => {
           sessionStorage.setItem("checked", "true");
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
   };
   const checkViewedProduct = () => {
@@ -85,7 +85,7 @@ const MainContextProvider = ({ children }) => {
           sessionStorage.setItem("checked_viewed", "true");
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
   };
 
@@ -96,7 +96,7 @@ const MainContextProvider = ({ children }) => {
         sessionStorage.setItem("checked_store", "true");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const getNotification = () => {
@@ -105,7 +105,7 @@ const MainContextProvider = ({ children }) => {
         setNotificationList(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const handleNotification = (value) => {
@@ -121,7 +121,7 @@ const MainContextProvider = ({ children }) => {
         setAddress(res.data.addresses);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const getTranslation = () => {
@@ -131,7 +131,7 @@ const MainContextProvider = ({ children }) => {
         console.log(res);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   useEffect(() => {

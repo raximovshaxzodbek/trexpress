@@ -31,7 +31,7 @@ const LookDetail = () => {
         setLookProduct(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   const getLookProducts = () => {
@@ -40,7 +40,7 @@ const LookDetail = () => {
         setProductList(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   useEffect(() => {

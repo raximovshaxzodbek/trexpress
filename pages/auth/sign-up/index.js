@@ -39,7 +39,7 @@ const SignUp = () => {
         setLoader(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.error(error.response.data);
         setLoader(false);
       });
@@ -63,7 +63,7 @@ const SignUp = () => {
         setLoader(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setLoader(false);
         toast.error(error.response.data.message);
       });
@@ -81,7 +81,7 @@ const SignUp = () => {
       })
       .catch((error) => {
         setLoader(false);
-        console.log(error);
+        console.error(error);
         toast.error(error.response.data.message);
       });
   };

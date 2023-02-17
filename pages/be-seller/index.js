@@ -48,7 +48,7 @@ const BeSeller = () => {
         setUploadImages([...uploadImages, res.data.title]);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.error("Error");
       });
     reader.onload = () => {
@@ -68,7 +68,7 @@ const BeSeller = () => {
         setUploadImages([...uploadImages, res.data.title]);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.error("Error");
       });
     reader.onload = () => {
@@ -116,7 +116,7 @@ const BeSeller = () => {
           setRefresh(true);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           toast.error(error.response.data.message);
         })
         .finally(() => {
@@ -132,7 +132,7 @@ const BeSeller = () => {
         setUser(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   useEffect(() => {

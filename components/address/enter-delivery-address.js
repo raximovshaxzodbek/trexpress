@@ -37,7 +37,7 @@ const EnterAddress = ({
           setEditAddress(false);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           toast.error(error.response?.data?.message);
         })
         .finally(() => {
@@ -58,7 +58,7 @@ const EnterAddress = ({
         setEditAddress(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.error(error.response?.data?.message);
       })
       .finally(() => {

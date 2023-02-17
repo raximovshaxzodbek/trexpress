@@ -23,7 +23,7 @@ const PayLater = ({ getOrderDetail, data, setOpen, open }) => {
         setPaymentType(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   useEffect(() => {
@@ -49,7 +49,7 @@ const PayLater = ({ getOrderDetail, data, setOpen, open }) => {
           setOpen(false);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         })
         .finally(() => {
           if (payment.tag === "wallet") getUser();

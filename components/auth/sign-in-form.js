@@ -36,21 +36,29 @@ const SignInForm = () => {
   }, []);
 
   const onFinish = async (e) => {
-    setLoader(true);
+    console.log("ref value", phoneSrefa);
     e && e.preventDefault();
+    const phoneSrefa = ref.current?.value;
+    setLoader(true);
     const body = {};
     setError("");
     dispatch(clearUser());
     // if (!userData.login?.includes("@")) {
-    body.phone = phone /*  userData.login; */;
+    const readyPhone = phone.substr(1).replace(/\s/g, "");
+    body.phone = readyPhone; /*  userData.login; */
+    console.log("body.phone = phone", phone);
+    console.log("userData.login;", userData.login);
     // } else {
     //   body.email = userData.login;
     // }
 
     body.password = userData.password;
+    console.log(body, "BODY");
     serviceWithOutToken
       .post("/api/v1/auth/login", body)
       .then((res) => {
+        console.log("res.data.data.access_token", res.data.data.access_token);
+        console.log();
         setCookie(null, "access_token", res.data.data.access_token, {
           maxAge: 30 * 24 * 60 * 60,
           path: "/",
@@ -62,6 +70,7 @@ const SignInForm = () => {
       })
       .catch((error) => {
         setError(tl("Login or password is incorrect"));
+        console.log("error.response.data.message", error.response.data.message);
         toast.error(error.response.data.message, {
           position: "top-right",
         });
@@ -73,7 +82,8 @@ const SignInForm = () => {
 
   const onChange = (event) => {
     const { target } = event;
-    const value = target.type === "radio" ? target.checked : target.value;
+    // const value = target.type === "radio" ? target.checked : target.value;
+    const value = target.value;
     const { name } = target;
     setUserData({
       ...userData,

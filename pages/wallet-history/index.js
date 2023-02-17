@@ -11,7 +11,7 @@ const Wallet = ({ setLoader }) => {
         setWalletList(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       })
       .finally(() => {
         setLoader(false);

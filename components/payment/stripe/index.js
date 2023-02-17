@@ -51,7 +51,7 @@ const CheckoutForm = ({
           closeDrawer(false);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     } else if (result.error) {
       // Show error to your customer (for example, payment details incomplete)

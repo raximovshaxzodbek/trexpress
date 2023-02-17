@@ -62,7 +62,6 @@ export const MenuList = () => {
                     key={category.uuid}
                     onMouseLeave={() => setDisplay("none")}
                     onMouseOver={() => setDisplay("flex")}
-                    onClick={() => setNum(index)}
                   >
                     <Link href={`/all-product?category_id=${category.id}`}>
                       <p ref={index === 0 ? ref : ""}>
@@ -76,7 +75,6 @@ export const MenuList = () => {
                     key={index}
                     onMouseLeave={() => setDisplay("none")}
                     onMouseOver={() => setDisplay("flex")}
-                    onClick={() => setNum(index)}
                   >
                     <SkeletonInput />
                   </SwiperSlide>
@@ -137,7 +135,7 @@ export const MenuList = () => {
       >
         {arr?.length > 0 &&
           arr.map(({ translation: { title }, children }, index) => (
-            <div className="subMenuHover">
+            <div key={index} className="subMenuHover">
               <Link href={`/all-product?category_id=${title.id}`} key={index}>
                 <p>{title}</p>
               </Link>
@@ -152,7 +150,7 @@ export const MenuList = () => {
                     }}
                     key={index}
                   >
-                    <p key={index}>{el.translation?.title}</p>
+                    <p>{el.translation?.title}</p>
                   </Link>
                 ))}
               </div>

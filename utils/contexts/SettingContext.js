@@ -30,6 +30,7 @@ export const SettingsContextProvider = ({ children }) => {
 
   const [defaultCurrency, setDefaultCurrency] = useState({});
   const [defaultLanguage, setDefaultLanguage] = useState({});
+  const [creditCards, setCreditCards] = useState([]);
   const isDarkTheme = useThemeDetector();
 
   const currencyList = () => {
@@ -71,16 +72,37 @@ export const SettingsContextProvider = ({ children }) => {
           dispatch(savedUser(res.data));
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         })
         .finally(() => {
           checkProduct();
           checkViewedProduct();
         });
+    ///////////////////////////////////////////////////////////////////////////////
     setCurrency(e);
     setDefaultCurrency(e.id);
     dispatch(clearCart());
     dispatch(clearOrderShops());
+  };
+
+  const setCreditCard = (card) => {
+    if (creditCards?.length > 0) {
+      setCreditCards([...creditCards, card]);
+      localStorage.setItem(
+        "creditCard",
+        JSON.stringify([...creditCards, card])
+      );
+    } else {
+      setCreditCards([card]);
+      localStorage.setItem("creditCard", JSON.stringify([card])); //{card_number, expiry}
+    }
+    console.log("save creditcard to loclstorage", card);
+  };
+
+  const getCreditCards = () => {
+    const cards = JSON.parse(localStorage.getItem("creditCard"));
+    console.log("parse creditcsrds from localstorage", cards);
+    setCreditCards(cards?.length > 0 ? cards : []);
   };
 
   const handleLanguae = (e) => {
@@ -110,6 +132,7 @@ export const SettingsContextProvider = ({ children }) => {
     dispatch(clearViewedList());
     getNotification();
   };
+
   useEffect(() => {
     setDefaultCurrency(cookies.currency_id);
     setDefaultLanguage(cookies.language_id);
@@ -127,6 +150,9 @@ export const SettingsContextProvider = ({ children }) => {
         handleClick,
         languageList,
         currencyList,
+        setCreditCard,
+        getCreditCards,
+        creditCards,
       }}
     >
       {children}

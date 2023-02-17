@@ -25,6 +25,7 @@ const SignUpForm = ({ getVerifyCode, setPhone, loader, phone }) => {
   const { t: tl } = useTranslation();
   const onFinish = (e) => {
     e && e.preventDefault();
+    console.log("PHONE", phone);
     if (phone && isValidPhoneNumber && isPossiblePhoneNumber) {
       getVerifyCode();
       setPhone(formatPhoneNumber(phone));

@@ -65,7 +65,7 @@ const Profile = ({ userData, getUser }) => {
           setUploadImages(res.data.title);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
           toast.error("Image upload failed");
         });
       const reader = new FileReader();
@@ -88,7 +88,7 @@ const Profile = ({ userData, getUser }) => {
         toast.success("Profile data updated");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         toast.error(error.response?.data?.message);
       });
   };
