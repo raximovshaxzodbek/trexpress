@@ -31,7 +31,7 @@ function Paystack({
         console.error(error);
       });
 
-    console.log(reference);
+    console.log("reference", reference);
   };
 
   // you can call this function anything

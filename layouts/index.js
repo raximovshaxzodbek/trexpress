@@ -17,6 +17,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import ArrowDownSLineIcon from "remixicon-react/ArrowDownSLineIcon";
 import AddLineIcon from "remixicon-react/AddLineIcon";
+import { toast } from "react-toastify";
 
 const Layout = ({ children }) => {
   const {
@@ -49,85 +50,92 @@ const Layout = ({ children }) => {
     if (!content) setOpen(false);
   }, []);
 
+  // const consumerKey = "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia";
+  // const customerSecret = "mVDSfWJIF0M4Az9rYtcY9KfTnsAa";
+  // const hash = btoa(consumerKey + ":" + customerSecret);
+  // //Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh
+
   const getToken = async () => {
     try {
-      const consumerKey = "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia";
-      const customerSecret = "mVDSfWJIF0M4Az9rYtcY9KfTnsAa";
-      const hash = btoa(consumerKey + ":" + customerSecret);
-      //Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh
-
       const data = await axios.post(
-        "https://partner.paymo.uz/token",
+        "https://partner.atmos.uz/token?grant_type=client_credentials",
         {},
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: `Basic Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh`,
+            // Authorization:
+            //   "Basic Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh",
             Host: "partner.paymo.uz",
-            "Content-Length": 0,
-            Accept: "*/*",
-            "User-Agent": "PostmanRuntime/7.31.0",
-            "Accept-Encoding": "gzip, deflate, br",
+            "Content-Length": 29,
           },
           auth: {
-            Username: "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia",
-            Password: "mVDSfWJIF0M4Az9rYtcY9KfTnsAa",
+            username: "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia",
+            password: "mVDSfWJIF0M4Az9rYtcY9KfTnsAa",
           },
           params: {
             grant_type: "client_credentials",
           },
         }
       );
-      console.log(data.data);
+      console.log("init token", data.data);
     } catch (e) {
-      console.error(e.message);
-      console.error(e.name);
-      console.error(e.code);
+      console.error(e);
+      toast.error(e.message);
     }
   };
 
   return (
     <>
       <div className="topNavbar">
-        <button onClick={getToken}>get token</button>
-        <p>Aлоқа маркази : +998 99 999 99 99</p>
-        <TopNavbarSelect
-          options={languageList()}
-          onChange={(e) => {
-            handleLanguae(e);
-            window.location.reload();
-          }}
-          value={defaultLanguage}
-        />
-        <TopNavbarSelect
-          options={currencyList()}
-          onChange={(e) => {
-            handleCurrency(e);
-            window.location.reload();
-          }}
-          value={defaultCurrency}
-        />
-        <TopNavbarSelect
-          value={theme}
-          options={[
-            {
-              value: "light",
-              id: "light",
-            },
-            {
-              value: "dark",
-              id: "dark",
-            },
-            {
-              value: "auto",
-              id: "auto",
-            },
-          ]}
-          onChange={(e) => {
-            console.log(e);
-            handleClick(e.value);
-          }}
-        />
+        <div className="leftTopNavBar">
+          {/* <button onClick={getToken}>get token</button> */}
+          <p>Contact us +998 99 999 99 99</p>
+        </div>
+        <div className="rightTopNavBar">
+          <p>Telegram</p>
+          <p>Facebook</p>
+          <p>Instagram</p>
+          <TopNavbarSelect
+            topic="lang"
+            options={languageList()}
+            onChange={(e) => {
+              handleLanguae(e);
+              window.location.reload();
+            }}
+            value={defaultLanguage}
+          />
+          <TopNavbarSelect
+            topic="currency"
+            options={currencyList()}
+            onChange={(e) => {
+              handleCurrency(e);
+              window.location.reload();
+            }}
+            value={defaultCurrency}
+          />
+          <TopNavbarSelect
+            topic="theme"
+            value={theme}
+            options={[
+              {
+                value: "light",
+                id: "light",
+              },
+              {
+                value: "dark",
+                id: "dark",
+              },
+              {
+                value: "auto",
+                id: "auto",
+              },
+            ]}
+            onChange={(e) => {
+              console.log(e);
+              handleClick(e.value);
+            }}
+          />
+        </div>
       </div>
       <div className="container">
         <Navbar handleContent={handleContent} />
@@ -155,13 +163,13 @@ const Layout = ({ children }) => {
 export default Layout;
 
 export const TopNavbarSelect = ({
+  topic,
   options = [],
   label = "",
   placeholder = "",
   value,
   onChange,
   name,
-  type = "",
 }) => {
   const { t: tl } = useTranslation();
   let selected = options?.find((item) => item.id == value);
@@ -174,27 +182,41 @@ export const TopNavbarSelect = ({
     >
       <div className="label">{tl(label)}</div>
       <div className="placeholder">
-        {selected ? selected.value : tl(placeholder)}
+        {topic === "theme"
+          ? selected
+            ? selected.value
+            : tl(placeholder)
+          : selected
+          ? selected.title
+          : tl(placeholder)}
+        <ArrowDownSLineIcon style={{ color: "white" }} size={15} />
       </div>
-      {/* <ArrowDownSLineIcon className="suffix" size={10} /> */}
       <div className="option">
-        {options?.map((item, key) => (
-          <div key={key} className="option-item" onClick={() => onChange(item)}>
-            <div className="status">
-              <input
-                onChange={() => {}}
-                type="radio"
-                id="option"
-                name={name}
-                value={selected?.value}
-                checked={selected?.value === item.value}
-              />
+        {options?.map((item, key) => {
+          console.log(topic === "currency" && item);
+          return (
+            <div
+              key={key}
+              className="option-item"
+              onClick={() => onChange(item)}
+            >
+              <div className="status">
+                <input
+                  onChange={() => {}}
+                  type="radio"
+                  id="option"
+                  name={name}
+                  value={selected?.value}
+                  checked={selected?.value === item.value}
+                />
+              </div>
+              <label htmlFor="#option" className="label">
+                {topic === "currency" ? item.title : item.value}
+                {/* <ArrowDownSLineIcon style={{ color: "white" }} size={30} /> */}
+              </label>
             </div>
-            <label htmlFor="#option" className="label">
-              {item.value}
-            </label>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

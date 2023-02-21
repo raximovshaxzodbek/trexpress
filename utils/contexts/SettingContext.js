@@ -32,6 +32,7 @@ export const SettingsContextProvider = ({ children }) => {
   const [defaultLanguage, setDefaultLanguage] = useState({});
   const [creditCards, setCreditCards] = useState([]);
   const isDarkTheme = useThemeDetector();
+  // const [paymethod, setPaymethod] = useState()
 
   const currencyList = () => {
     const array = [];
@@ -85,25 +86,25 @@ export const SettingsContextProvider = ({ children }) => {
     dispatch(clearOrderShops());
   };
 
-  const setCreditCard = (card) => {
-    if (creditCards?.length > 0) {
-      setCreditCards([...creditCards, card]);
-      localStorage.setItem(
-        "creditCard",
-        JSON.stringify([...creditCards, card])
-      );
-    } else {
-      setCreditCards([card]);
-      localStorage.setItem("creditCard", JSON.stringify([card])); //{card_number, expiry}
-    }
-    console.log("save creditcard to loclstorage", card);
-  };
+  // const setCreditCard = (card) => {
+  //   if (creditCards?.length > 0) {
+  //     setCreditCards([...creditCards, card]);
+  //     localStorage.setItem(
+  //       "creditCard",
+  //       JSON.stringify([...creditCards, card])
+  //     );
+  //   } else {
+  //     setCreditCards([card]);
+  //     localStorage.setItem("creditCard", JSON.stringify([card])); //{card_number, expiry}
+  //   }
+  //   console.log("save creditcard to loclstorage", card);
+  // };
 
-  const getCreditCards = () => {
-    const cards = JSON.parse(localStorage.getItem("creditCard"));
-    console.log("parse creditcsrds from localstorage", cards);
-    setCreditCards(cards?.length > 0 ? cards : []);
-  };
+  // const getCreditCards = (data) => {
+  //   // const cards = JSON.parse(localStorage.getItem("creditCard"));
+  //   // console.log("parse creditcsrds from localstorage", cards);
+  //   setCreditCards(data);
+  // };
 
   const handleLanguae = (e) => {
     const body = document.getElementsByTagName("body");
@@ -150,9 +151,8 @@ export const SettingsContextProvider = ({ children }) => {
         handleClick,
         languageList,
         currencyList,
-        setCreditCard,
-        getCreditCards,
         creditCards,
+        setCreditCards,
       }}
     >
       {children}
