@@ -16,17 +16,20 @@ import { getPrice } from "../../utils/getPrice";
 import { useContext } from "react";
 import { AuthContext } from "../../utils/contexts/AuthContext";
 import { SettingsContext } from "../../utils/contexts/SettingContext";
+import axios from "axios";
 const PaymentMethod = ({
   setCheckoutContent,
   setStepKey,
   address,
   setPayment,
   deliveryType,
+  setPaymethod,
 }) => {
   const { t: tl } = useTranslation();
   const dispatch = useDispatch();
   const { userLocation } = useContext(AuthContext);
-  const { getCreditCards, creditCards } = useContext(SettingsContext);
+  const { getCreditCards, creditCards, setCreditCards } =
+    useContext(SettingsContext);
   const [open, setOpen] = useState(null);
   const [error, setError] = useState(false);
   const [paymentId, setPaymentId] = useState(null);
@@ -37,13 +40,6 @@ const PaymentMethod = ({
   const currentAddress = order?.shops[0]?.delivery_address_id;
   const targetLocation = userLocation?.split(",");
   const addressList = [];
-
-  useEffect(() => {
-    getCreditCards();
-  }, []);
-
-  // localStorage.clear()
-  console.log(creditCards);
 
   address?.forEach((item) => {
     addressList.push({
@@ -157,6 +153,33 @@ const PaymentMethod = ({
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await axios.post(
+          "https://partner.paymo.uz/partner/list-cards",
+          {
+            page: 1,
+            page_size: 10,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer bf4bc9f0-da29-3737-b58b-748e6bd3293b",
+              Host: "partner.paymo.uz",
+              "Content-Length": 32,
+            },
+          }
+        );
+        console.log(data?.data);
+        setCreditCards(data?.data?.card_list);
+      } catch (e) {
+        toast.error(e.message);
+        console.error(e);
+      }
+    })();
+  }, []);
+
   return (
     <div className="payment-method">
       <div className="tab-pane">
@@ -179,59 +202,64 @@ const PaymentMethod = ({
             <div className="general-info">
               <div className="title">{tl("Payment type")}</div>
               {paymentType ? (
-                paymentType.map((type, key) => {
-                  return (
-                    <div
-                      key={key}
-                      className="method-item"
-                      onClick={() => handleClick(type)}
-                    >
-                      <div className="shipping-type">
-                        <div className="type">
-                          {paymentId?.id === type.id ? (
-                            <RecordCircleLineIcon color="#61DC00" size={20} />
-                          ) : (
-                            <CheckboxBlankCircleLineIcon size={20} />
-                          )}
-                          <span>{type.tag}</span>
-                        </div>
-                        {type.tag === "wallet" ? (
-                          <div className="price">
-                            {getPrice(user?.wallet?.price)}
-                          </div>
+                paymentType.map((type, key) => (
+                  <div
+                    key={key}
+                    className="method-item"
+                    onClick={() => handleClick(type)}
+                  >
+                    <div className="shipping-type">
+                      <div className="type">
+                        {paymentId?.id === type.id ? (
+                          <RecordCircleLineIcon color="#61DC00" size={20} />
                         ) : (
-                          <img
-                            className="method-icon"
-                            src={images[type.tag]}
-                            alt={type.tag}
-                          />
+                          <CheckboxBlankCircleLineIcon size={20} />
                         )}
+                        <span onClick={() => setPaymethod("")}>{type.tag}</span>
                       </div>
-                      <div className="delivery-time">
-                        {type?.translation?.title}
-                      </div>
+                      {type.tag === "wallet" ? (
+                        <div className="price">
+                          {getPrice(user?.wallet?.price)}
+                        </div>
+                      ) : (
+                        <img
+                          className="method-icon"
+                          src={images[type.tag]}
+                          alt={type.tag}
+                        />
+                      )}
                     </div>
-                  );
-                })
+                    <div className="delivery-time">
+                      {type?.translation?.title}
+                    </div>
+                  </div>
+                ))
               ) : (
                 <DiscordLoader />
               )}
               {creditCards?.length > 0 &&
-                creditCards.map((el) => (
+                creditCards.map(({ pan, expiry, card_id }) => (
                   <div
-                    key={el.card_number}
+                    key={card_id}
                     className="method-item"
-                    onClick={() =>
-                      alert(
-                        "Перейти на страницу оплаты и оплатить с этой картф"
-                      )
-                    }
+                    onClick={() => {
+                      setPaymethod("creditCard");
+                    }}
                   >
                     <div className="shipping-type">
-                      <p>{el.card_number}</p>
-                      <div>
-                        <p>year:{el.expiry.substr(0, 2)}</p>
-                        <p>month:{el.expiry.substr(2)}</p>
+                      <p>{card_id}</p>
+                      <p>{pan}</p>
+                      <div style={{ display: "flex", gap: 10 }}>
+                        {/* <img
+                          src={
+                            card_number.substr(0, 4) === "9860"
+                              ? "./assets/images/humo.svg"
+                              : ""
+                          }
+                          alt="card logo"
+                        /> */}
+                        <p>year:{expiry.substr(0, 2)}</p>
+                        <p>month:{expiry.substr(2)}</p>
                       </div>
                       {/* <div className="type">
                         <RecordCircleLineIcon color="#61DC00" size={20} />

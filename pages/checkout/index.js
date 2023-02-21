@@ -20,7 +20,6 @@ const Checkout = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [checkoutContent, setCheckoutContent] = useState("delivery-type");
-  console.log(checkoutContent);
   const { address, getUser, setIsOpen, checkoutAddress, setCheckoutAddress } =
     useContext(MainContext);
   const [stepKey, setStepKey] = useState("address");
@@ -29,6 +28,7 @@ const Checkout = () => {
   const [payment, setPayment] = useState(null);
   const [data, setData] = useState(null);
   const [open, setOpen] = useState(false);
+  const [paymethod, setPaymethod] = useState("");
   const [deliveryType, setDeliveryType] = useState(null);
   const handleDrawer = (e) => {
     setOpen(e);
@@ -77,6 +77,7 @@ const Checkout = () => {
         )}
         {checkoutContent === "payment-method" && (
           <PaymentMethod
+            setPaymethod={setPaymethod}
             address={address}
             setCheckoutContent={setCheckoutContent}
             setStepKey={setStepKey}
@@ -86,6 +87,7 @@ const Checkout = () => {
         )}
         {checkoutContent === "verify" && (
           <Verify
+            payMethod={paymethod}
             setCheckoutContent={setCheckoutContent}
             setStepKey={setStepKey}
             setOrderId={setOrderId}

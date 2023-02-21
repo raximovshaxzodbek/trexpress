@@ -5,7 +5,6 @@ import { useRef } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { B } from "react-html5video/dist";
 import Confirm from "../auth/confirm";
 import Loader4LineIcon from "remixicon-react/Loader4LineIcon";
 import RefreshLineIcon from "remixicon-react/RefreshLineIcon";
@@ -14,14 +13,13 @@ import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { SettingsContext } from "../../utils/contexts/SettingContext";
 import { Button } from "antd";
+import { toast } from "react-toastify";
 
 const ModalPay = () => {
   const [open, setOpen] = useState(false);
   const cookies = parseCookies();
   const [card, setCard] = useState({});
-  const [card_number, setCard_number] = useState("");
-  const [yearExp, setYearExp] = useState("");
-  const [monthExp, setMonthExp] = useState("");
+
   const iconRef = useState(null);
   const ref = useRef(null);
   const borderRef = useRef(null);
@@ -31,7 +29,7 @@ const ModalPay = () => {
   const [otp, setOtp] = useState();
   const { t: tl } = useTranslation();
   const [txid, setTxid] = useState(null);
-  const { setCreditCard } = useContext(SettingsContext);
+  const { setCreditCard, setPaymethod } = useContext(SettingsContext);
 
   const style = {
     position: "absolute",
@@ -72,52 +70,39 @@ const ModalPay = () => {
     }
   };
 
-  const handleCardNumber = (e) => {
-    setCard_number(e.target.value);
+  const handleChange = (e) => {
+    setCard({ ...card, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (card_number && monthExp && yearExp) {
-      setCard({
-        card_number: card_number,
-        expiry: yearExp + monthExp,
-      });
-
-      const resp = await axios.post(
-        "https://partner.paymo.uz/partner/bind-card/create",
-        {
-          card_number: String(card.card_number),
-          expiry: String(card.expiry),
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer 73d23108-f635-31b4-975c-3ad4f7224fe3`,
-            Host: "partner.paymo.uz",
-            "Content-Length": 0,
-            Connection: "keep-alive",
-            Accept: "*/*",
-            "Accept-Encoding": "gzip, deflate, br",
+    if (card.number && card.month && card.year) {
+      try {
+        console.log("in block try");
+        const data = await axios.post(
+          "https://partner.paymo.uz/partner/bind-card/create",
+          {
+            card_number: card.number,
+            expiry: card.year + card.month,
           },
-          auth: {
-            Username: "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia",
-            Password: "mVDSfWJIF0M4Az9rYtcY9KfTnsAa",
-          },
-        }
-      );
-
-      console.log(
-        "данные от запроса на подтверждение для привязки карты",
-        resp.data
-      );
-      console.log(
-        "транзакция айди для подтверждения привязки карты",
-        resp.data?.transaction_id
-      );
-      setTxid(resp.data?.transaction_id);
-      setStep("otp");
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer bf4bc9f0-da29-3737-b58b-748e6bd3293b",
+              Host: "partner.paymo.uz",
+              "Content-Length": 57,
+            },
+          }
+        );
+        console.log(data.data);
+        console.log(data.data.transaction_id);
+        setTxid(data.data.transaction_id);
+        setStep("otp");
+      } catch (e) {
+        toast.error("Somth went wrong...");
+        console.error(e);
+      }
     } else {
       ref.current.style = "opacity:1";
       borderRef.current.style = "border:2px solid red";
@@ -137,29 +122,55 @@ const ModalPay = () => {
     e.preventDefault();
 
     try {
-      const resp = await axios.post(
-        "https://partner.paymo.uz/partner/bind-card/apply",
+      await axios.post(
+        "https://partner.paymo.uz/partner/bind-card/appl",
+        { transaction_id: String(txid), otp: String(otp) },
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer Bearer 97883419-b706-3b2f-aa38-91b86f92a15d",
+            Authorization: "Bearer Bearer 20ee6838-33a7-3dee-b23e-3514476a7a84",
             Host: "partner.paymo.uz",
             "Content-Length": 44,
           },
-          body: JSON.stringify({
-            transaction_id: txid,
-            otp: otp,
-          }),
         }
       );
-      console.log("дата от подтверждения запроса на привязку карты", resp.data);
-      console.log("токен", resp.data.data.card_token);
-      setCreditCard(card);
+      toast.success("Success!");
+      console.log(data.data);
     } catch (e) {
       console.error(e);
+      toast.error("Somth went wrong...");
     } finally {
       setOpen(false);
+      setStep("addCard")
+      // toast();
     }
+
+    // await axios
+    //   .post(
+    //     "https://partner.paymo.uz/partner/bind-card/appl",
+    //     { transaction_id: String(txid), otp: String(otp) },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: "Bearer Bearer 20ee6838-33a7-3dee-b23e-3514476a7a84",
+    //         Host: "partner.paymo.uz",
+    //         "Content-Length": 44,
+    //       },
+    //     }
+    //   )
+    //   .then(
+    //     (res) =>
+    //       toast.success(
+    //         "дата от подтверждения запроса на привязку карты",
+    //         res.data
+    //       ),
+    //     setCreditCard(card),
+    //     console.log("after card")
+    //     // console.log("токен", res.data)
+    //   )
+    //   // setCreditCard(card);
+    //   .catch((e) => toast.error(e));
+    // setOpen("false");
   };
 
   return (
@@ -202,8 +213,8 @@ const ModalPay = () => {
                     name="number"
                     type="number"
                     placeholder="Enter the card number"
-                    value={card_number}
-                    onChange={handleCardNumber}
+                    value={card.number}
+                    onChange={handleChange}
                     onInput={handleKey}
                   />
                   <img ref={iconRef} src="./assets/images/humo.svg" alt="404" />
@@ -214,8 +225,8 @@ const ModalPay = () => {
                     type="number"
                     placeholder="MM"
                     name="month"
-                    value={monthExp}
-                    onChange={(e) => setMonthExp(e.target.value)}
+                    value={card.month}
+                    onChange={handleChange}
                     onInput={month}
                   />
                   <input
@@ -223,14 +234,14 @@ const ModalPay = () => {
                     type="number"
                     placeholder="YY"
                     name="year"
-                    value={yearExp}
-                    onChange={(e) => setYearExp(e.target.value)}
+                    value={card.year}
+                    onChange={handleChange}
                     onInput={year}
                   />
                 </div>
 
                 <div className="modalBottom">
-                  <button style={{ width: "100% !important" }} id="btnpay">
+                  <button style={{ width: "100%" }} id="btnpay">
                     Add Cart
                   </button>
                 </div>

@@ -14,7 +14,7 @@ import {
 } from "../../redux/slices/viewed-notification";
 import { UserApi } from "../../api/main/user";
 import { savedUser } from "../../redux/slices/user";
-import { serviceWithOutToken } from "../../services/auth";
+import serviceWithOutToken from "../../services/auth";
 import { getSettings } from "../../redux/slices/settings";
 import { ShopApi } from "../../api/main/shops";
 import { updateSavedStore } from "../../redux/slices/savedStore";
