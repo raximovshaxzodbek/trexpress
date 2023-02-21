@@ -7,6 +7,8 @@
   font-size: 16px;
   height: 60px;
   width: 100%;
+  margin: 0 auto;
+
   button {
     color: var(--black);
   }
@@ -14,20 +16,33 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    p {
-      padding: 10px;
+    .topNavBarSocials {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        padding: 10px;
+        @media (max-width: 900px) {
+          padding: 4px;
+          font-size: 12px;
+        }
+      }
+      @media (max-width: 576px) {
+        display: none;
+      }
     }
+
     .topNavBarFormItem {
       margin-top: 20px;
       position: relative;
-      display: block;
-      border: 10px solid var(red);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 10px;
       max-height: 60px;
-      // width: 367px;
       padding: 10px;
       margin-bottom: 20px;
-      // height: 100%;
+      width: 100%;
       &.success {
         border: 1px solid #61dc00;
       }
@@ -40,7 +55,7 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        right: 20px;
+        // right: 20px;
         color: var(--black);
         cursor: pointer;
       }
@@ -54,8 +69,6 @@
       }
 
       input {
-        // width: 100%;
-        // height: 100%;
         border: none;
         outline: none;
         font-weight: 500;
@@ -64,8 +77,6 @@
         letter-spacing: -0.01em;
         color: var(--black);
         background: transparent;
-        // margin-top: -7px;
-
         &[type="number"] {
           &::-webkit-outer-spin-button,
           &::-webkit-inner-spin-button {
@@ -77,7 +88,7 @@
         &::-webkit-calendar-picker-indicator {
           position: absolute;
           top: 50%;
-          right: 20px;
+          // right: 20px;
           transform: translateY(-50%);
           cursor: pointer;
         }
@@ -121,12 +132,18 @@
       cursor: pointer;
 
       .placeholder {
-        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 90%;
         white-space: nowrap;
-        overflow: hidden !important;
+        // overflow: hidden !important;
         text-overflow: ellipsis;
-        gap: 50px;
+        // gap: 50px;
+        .arrowDownSLineIcon {
+          color: var(--black);
+          width: 40px;
+        }
       }
 
       &.active {
@@ -140,8 +157,6 @@
       .option {
         visibility: hidden;
         opacity: 0;
-        width: 200%;
-        // top: 120%;
         left: 0;
         position: absolute;
         padding: 12px;
@@ -172,26 +187,23 @@
             margin-bottom: 0;
           }
 
-          .status {
-            margin-right: 19px;
-
-            &.selected {
-              color: #16aa16;
-            }
-          }
-
           .flag {
-            margin-right: 8px;
+            // margin-right: 8px;
             margin-top: -2px;
           }
 
           .label {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 24px;
             letter-spacing: -0.5px;
             color: var(--black);
             cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            @media (max-width: 900px) {
+              font-size: 12px;
+            }
           }
 
           &:hover {
@@ -219,5 +231,11 @@
       order: 0;
       flex-grow: 0;
     }
+    @media (max-width: 900px) {
+      display: none;
+    }
+  }
+  @media (max-width: 900px) {
+    justify-content: flex-end;
   }
 }

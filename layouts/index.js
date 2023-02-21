@@ -92,9 +92,11 @@ const Layout = ({ children }) => {
           <p>Contact us +998 99 999 99 99</p>
         </div>
         <div className="rightTopNavBar">
-          <p>Telegram</p>
-          <p>Facebook</p>
-          <p>Instagram</p>
+          <div className="topNavBarSocials">
+            <p>Telegram</p>
+            <p>Facebook</p>
+            <p>Instagram</p>
+          </div>
           <TopNavbarSelect
             topic="lang"
             options={languageList()}
@@ -131,7 +133,6 @@ const Layout = ({ children }) => {
               },
             ]}
             onChange={(e) => {
-              console.log(e);
               handleClick(e.value);
             }}
           />
@@ -184,23 +185,22 @@ export const TopNavbarSelect = ({
       <div className="placeholder">
         {topic === "theme"
           ? selected
-            ? selected.value
-            : tl(placeholder)
+            ? selected.value.charAt(0).toUpperCase() + value.slice(1)
+            : tl(placeholder.charAt(0).toUpperCase() + placeholder.slice(1))
           : selected
           ? selected.title
           : tl(placeholder)}
-        <ArrowDownSLineIcon style={{ color: "white" }} size={15} />
+        <ArrowDownSLineIcon className="arrowDownSLineIcon" />
       </div>
       <div className="option">
         {options?.map((item, key) => {
-          console.log(topic === "currency" && item);
           return (
             <div
               key={key}
               className="option-item"
               onClick={() => onChange(item)}
             >
-              <div className="status">
+              {/* <div className="status">
                 <input
                   onChange={() => {}}
                   type="radio"
@@ -209,10 +209,9 @@ export const TopNavbarSelect = ({
                   value={selected?.value}
                   checked={selected?.value === item.value}
                 />
-              </div>
+              </div> */}
               <label htmlFor="#option" className="label">
                 {topic === "currency" ? item.title : item.value}
-                {/* <ArrowDownSLineIcon style={{ color: "white" }} size={30} /> */}
               </label>
             </div>
           );
