@@ -165,20 +165,19 @@ const PaymentMethod = ({
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer bf4bc9f0-da29-3737-b58b-748e6bd3293b",
+              Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
               Host: "partner.paymo.uz",
               "Content-Length": 32,
             },
           }
         );
-        console.log(data?.data);
+        console.log("card_list", data?.data?.card_list);
         setCreditCards(data?.data?.card_list);
       } catch (e) {
-        toast.error(e.message);
         console.error(e);
       }
     })();
-  }, []);
+  });
 
   return (
     <div className="payment-method">

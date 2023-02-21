@@ -54,41 +54,48 @@ const Layout = ({ children }) => {
   // const customerSecret = "mVDSfWJIF0M4Az9rYtcY9KfTnsAa";
   // const hash = btoa(consumerKey + ":" + customerSecret);
   // //Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh
+  console.log("process.env.ATMOS_TOKEN ", process.env.ATMOS_TOKEN);
 
-  const getToken = async () => {
-    try {
-      const data = await axios.post(
-        "https://partner.atmos.uz/token?grant_type=client_credentials",
-        {},
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            // Authorization:
-            //   "Basic Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh",
-            Host: "partner.paymo.uz",
-            "Content-Length": 29,
-          },
-          auth: {
-            username: "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia",
-            password: "mVDSfWJIF0M4Az9rYtcY9KfTnsAa",
-          },
-          params: {
-            grant_type: "client_credentials",
-          },
-        }
-      );
-      console.log("init token", data.data);
-    } catch (e) {
-      console.error(e);
-      toast.error(e.message);
-    }
-  };
+  // const getToken = async () => {
+
+  // };
+
+  useEffect(() => {}, [
+    (async () => {
+      try {
+        const data = await axios.post(
+          "https://partner.atmos.uz/token?grant_type=client_credentials",
+          {},
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              Authorization:
+                "Basic Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh",
+              Host: "partner.paymo.uz",
+              "Content-Length": 0,
+            },
+            // auth: {
+            //   username: "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia",
+            //   password: "mVDSfWJIF0M4Az9rYtcY9KfTnsAa",
+            // },
+            // params: {
+            //   grant_type: "client_credentials",
+            // },
+          }
+        );
+        console.log("init ATMOS_TOKEN", data.data);
+      } catch (e) {
+        console.error(e);
+        // toast.error(e.message);
+      }
+    })(),
+  ]);
 
   return (
     <>
       <div className="topNavbar">
         <div className="leftTopNavBar">
-          {/* <button onClick={getToken}>get token</button> */}
+          {/* <h1 onClick={getToken}>\\\\\\\\\\ GET TOKEN ////////</h1> */}
           <p>Contact us +998 99 999 99 99</p>
         </div>
         <div className="rightTopNavBar">
