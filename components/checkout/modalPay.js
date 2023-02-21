@@ -78,6 +78,7 @@ const ModalPay = () => {
     e.preventDefault();
 
     if (card.number && card.month && card.year) {
+      console.log("process.env.ATMOS_TOKEN", process.env.ATMOS_TOKEN);
       try {
         console.log("in block try");
         const data = await axios.post(
@@ -89,7 +90,7 @@ const ModalPay = () => {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer bf4bc9f0-da29-3737-b58b-748e6bd3293b",
+              Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
               Host: "partner.paymo.uz",
               "Content-Length": 57,
             },
@@ -102,6 +103,7 @@ const ModalPay = () => {
       } catch (e) {
         toast.error("Somth went wrong...");
         console.error(e);
+        setStep("otp")
       }
     } else {
       ref.current.style = "opacity:1";
@@ -128,7 +130,7 @@ const ModalPay = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer Bearer 20ee6838-33a7-3dee-b23e-3514476a7a84",
+            Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
             Host: "partner.paymo.uz",
             "Content-Length": 44,
           },
@@ -141,7 +143,7 @@ const ModalPay = () => {
       toast.error("Somth went wrong...");
     } finally {
       setOpen(false);
-      setStep("addCard")
+      setStep("addCard");
       // toast();
     }
 
