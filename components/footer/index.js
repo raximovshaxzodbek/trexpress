@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import useWindowSize from "../../utils/hooks/useWindowSize";
@@ -12,10 +12,12 @@ import playMarketLogo from "../../public/assets/icons/playMarket.png";
 import appleLogo from "../../public/assets/icons/appleStoreLogo.png";
 import Image from "next/image";
 import { Collapse } from "antd";
+import { MainContext } from "../../utils/contexts/MainContext";
 
 const Footer = () => {
   const { t: tl } = useTranslation();
   const windowSize = useWindowSize();
+  const { theme } = useContext(MainContext);
   const settings = useSelector((state) => state.settings.data);
   const [idList, setIdList] = useState([]);
   const handleClick = (key) => {
@@ -64,7 +66,13 @@ const Footer = () => {
             {windowSize.width > 768 ? (
               <div className="footerCols">
                 <div className="footer-inner">
-                  <h1 className="title">Safin24</h1>
+                  {/* <Image
+                    width={400}
+                    height={100}
+                    src={`/assets/images/${theme}ThemeLogo.png`}
+                    alt="logo"
+                  /> */}
+                  <h1 className="title">TRExpress</h1>
                   <ul
                     style={{
                       display: "flex",
@@ -220,7 +228,12 @@ const Footer = () => {
               </div>
             </div>
             <div className="secTwo">
-              <p>Safin24</p>
+              <Image
+                src={`/assets/images/${theme}ThemeLogo.png`}
+                alt="logo"
+                width={400}
+                height={100}
+              />
               {/* <p>| Terms of Use | Privacy and Policy</p> */}
             </div>
           </div>

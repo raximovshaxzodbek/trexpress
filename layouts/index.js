@@ -18,6 +18,8 @@ import { useTranslation } from "react-i18next";
 import ArrowDownSLineIcon from "remixicon-react/ArrowDownSLineIcon";
 import AddLineIcon from "remixicon-react/AddLineIcon";
 import { toast } from "react-toastify";
+import useWindowSize from "../utils/hooks/useWindowSize";
+import Image from "next/image";
 
 const Layout = ({ children }) => {
   const {
@@ -50,21 +52,18 @@ const Layout = ({ children }) => {
     if (!content) setOpen(false);
   }, []);
 
+  const wids = useWindowSize();
+
   // const consumerKey = "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia";
   // const customerSecret = "mVDSfWJIF0M4Az9rYtcY9KfTnsAa";
   // const hash = btoa(consumerKey + ":" + customerSecret);
   // //Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh
-  console.log("process.env.ATMOS_TOKEN ", process.env.ATMOS_TOKEN);
 
-  // const getToken = async () => {
-
-  // };
-
-  useEffect(() => {}, [
+  const getToken = async () => {
     (async () => {
       try {
         const data = await axios.post(
-          "https://partner.atmos.uz/token?grant_type=client_credentials",
+          "https://partner.paymo.uz/token?grant_type=client_credentials",
           {},
           {
             headers: {
@@ -72,7 +71,7 @@ const Layout = ({ children }) => {
               Authorization:
                 "Basic Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh",
               Host: "partner.paymo.uz",
-              "Content-Length": 0,
+              "Content-Length": 29,
             },
             // auth: {
             //   username: "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia",
@@ -85,18 +84,57 @@ const Layout = ({ children }) => {
         );
         console.log("init ATMOS_TOKEN", data.data);
       } catch (e) {
-        console.error(e);
-        // toast.error(e.message);
+        console.error("FAILED TO GET TOKEN", e);
       }
-    })(),
-  ]);
+    })();
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await axios.post(
+          "https://partner.atmos.uz/token?grant_type=client_credentials", //
+          {},
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              Authorization:
+                "Basic Wkx4WXRJRkh4WW5RWHBHc3RIN01tNkZ5NzlJYTptVkRTZldKSUYwTTRBejlyWXRjWTlLZlRuc0Fh",
+              Host: "partner.paymo.uz",
+              "Content-Length": 29,
+            },
+            // auth: {
+            //   username: "ZLxYtIFHxYnQXpGstH7Mm6Fy79Ia",
+            //   password: "mVDSfWJIF0M4Az9rYtcY9KfTnsAa",
+            // },
+            // params: {
+            //   grant_type: "client_credentials",
+            // },
+          }
+        );
+        console.log("init ATMOS_TOKEN", data.data);
+      } catch (e) {
+        console.error("FAILED TO GET TOKEN", e);
+      }
+    })();
+  }, []);
 
   return (
     <>
       <div className="topNavbar">
         <div className="leftTopNavBar">
-          {/* <h1 onClick={getToken}>\\\\\\\\\\ GET TOKEN ////////</h1> */}
+          <h6 onClick={getToken}>GET TOKEN</h6>
           <p>Contact us +998 99 999 99 99</p>
+          {wids.width < 480 && (
+            <>
+              <Image
+                width={300}
+                height={80}
+                src={`/assets/images/${theme}ThemeLogo.png`}
+                alt="logo"
+              />
+            </>
+          )}
         </div>
         <div className="rightTopNavBar">
           <div className="topNavBarSocials">

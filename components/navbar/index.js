@@ -17,6 +17,7 @@ import SerachFilter from "../search-filter";
 import { useRouter } from "next/router";
 import { MenuList } from "./MenuList";
 import { Avatar, Badge } from "antd";
+import Image from "next/image";
 
 const Navbar = ({ handleContent }) => {
   const { t: tl } = useTranslation();
@@ -36,6 +37,7 @@ const Navbar = ({ handleContent }) => {
     handleNotification,
     handleMarkAllNotification,
     setDrawerTitle,
+    theme,
   } = useContext(MainContext);
   const isEmpty = Object.keys(user ? user : {}).length === 0;
   const cartTotalAmount = useSelector((state) => state.cart.cartTotalAmount);
@@ -65,11 +67,17 @@ const Navbar = ({ handleContent }) => {
               <span></span>
             </div>
           )}
-          <Link href="/">
-            <a className="logo">
-              {settings?.title ? settings?.title : "Safin24"}
-            </a>
-          </Link>
+          {windowSize.width > 768 && (
+            <Link href="/">
+              <Image
+                width={200}
+                height={80}
+                src={`/assets/images/${theme}ThemeLogo.png`}
+                alt="logo"
+              />
+            </Link>
+          )}
+
           <SerachFilter
             className={
               router.pathname === "/products/[id]" ? "inner-store" : ""

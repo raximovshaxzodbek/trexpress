@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { MainContext } from "../../../utils/contexts/MainContext";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
+import Image from "next/image";
 const SignUp = () => {
   const { t: tl } = useTranslation();
   const router = useRouter();
@@ -25,7 +26,7 @@ const SignUp = () => {
   const [loader, setLoader] = useState(false);
   const [otp, setOtp] = useState(null);
   const [userData, setUserData] = useState({});
-  const { getUser } = useContext(MainContext);
+  const { getUser, theme } = useContext(MainContext);
 
   const getVerifyCode = (e) => {
     e && e.preventDefault();
@@ -89,7 +90,12 @@ const SignUp = () => {
     <div className="container">
       <div className="auth-header">
         <Link href="/">
-          <a className="logo">{settings?.title}</a>
+          <Image
+            src={`/assets/images/${theme}ThemeLogo.png`}
+            alt="logo"
+            width={200}
+            height={60}
+          />
         </Link>
         <div className="auth-btn-side">
           <div className="label">{tl("Have an account")}</div>

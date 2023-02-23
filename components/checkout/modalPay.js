@@ -26,10 +26,10 @@ const ModalPay = () => {
   const inputref = useRef(null);
   const inputref2 = useRef(null);
   const [step, setStep] = useState("addCard");
-  const [otp, setOtp] = useState();
+  const [otp, setOtp] = useState("");
   const { t: tl } = useTranslation();
   const [txid, setTxid] = useState(null);
-  const { setCreditCard, setPaymethod } = useContext(SettingsContext);
+  const { setSavedCards, saveCardStorage } = useContext(SettingsContext);
 
   const style = {
     position: "absolute",
@@ -78,9 +78,7 @@ const ModalPay = () => {
     e.preventDefault();
 
     if (card.number && card.month && card.year) {
-      console.log("process.env.ATMOS_TOKEN", process.env.ATMOS_TOKEN);
       try {
-        console.log("in block try");
         const data = await axios.post(
           "https://partner.paymo.uz/partner/bind-card/create",
           {
@@ -93,17 +91,16 @@ const ModalPay = () => {
               Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
               Host: "partner.paymo.uz",
               "Content-Length": 57,
+              Accept: "application/json",
             },
           }
         );
         console.log(data.data);
-        console.log(data.data.transaction_id);
         setTxid(data.data.transaction_id);
         setStep("otp");
       } catch (e) {
         toast.error("Somth went wrong...");
         console.error(e);
-        setStep("otp")
       }
     } else {
       ref.current.style = "opacity:1";
@@ -122,57 +119,68 @@ const ModalPay = () => {
 
   const handleOptSubmit = async (e) => {
     e.preventDefault();
-
+    console.table({ transaction_id: txid, otp: String(otp) });
     try {
-      await axios.post(
-        "https://partner.paymo.uz/partner/bind-card/appl",
-        { transaction_id: String(txid), otp: String(otp) },
+      const data = await axios.post(
+        "https://partner.paymo.uz/partner/bind-card/apply",
+        { transaction_id: txid, otp: otp },
         {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
             Host: "partner.paymo.uz",
             "Content-Length": 44,
+            Accept: "application/json",
           },
         }
       );
       toast.success("Success!");
-      console.log(data.data);
+      console.log("OTP RESULT. EXPECT CARD TOKEN TO SAVE", data.data);
+      saveCardStorage({
+        card_id: data.data.data.card_id,
+        pan: data.data.data.pan,
+        card_token: data.data.data.card_token,
+        expiry: data.data.data.expiry,
+        card_holder: data.data.data.card_holder,
+      });
+      console.table({
+        card_id: data.data.data.card_id,
+        pan: data.data.data.pan,
+        card_token: data.data.data.card_token,
+        expiry: data.data.data.expiry,
+        card_holder: data.data.data.card_holder,
+      });
     } catch (e) {
-      console.error(e);
+      console.error("OTP RESULT. EXPECT CARD TOKEN TO SAVE", e);
       toast.error("Somth went wrong...");
     } finally {
       setOpen(false);
       setStep("addCard");
-      // toast();
+      setOtp("");
     }
+  };
 
-    // await axios
-    //   .post(
-    //     "https://partner.paymo.uz/partner/bind-card/appl",
-    //     { transaction_id: String(txid), otp: String(otp) },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: "Bearer Bearer 20ee6838-33a7-3dee-b23e-3514476a7a84",
-    //         Host: "partner.paymo.uz",
-    //         "Content-Length": 44,
-    //       },
-    //     }
-    //   )
-    //   .then(
-    //     (res) =>
-    //       toast.success(
-    //         "дата от подтверждения запроса на привязку карты",
-    //         res.data
-    //       ),
-    //     setCreditCard(card),
-    //     console.log("after card")
-    //     // console.log("токен", res.data)
-    //   )
-    //   // setCreditCard(card);
-    //   .catch((e) => toast.error(e));
-    // setOpen("false");
+  const handleCardDelete = async () => {
+    try {
+      const data = await axios.post(
+        "https://partner.paymo.uz/partner/remove-card",
+        {
+          id: "3625486",
+          token: "b2090b46-ab9d-3d83-a68d-c0737cd09acf",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
+            Host: "partner.paymo.uz",
+            "Content-Length": 64,
+          },
+        }
+      );
+      console.log("RESPONSE AFTER CARD DELETE", data.data);
+    } catch (error) {
+      console.error("FAILED TO DELETE CARD", error);
+    }
   };
 
   return (
@@ -180,7 +188,9 @@ const ModalPay = () => {
       {/* <Button ghost onClick={() => localStorage.clear()}>
         clear localstorage
       </Button> */}
-
+      <Button ghost onClick={handleCardDelete}>
+        delete my card
+      </Button>
       <div className="method-item" onClick={() => setOpen(true)}>
         <div className="shipping-type">
           <div className="type">
@@ -260,6 +270,7 @@ const ModalPay = () => {
                   value={otp}
                   numInputs={6}
                   separator={""}
+                  type="text"
                   className="otp-input"
                   onChange={setOtp}
                 />

@@ -28,7 +28,7 @@
         font-size: 20px;
       }
       @media (max-width: 576px) {
-        width: 80%;
+        width: 100%;
         font-size: 18px !important;
         padding: 0 6px !important;
       }
@@ -97,6 +97,7 @@
       .search-input-wrapper {
         display: flex;
         align-items: center;
+        justify-content: end;
         gap: 16px;
         width: 100%;
         @media (max-width: 1200px) {

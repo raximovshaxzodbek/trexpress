@@ -28,8 +28,13 @@ const PaymentMethod = ({
   const { t: tl } = useTranslation();
   const dispatch = useDispatch();
   const { userLocation } = useContext(AuthContext);
-  const { getCreditCards, creditCards, setCreditCards } =
-    useContext(SettingsContext);
+  const {
+    getCreditCards,
+    creditCards,
+    setCreditCards,
+    getCardsStorage,
+    savedCards,
+  } = useContext(SettingsContext);
   const [open, setOpen] = useState(null);
   const [error, setError] = useState(false);
   const [paymentId, setPaymentId] = useState(null);
@@ -154,30 +159,8 @@ const PaymentMethod = ({
   };
 
   useEffect(() => {
-    (async () => {
-      try {
-        const data = await axios.post(
-          "https://partner.paymo.uz/partner/list-cards",
-          {
-            page: 1,
-            page_size: 10,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
-              Host: "partner.paymo.uz",
-              "Content-Length": 32,
-            },
-          }
-        );
-        console.log("card_list", data?.data?.card_list);
-        setCreditCards(data?.data?.card_list);
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  });
+    getCardsStorage();
+  }, []);
 
   return (
     <div className="payment-method">
@@ -236,8 +219,8 @@ const PaymentMethod = ({
               ) : (
                 <DiscordLoader />
               )}
-              {creditCards?.length > 0 &&
-                creditCards.map(({ pan, expiry, card_id }) => (
+              {savedCards?.length > 0 &&
+                savedCards.map(({ card_id, expiry, pan, card_holder }) => (
                   <div
                     key={card_id}
                     className="method-item"
@@ -248,6 +231,7 @@ const PaymentMethod = ({
                     <div className="shipping-type">
                       <p>{card_id}</p>
                       <p>{pan}</p>
+                      <p>CARD_HOLDER {card_holder}</p>
                       <div style={{ display: "flex", gap: 10 }}>
                         {/* <img
                           src={
@@ -296,3 +280,26 @@ const PaymentMethod = ({
 };
 
 export default PaymentMethod;
+// (async () => {
+//   try {
+//     const data = await axios.post(
+//       "https://partner.paymo.uz/partner/list-cards",
+//       {
+//         page: 1,
+//         page_size: 10,
+//       },
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${process.env.ATMOS_TOKEN}`,
+//           Host: "partner.paymo.uz",
+//           "Content-Length": 32,
+//         },
+//       }
+//     );
+//     console.log("card_list", data?.data?.card_list);
+//     setCreditCards(data?.data?.card_list);
+//   } catch (e) {
+//     console.error(e);
+//   }
+// })();
