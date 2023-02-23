@@ -32,6 +32,7 @@ export const SettingsContextProvider = ({ children }) => {
   const [defaultLanguage, setDefaultLanguage] = useState({});
   const [creditCards, setCreditCards] = useState([]);
   const isDarkTheme = useThemeDetector();
+  const [savedCards, setSavedCards] = useState([]);
   // const [paymethod, setPaymethod] = useState()
 
   const currencyList = () => {
@@ -139,6 +140,16 @@ export const SettingsContextProvider = ({ children }) => {
     setDefaultLanguage(cookies.language_id);
   }, []);
 
+  const saveCardStorage = (card) => {
+    setSavedCards([...savedCards, card]);
+    localStorage.setItem("savedCards", JSON.stringify(savedCards));
+  };
+
+  const getCardsStorage = () => {
+    let data = JSON.parse(localStorage.getItem("savedCards"));
+    setSavedCards(data ? data : []);
+  };
+
   return (
     <SettingsContext.Provider
       value={{
@@ -153,6 +164,10 @@ export const SettingsContextProvider = ({ children }) => {
         currencyList,
         creditCards,
         setCreditCards,
+        savedCards,
+        setSavedCards,
+        saveCardStorage,
+        getCardsStorage,
       }}
     >
       {children}

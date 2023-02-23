@@ -1,7 +1,5 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { imgBaseUrl } from "../../constants";
-import { Pagination } from "swiper";
 import "swiper/css/pagination";
 import { FreeMode } from "swiper";
 
@@ -11,13 +9,9 @@ const HomeBanner = ({ bannerList }) => {
       <Swiper freeMode={false} modules={[FreeMode]} pagination={true}>
         {bannerList?.length > 0 ? (
           bannerList.map((el, index) => (
-            <SwiperSlide>
-              <div key={index} className="home-banner">
-                <img
-                  src={
-                    `https://api.safin24.uz/storage/images/` + el.img
-                  }
-                />
+            <SwiperSlide key={index}>
+              <div className="home-banner">
+                <img src={`https://api.safin24.uz/storage/images/` + el.img} />
               </div>
             </SwiperSlide>
           ))

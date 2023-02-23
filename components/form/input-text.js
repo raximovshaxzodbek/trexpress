@@ -17,17 +17,11 @@ const InputText = ({
   disabled = false,
 }) => {
   const { t: tl } = useTranslation();
-  // const ref = useRef();
-
-  // useEffect(() => {
-  //   ref.current?.focus();
-  // });
-
+  
   return (
     <div className={`form-item ${className}`}>
       <div className="label">{tl(label)}</div>
       <input
-        // ref={ref}
         type={type}
         required={required}
         onBlur={(e) => onBlur(e)}

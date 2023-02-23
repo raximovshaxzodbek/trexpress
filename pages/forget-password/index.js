@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -9,6 +10,7 @@ import EnterPhone from "../../components/forget-password/enter-phone";
 import NewPassword from "../../components/forget-password/new-password";
 import { images } from "../../constants/images";
 import serviceWithOutToken from "../../services/auth";
+import { MainContext } from "../../utils/contexts/MainContext";
 
 const ForgetPassword = () => {
   const { t: tl } = useTranslation();
@@ -17,6 +19,7 @@ const ForgetPassword = () => {
   const [phone, setPhone] = useState();
   const [loader, setLoader] = useState(false);
   const [verify, setVerify] = useState(false);
+  const { theme } = useContext(MainContext);
 
   const sumbimtEnterPhone = (e) => {
     e && e.preventDefault();
@@ -39,7 +42,12 @@ const ForgetPassword = () => {
     <div className="container">
       <div className="auth-header">
         <Link href="/">
-          <a className="logo">{settings?.title}</a>
+          <Image
+            src={`/assets/images/${theme}ThemeLogo.png`}
+            alt="logo"
+            width={200}
+            height={60}
+          />
         </Link>
         <div className="auth-btn-side">
           <div className="label">{tl("Do not have an account?")}</div>
@@ -69,7 +77,10 @@ const ForgetPassword = () => {
           {formStep === "new-password" && <NewPassword />}
         </div>
         <div className="auth-banner">
-          <img src="/assets/images/Online-security-registration.png" alt="Auth banner" />
+          <img
+            src="/assets/images/Online-security-registration.png"
+            alt="Auth banner"
+          />
         </div>
       </div>
     </div>
