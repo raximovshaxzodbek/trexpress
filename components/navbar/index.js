@@ -16,6 +16,7 @@ import { parseCookies } from "nookies";
 import SerachFilter from "../search-filter";
 import { useRouter } from "next/router";
 import { MenuList } from "./MenuList";
+import { MenuList2 } from "./MenuList2";
 import { Avatar, Badge } from "antd";
 import Image from "next/image";
 

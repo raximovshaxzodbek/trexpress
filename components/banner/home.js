@@ -11,7 +11,7 @@ const HomeBanner = ({ bannerList }) => {
           bannerList.map((el, index) => (
             <SwiperSlide key={index}>
               <div className="home-banner">
-                <img src={`https://api.safin24.uz/storage/images/` + el.img} />
+                <img src={`https://api.trexpress.uz/storage/images/` + el.img} />
               </div>
             </SwiperSlide>
           ))

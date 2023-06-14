@@ -1,8 +1,9 @@
 import mainCaller from "./mainCaller";
 import HTTPMethods from "../HTTPMethods";
+import {BASE_URL} from "./BASE_URL";
 
 export class AddressApi {
-  static endpoint = "/api/v1/dashboard/user/addresses";
+  static endpoint = BASE_URL+"/api/v1/dashboard/user/addresses";
 
   static get(params) {
     return mainCaller(this.endpoint, HTTPMethods.GET, null, null, params);

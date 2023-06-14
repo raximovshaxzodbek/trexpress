@@ -1,7 +1,8 @@
 import mainCaller from "./mainCaller";
 import HTTPMethods from "../HTTPMethods";
+import {BASE_URL} from "./BASE_URL";
 export class ProductApi {
-  static endpoint = "/api/v1/rest/products";
+  static endpoint = BASE_URL+"/api/v1/rest/products";
 
   static get(params) {
     return mainCaller(

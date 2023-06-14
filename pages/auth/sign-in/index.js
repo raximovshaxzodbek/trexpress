@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import { useContext } from "react";
 import { MainContext } from "../../../utils/contexts/MainContext";
+import SignInForm2 from "../../../components/auth/Sign-in-form2";
 
 const SignIn = () => {
   const { t: tl } = useTranslation();
@@ -25,16 +26,16 @@ const SignIn = () => {
           />
         </Link>
         <div className="auth-btn-side">
-          <div className="label">{tl("Do not have an account?")}</div>
-          <Link href="/auth/sign-up">
-            <a className="btn-auth">{tl("Sign Up")}</a>
-          </Link>
+          {/*<div className="label">{tl("Do not have an account?")}</div>*/}
+          {/*<Link href="/auth/sign-up">*/}
+          {/*  <a className="btn-auth">{tl("Sign Up")}</a>*/}
+          {/*</Link>*/}
         </div>
       </div>
       <div className="authentication">
         <div className="auth-form">
           <div className="title">{tl("Sign In")}</div>
-          <SignInForm />
+          <SignInForm2 />
           {/* <SocialAuth /> */}
         </div>
         <div className="auth-banner">

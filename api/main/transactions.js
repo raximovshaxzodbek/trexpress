@@ -1,8 +1,9 @@
 import mainCaller from "./mainCaller";
 import HTTPMethods from "../HTTPMethods";
+import {BASE_URL} from "./BASE_URL";
 
 export class TransactionsApi {
-  static endpoint = "/api/v1/payments/order/";
+  static endpoint = BASE_URL+"/api/v1/payments/order/";
 
   static create(id, data) {
     return mainCaller(

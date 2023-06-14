@@ -20,7 +20,7 @@ const Blog = () => {
   const [arr, setArr] = useState([]);
   useEffect(() => {
     axios
-      .get(`https://api.safin24.uz/api/v1/dashboard/user/importVideo`, {
+      .get(`https://api.trexpress.uz/api/v1/dashboard/user/importVideo`, {
         headers: {
           Authorization: `Bearer 35|ZdkFJw0h36Jg46P4MkZVNDejmSeTCikKdlyA5KK9`,
         },
@@ -30,7 +30,7 @@ const Blog = () => {
   }, []);
 
   const handleClick = (video) => {
-    setUrlVideo(`https://api.safin24.uz/storage/images/videos/${video}`);
+    setUrlVideo(`https://api.trexpress.uz/storage/images/videos/${video}`);
     setModalOpen(true);
   };
 

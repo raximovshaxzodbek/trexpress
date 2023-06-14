@@ -123,7 +123,7 @@ const Layout = ({ children }) => {
     <>
       <div className="topNavbar">
         <div className="leftTopNavBar">
-          <h6 onClick={getToken}>GET TOKEN</h6>
+          {/*<h6 onClick={getToken}>GET TOKEN</h6>*/}
           <p>Contact us +998 99 999 99 99</p>
           {wids.width < 480 && (
             <>
@@ -223,7 +223,8 @@ export const TopNavbarSelect = ({
   const { setCheckoutAddress } = useContext(MainContext);
   return (
     <div
-      className={`topNavBarFormItem tobNavbarInterface ${active && "active"}`}
+      // className={`topNavBarFormItem tobNavbarInterface ${active && "active"}`}
+      className={`topNavBarFormItem tobNavbarInterface active`}
       onClick={() => setActive(!active)}
     >
       <div className="label">{tl(label)}</div>

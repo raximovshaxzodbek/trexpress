@@ -6,7 +6,7 @@ const ShopStatus = ({
   text,
   icon,
   className,
-  href = "https://admin.safin24.uz",
+  href = "https://admin.trexpress.uz",
 }) => {
   const { t: tl } = useTranslation();
   return (

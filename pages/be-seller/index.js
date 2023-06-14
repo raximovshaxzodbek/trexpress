@@ -110,6 +110,8 @@ const BeSeller = () => {
     shopData.images = uploadImages;
     shopData.location = `${address?.location?.lat},${address?.location?.lng}`;
     shopData.address = { [locale]: address?.address };
+    console.log(shopData);
+
     if (address.address) {
       ShopApi.create(shopData)
         .then((res) => {

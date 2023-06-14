@@ -58,7 +58,6 @@ const SignInForm = () => {
       .post("/api/v1/auth/login", body)
       .then((res) => {
         console.log("res.data.data.access_token", res.data.data.access_token);
-        console.log();
         setCookie(null, "access_token", res.data.data.access_token, {
           maxAge: 30 * 24 * 60 * 60,
           path: "/",

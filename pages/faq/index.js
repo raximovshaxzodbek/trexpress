@@ -5,6 +5,7 @@ import AccordionDetails from "../../components/accordion/accordion-details";
 import AccordionSummary from "../../components/accordion/accordion-summary";
 import SEO from "../../components/seo";
 import axiosService from "../../services/axios";
+import {UploadApi} from "../../api/main/upload";
 
 const Faq = ({ faqDetail }) => {
   const [idList, setIdList] = useState([]);
@@ -16,6 +17,8 @@ const Faq = ({ faqDetail }) => {
       setIdList([...idList, key]);
     }
   };
+
+
   return (
     <>
       <SEO />

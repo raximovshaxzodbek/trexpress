@@ -20,11 +20,12 @@ import { SettingsContext } from "../../utils/contexts/SettingContext";
 export const MenuList = () => {
   const { t: tl } = useTranslation("common");
   const [display, setDisplay] = useState("none");
+  const [childrens, setChildrens] = useState([])
   const { shop } = useContext(MainContext);
   const [arr, setArr] = useState(() => {
     (async () => {
       axiosService
-        .get(`https://api.safin24.uz/api/v1/rest/categories/paginate`)
+        .get(`https://api.trexpress.uz/api/v1/rest/categories/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
@@ -46,6 +47,21 @@ export const MenuList = () => {
     <div className="menuListWrapper">
       <div className="menuListContainer">
         <div className="categoriesList">
+          {router.pathname === "/products/[id]" && wid > 1200 && (
+            <Link href={`/stores/${shop.uuid}`}>
+              {/* <div className="btn sideBtn link"> */}
+              <a className="current-store">
+                <div className="logo">
+                  <img src={imgBaseUrl + shop?.logo_img} alt="Logo" />
+                </div>
+                <div className="data">
+                  <div className="name">{shop?.translation?.title}</div>
+                  <div className="type">{tl("Store")}</div>
+                </div>
+              </a>
+              {/* </div> */}
+            </Link>
+          )}
           <Swiper
             mousewheel={true}
             scrollbar={true}
@@ -61,7 +77,10 @@ export const MenuList = () => {
                   <SwiperSlide
                     key={category.uuid}
                     onMouseLeave={() => setDisplay("none")}
-                    onMouseOver={() => setDisplay("flex")}
+                    onMouseOver={() => {
+                      setDisplay("flex")
+                      setChildrens(category.children)
+                    }}
                   >
                     <Link href={`/all-product?category_id=${category.id}`}>
                       <p ref={index === 0 ? ref : ""}>
@@ -87,11 +106,10 @@ export const MenuList = () => {
             <div className="btn sideBtn link">
               <div className="label">
                 <FlashlightFillIcon size={32} color="#61DC00" />
-                <p>
-                  {!locale && tl("Often buy")}
-                  {locale === "ru" && "Часто покупают"}
-                  {locale === "en" && "Often buy"}
-                </p>
+                {/* {router.pathname !== "/products/[id]" && (
+
+                )} */}
+                <p>{tl("Often buy")}</p>
               </div>
             </div>
           </Link>
@@ -99,16 +117,13 @@ export const MenuList = () => {
             <div className="btn sideBtn link">
               <div className="label">
                 <CheeseLineIcon />
-                <p>
-                  {!locale && tl("Advantageous")}
-                  {locale === "ru" && "Выгодно"}
-                  {locale === "en" && "Advantageous"}
-                </p>
+                <p>{tl("Advantageous")}</p>
               </div>
             </div>
           </Link>
-          {router.pathname === "/products/[id]" && (
+          {router.pathname === "/products/[id]" && wid < 1200 && (
             <Link href={`/stores/${shop.uuid}`}>
+              {/* <div className="btn sideBtn link"> */}
               <a className="current-store">
                 <div className="logo">
                   <img src={imgBaseUrl + shop?.logo_img} alt="Logo" />
@@ -133,29 +148,31 @@ export const MenuList = () => {
         className="menuHover"
         style={{ display: `${display}` }}
       >
-        {arr?.length > 0 &&
-          arr.map(({ translation: { title }, children }, index) => (
-            <div key={index} className="subMenuHover">
-              <Link href={`/all-product?category_id=${title.id}`} key={index}>
-                <p>{title}</p>
-              </Link>
-              <div>
-                {children?.map((el, index) => (
-                  <Link
-                    href={{
-                      pathname: `/all-product`,
-                      query: {
-                        category_id: el.id,
-                      },
-                    }}
-                    key={index}
-                  >
-                    <p>{el.translation?.title}</p>
+        {childrens?.length > 0 &&
+          childrens.map(({ translation: { title }, id }, index) => {
+            return (
+                <div key={index} className="subMenuHover">
+                  <Link href={`/all-product?category_id=${id}`} key={index}>
+                    <p>{title}</p>
                   </Link>
-                ))}
-              </div>
-            </div>
-          ))}
+                  {/*<div>*/}
+                  {/*  {children?.map((el, index) => (*/}
+                  {/*    <Link*/}
+                  {/*      href={{*/}
+                  {/*        pathname: `/all-product`,*/}
+                  {/*        query: {*/}
+                  {/*          category_id: el.id,*/}
+                  {/*        },*/}
+                  {/*      }}*/}
+                  {/*      key={index}*/}
+                  {/*    >*/}
+                  {/*      <p>{el.translation?.title}</p>*/}
+                  {/*    </Link>*/}
+                  {/*  ))}*/}
+                  {/*</div>*/}
+                </div>
+            );
+          })}
       </div>
     </div>
   );

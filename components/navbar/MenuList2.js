@@ -17,7 +17,7 @@ import { imgBaseUrl } from "../../constants";
 import axiosService from "../../services/axios";
 import { SettingsContext } from "../../utils/contexts/SettingContext";
 
-export const MenuList = () => {
+export const MenuList2 = () => {
   const { t: tl } = useTranslation("common");
   const [display, setDisplay] = useState("none");
   const [childrens, setChildrens] = useState([])
@@ -44,7 +44,7 @@ export const MenuList = () => {
   const locale = router.locale;
 
   return (
-    <div className="menuListWrapper">
+    <div className="menuListWrapper" style={{marginBottom:"12px"}}>
       <div className="menuListContainer">
         <div className="categoriesList">
           {router.pathname === "/products/[id]" && wid > 1200 && (
@@ -74,20 +74,33 @@ export const MenuList = () => {
           >
             {arr?.length > 0
               ? arr.map((category, index) => (
-                  <SwiperSlide
-                    key={category.uuid}
-                    onMouseLeave={() => setDisplay("none")}
-                    onMouseOver={() => {
-                      setDisplay("flex")
-                      setChildrens(category.children)
-                    }}
-                  >
-                    <Link href={`/all-product?category_id=${category.id}`}>
-                      <p ref={index === 0 ? ref : ""}>
-                        {category.translation?.title}
-                      </p>
-                    </Link>
-                  </SwiperSlide>
+                  <div className={"dropdown"}>
+                    <SwiperSlide className={"dropdown"}
+                        key={category.uuid}
+                        // onMouseLeave={() => setDisplay("none")}
+                        // onMouseOver={() => {
+                        //   setDisplay("flex")
+                        //   setChildrens(category.children)
+                        // }}
+                    >
+                      <Link href={`/all-product?category_id=${category.id}`}>
+                        <p ref={index === 0 ? ref : ""}>
+                          {category.translation?.title}
+                        </p>
+                      </Link>
+                    </SwiperSlide>
+                    <div className={"dropdown-content"}>
+                      {category.children.map((item, index)=>(
+                              <Link href={`/all-product?category_id=${item.id}`}>
+                                <p ref={index === 0 ? ref : ""}>
+                                  {item.translation?.title}
+                                </p>
+                              </Link>
+                          )
+                      )}
+                    </div>
+
+                  </div>
                 ))
               : [1, 2, 3, 4, 6, 7, 8, 9].map((item, index) => (
                   <SwiperSlide
@@ -137,43 +150,43 @@ export const MenuList = () => {
           )}
         </div>
       </div>
-      <div
-        onMouseOver={() => setDisplay("flex")}
-        onMouseLeave={() => setDisplay("none")}
-        className="skeletonBetween"
-      ></div>
-      <div
-        onMouseOver={() => setDisplay("flex")}
-        onMouseLeave={() => setDisplay("none")}
-        className="menuHover"
-        style={{ display: `${display}` }}
-      >
-        {childrens?.length > 0 &&
-          childrens.map(({ translation: { title }, id }, index) => {
-            return (
-                <div key={index} className="subMenuHover">
-                  <Link href={`/all-product?category_id=${id}`} key={index}>
-                    <p>{title}</p>
-                  </Link>
-                  {/*<div>*/}
-                  {/*  {children?.map((el, index) => (*/}
-                  {/*    <Link*/}
-                  {/*      href={{*/}
-                  {/*        pathname: `/all-product`,*/}
-                  {/*        query: {*/}
-                  {/*          category_id: el.id,*/}
-                  {/*        },*/}
-                  {/*      }}*/}
-                  {/*      key={index}*/}
-                  {/*    >*/}
-                  {/*      <p>{el.translation?.title}</p>*/}
-                  {/*    </Link>*/}
-                  {/*  ))}*/}
-                  {/*</div>*/}
-                </div>
-            );
-          })}
-      </div>
+      {/*<div*/}
+      {/*  onMouseOver={() => setDisplay("flex")}*/}
+      {/*  onMouseLeave={() => setDisplay("none")}*/}
+      {/*  className="skeletonBetween"*/}
+      {/*></div>*/}
+      {/*<div*/}
+      {/*  onMouseOver={() => setDisplay("flex")}*/}
+      {/*  onMouseLeave={() => setDisplay("none")}*/}
+      {/*  className="menuHover"*/}
+      {/*  style={{ display: `${display}` }}*/}
+      {/*>*/}
+      {/*  {childrens?.length > 0 &&*/}
+      {/*    childrens.map(({ translation: { title }, id }, index) => {*/}
+      {/*      return (*/}
+      {/*          <div key={index} className="subMenuHover">*/}
+      {/*            <Link href={`/all-product?category_id=${id}`} key={index}>*/}
+      {/*              <p>{title}</p>*/}
+      {/*            </Link>*/}
+      {/*            /!*<div>*!/*/}
+      {/*            /!*  {children?.map((el, index) => (*!/*/}
+      {/*            /!*    <Link*!/*/}
+      {/*            /!*      href={{*!/*/}
+      {/*            /!*        pathname: `/all-product`,*!/*/}
+      {/*            /!*        query: {*!/*/}
+      {/*            /!*          category_id: el.id,*!/*/}
+      {/*            /!*        },*!/*/}
+      {/*            /!*      }}*!/*/}
+      {/*            /!*      key={index}*!/*/}
+      {/*            /!*    >*!/*/}
+      {/*            /!*      <p>{el.translation?.title}</p>*!/*/}
+      {/*            /!*    </Link>*!/*/}
+      {/*            /!*  ))}*!/*/}
+      {/*            /!*</div>*!/*/}
+      {/*          </div>*/}
+      {/*      );*/}
+      {/*    })}*/}
+      {/*</div>*/}
     </div>
   );
 };

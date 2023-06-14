@@ -6,6 +6,28 @@
   height: 50px;
   font-size: 14px;
 
+  .dropdown{
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  .dropdown:hover {
+    .dropdown-content{
+      display: block;
+    }
+  }
+
+
   @media (max-width: 1250px) {
     flex-direction: column-reverse;
     justify-content: flex-start;
@@ -27,6 +49,30 @@
     text-decoration: none;
     list-style-type: none;
     border-radius: 10px;
+
+    .current-store {
+      width: 120px;
+      background-color: #fff;
+      margin: 0 10px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .logo {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .data {
+        color: #000;
+        a {
+          color: #000;
+        }
+      }
+    }
 
     @media (max-width: 1250px) and (min-width: 577px) {
       padding: 0px 5px 2px 5px;
@@ -152,22 +198,18 @@
       }
     }
     .current-store {
-      /* width: 213px;
+      width: 213px;
       height: 50px;
       background: var(--secondary-bg);
       border-radius: 10px;
       display: flex;
       align-items: center;
       gap: 17px;
-      padding: 13px 10px; */
+      padding: 13px 10px;
       background-color: #fff;
       border-radius: 10px;
       margin-left: 7px;
-      width: max-content;
       padding: 10px;
-      height: 50px;
-      display: flex;
-      align-items: center;
       @media (max-width: 1250px) {
         width: 50%;
       }
@@ -233,7 +275,7 @@
   margin: auto;
   padding: 16px;
   width: 95%;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   text-align: start;
   max-width: 1400px;
@@ -250,7 +292,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    height: 100%;
+    height: 100%; 
 
     div {
       display: flex;

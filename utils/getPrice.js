@@ -16,11 +16,11 @@ export const getPrice = (price = 0) => {
 
   if (price) {
     if (cookies.currency_symbol) {
-      return `${decodeURI(cookies.currency_symbol)} ${commafy(
+      return `${commafy(
         price.toFixed(2)
-      )}`;
+      )} ${decodeURI(cookies.currency_symbol)}`;
     } else {
-      return `$ ${commafy(price.toFixed(2))}`;
+      return `${commafy(price.toFixed(2))} $`;
     }
   } else return "0.00";
 };

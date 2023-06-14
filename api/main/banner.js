@@ -1,8 +1,9 @@
 import mainCaller from "./mainCaller";
 import HTTPMethods from "../HTTPMethods";
+import {BASE_URL} from "./BASE_URL";
 
 export class BannerApi {
-  static endpoint = "/api/v1/rest/banners";
+  static endpoint = BASE_URL+"/api/v1/rest/banners";
 
   static get(params) {
     return mainCaller(

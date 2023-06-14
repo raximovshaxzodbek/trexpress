@@ -61,7 +61,7 @@ function Home() {
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
-        .get(`https://api.safin24.uz/api/v1/rest/brands/paginate`)
+        .get(`https://api.trexpress.uz/api/v1/rest/brands/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
@@ -70,7 +70,7 @@ function Home() {
   const [shops, setShops] = useState(() => {
     (async () => {
       axios
-        .get(`https://api.safin24.uz/api/v1/rest/shops/paginate`)
+        .get(`https://api.trexpress.uz/api/v1/rest/shops/paginate`)
         .then((res) => setShops(res.data.data))
         .catch((err) => console.log(err));
     })();
@@ -190,7 +190,7 @@ export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
       <div className="mainBlock">
         <div className="shopBanner">
           <img
-            src={`https://api.safin24.uz/storage/images/` + backImg}
+            src={`https://api.trexpress.uz/storage/images/` + backImg}
             className="shopImage"
             width={wid < 900 ? 100 : 250}
             height={wid < 900 ? 100 : 250}
@@ -210,7 +210,7 @@ export const StoreTemplate = ({ uuid, backImg, shopTitle }) => {
           </Link>
 
           {/* <img
-            src={`https://api.safin24.uz/storage/images/` + logo}
+            src={`https://api.trexpress.uz/storage/images/` + logo}
             alt=""
             width={30}
             height={30}
@@ -234,7 +234,7 @@ export const StoreTemplates = ({ title, image }) => {
       <div className="mainBlock">
         <div className="rightPart">
           <img
-            src={`https://api.safin24.uz/storage/images/` + image}
+            src={`https://api.trexpress.uz/storage/images/` + image}
             className="rightPartImage"
             width={wid.width < 900 ? 100 : 250}
             height={wid.width < 900 ? 100 : 200}

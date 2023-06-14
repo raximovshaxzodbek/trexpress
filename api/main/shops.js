@@ -1,8 +1,9 @@
 import mainCaller from "./mainCaller";
 import HTTPMethods from "../HTTPMethods";
+import {BASE_URL} from "./BASE_URL";
 
 export class ShopApi {
-  static endpoint = "/api/v1/rest/shops";
+  static endpoint = BASE_URL+"/api/v1/rest/shops";
 
   static get(params) {
     params.perPage = 8;

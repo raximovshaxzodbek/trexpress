@@ -23,7 +23,7 @@ export const BrandList = () => {
   const [arr, setArr] = useState(() => {
     (async () => {
       axios
-        .get(`https://api.safin24.uz/api/v1/rest/brands/paginate`)
+        .get(`https://api.trexpress.uz/api/v1/rest/brands/paginate`)
         .then((res) => setArr(res.data.data))
         .catch((err) => console.log(err));
     })();
@@ -54,7 +54,7 @@ export const BrandList = () => {
                     <img
                       width={wid > 1400 ? 80 : wid > 900 ? 60 : wid > 768 ? 40 : 20}
                       height={wid > 1400 ? 80 : wid > 900 ? 60 : wid > 768 ? 40 : 20}
-                      src={`https://api.safin24.uz/storage/images/` + el.img}
+                      src={`https://api.trexpress.uz/storage/images/` + el.img}
                       style={{ display: loading ? "block" : "none" }}
                       onLoad={() => setLoading(true)}
                       alt="404"

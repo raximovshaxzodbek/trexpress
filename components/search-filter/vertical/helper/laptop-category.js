@@ -8,7 +8,6 @@ const LaptopCategory = () => {
   const [currentId, setCurrentId] = useState(0);
   const category = useSelector((state) => state.category.categoryList);
   const { setIsOpenDropdown } = useContext(MainContext);
-
   const handleHover = (id) => {
     setCurrentId(id);
   };
