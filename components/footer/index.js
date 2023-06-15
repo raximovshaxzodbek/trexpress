@@ -14,7 +14,7 @@ import Image from "next/image";
 import { Collapse } from "antd";
 import { MainContext } from "../../utils/contexts/MainContext";
 
-const Footer = () => {
+const Footer = ({appStore, playMarket}) => {
   const { t: tl } = useTranslation();
   const windowSize = useWindowSize();
   const { theme } = useContext(MainContext);
@@ -38,6 +38,8 @@ const Footer = () => {
       </AccordionDetails>
     )
   ); */
+
+
 
   const makeColumns = (num) => {
     return new Array(num).fill("Lorem").map((el, index) => (
@@ -201,7 +203,7 @@ const Footer = () => {
                 />
 
                 <a
-                  href="https://www.apple.com/ru/app-store/"
+                  href={appStore.value}
                   target="_blank"
                   className="hrefPlayMarketAppStore"
                 >
@@ -218,7 +220,7 @@ const Footer = () => {
                 />
 
                 <a
-                  href="https://play.google.com/store/games?hl=ru&gl=US&pli=1"
+                  href={playMarket.value}
                   target="_blank"
                   className="hrefPlayMarketAppStore"
                 >
