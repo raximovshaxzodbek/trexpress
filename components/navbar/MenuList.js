@@ -20,7 +20,7 @@ import { SettingsContext } from "../../utils/contexts/SettingContext";
 export const MenuList = () => {
   const { t: tl } = useTranslation("common");
   const [display, setDisplay] = useState("none");
-  const [childrens, setChildrens] = useState([])
+  const [childrens, setChildrens] = useState([]);
   const { shop } = useContext(MainContext);
   const [arr, setArr] = useState(() => {
     (async () => {
@@ -78,8 +78,8 @@ export const MenuList = () => {
                     key={category.uuid}
                     onMouseLeave={() => setDisplay("none")}
                     onMouseOver={() => {
-                      setDisplay("flex")
-                      setChildrens(category.children)
+                      setDisplay("flex");
+                      setChildrens(category.children);
                     }}
                   >
                     <Link href={`/all-product?category_id=${category.id}`}>
@@ -149,29 +149,19 @@ export const MenuList = () => {
         style={{ display: `${display}` }}
       >
         {childrens?.length > 0 &&
-          childrens.map(({ translation: { title }, id }, index) => {
-            return (
+          childrens.map((item, index) => {
+            if (item.translation) {
+              return (
                 <div key={index} className="subMenuHover">
-                  <Link href={`/all-product?category_id=${id}`} key={index}>
-                    <p>{title}</p>
+                  <Link
+                    href={`/all-product?category_id=${item.id}`}
+                    key={index}
+                  >
+                    <p>{item.translation.title}</p>
                   </Link>
-                  {/*<div>*/}
-                  {/*  {children?.map((el, index) => (*/}
-                  {/*    <Link*/}
-                  {/*      href={{*/}
-                  {/*        pathname: `/all-product`,*/}
-                  {/*        query: {*/}
-                  {/*          category_id: el.id,*/}
-                  {/*        },*/}
-                  {/*      }}*/}
-                  {/*      key={index}*/}
-                  {/*    >*/}
-                  {/*      <p>{el.translation?.title}</p>*/}
-                  {/*    </Link>*/}
-                  {/*  ))}*/}
-                  {/*</div>*/}
                 </div>
-            );
+              );
+            }
           })}
       </div>
     </div>
