@@ -20,6 +20,7 @@ import AddLineIcon from "remixicon-react/AddLineIcon";
 import { toast } from "react-toastify";
 import useWindowSize from "../utils/hooks/useWindowSize";
 import Image from "next/image";
+import axiosService from "../services/axios";
 
 const Layout = ({ children }) => {
   const {
@@ -47,6 +48,27 @@ const Layout = ({ children }) => {
     setContent(key);
     setOpen(true);
   };
+
+
+  const [mainData, setMainData]=useState([]);
+
+  const handleGetMainData=async ()=>{
+   const res=await axios.get("https://api.trexpress.uz/api/v1/rest/settings")
+        .then((res)=>{
+          setMainData(res.data.data);
+        })
+        .catch((e)=>{
+          console.log(e);
+        })
+        .finally();
+  }
+
+  console.log(mainData);
+
+  useEffect(()=>{
+      handleGetMainData();
+  }, []);
+
 
   useEffect(() => {
     if (!content) setOpen(false);
@@ -119,12 +141,24 @@ const Layout = ({ children }) => {
     })();
   }, []);
 
+
+  const phone=mainData.length>0&&mainData.find(value => value.key==="phone");
+  const title=mainData.length>0&&mainData.find(value => value.key==="title");
+  const instagram=mainData.length>0&&mainData.find(value => value.key==="instagram");
+  const facebook=mainData.length>0&&mainData.find(value => value.key==="facebook");
+  const twitter=mainData.length>0&&mainData.find(value => value.key==="twitter");
+  const appStore=mainData.length>0&&mainData.find(value => value.key==="app_store_url");
+  const playMarket=mainData.length>0&&mainData.find(value => value.key==="google_play_url");
+
+
+  console.log(phone);
+
   return (
     <>
       <div className="topNavbar">
         <div className="leftTopNavBar">
           {/*<h6 onClick={getToken}>GET TOKEN</h6>*/}
-          <p>Contact us +998 99 999 99 99</p>
+          <p>Contact us {phone.value}</p>
           {wids.width < 480 && (
             <>
               <Image
@@ -138,9 +172,9 @@ const Layout = ({ children }) => {
         </div>
         <div className="rightTopNavBar">
           <div className="topNavBarSocials">
-            <p>Telegram</p>
-            <p>Facebook</p>
-            <p>Instagram</p>
+            <a href={twitter.value}>Twitter</a>
+            <a href={facebook.value}>Facebook</a>
+            <a href={instagram.value}>Instagram</a>
           </div>
           <TopNavbarSelect
             topic="lang"
@@ -186,7 +220,7 @@ const Layout = ({ children }) => {
       <div className="container">
         <Navbar handleContent={handleContent} />
         {children}
-        <Footer />
+        <Footer appStore={appStore} playMarket={playMarket}/>
         <CustomDrawer title="Top up wallet" open={open} setOpen={setOpen}>
           {content === "add-wallet" && <AddWallet />}
           {content === "transfer-wallet" && <TransferWallet />}
