@@ -95,8 +95,8 @@ function Home() {
                 );
               }
             })
-          : [1, 2, 3].map((el) => (
-              <Col span={8} offset={100} id="col">
+          : [1, 2, 3].map((el, index) => (
+              <Col span={8} key={index} offset={100} id="col">
                 <div className="mainBlock">
                   <div className="rightPart">
                     <LoaderStore />
@@ -161,8 +161,8 @@ function Home() {
                 );
               }
             })
-          : [1, 2, 3, 4, 5, 6].map((el) => (
-              <Col span={8} offset={100} id="col">
+          : [1, 2, 3, 4, 5, 6].map((el, index) => (
+              <Col span={8} key={index} offset={100} id="col">
                 <div className="mainBlock">
                   <div className="rightPart">
                     <LoaderStore />

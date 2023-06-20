@@ -251,17 +251,28 @@
           p {
             font-size: 15px;
           }
+
+          img {
+            width: 250px !important;
+          }
         }
 
         @media (max-width: 575px) {
           p {
             font-size: 13px;
           }
+
+          img {
+            width: 150px !important;
+          }
         }
 
         @media (max-width: 500px) {
           p {
             font-size: 10px;
+          }
+          img {
+            width: 150px !important;
           }
         }
       }

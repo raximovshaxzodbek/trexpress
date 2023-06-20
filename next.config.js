@@ -8,7 +8,7 @@ const nextConfig = {
   },
   env: {
     ATMOS_TOKEN: "49454fd3-f7a7-3ec4-93a5-91811104fd70",
-    MAP_KEY: "AIzaSyCjcdsFmCp9IITrBKL-QGPamisSvR4yUBY",
+    MAP_KEY: "AIzaSyBn1duUOrQHErXAYO0nAW-SF9MVTh-jpZY",
     API_URL: "https://api.trexpress.uz",
     DEFAULT_LOCATION: `${41.2646},${69.2163}`,
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
